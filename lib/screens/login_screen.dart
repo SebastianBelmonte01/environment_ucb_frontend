@@ -4,12 +4,9 @@ import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 
 class MyLogin extends StatelessWidget {
-
   TextEditingController mail = TextEditingController();
   TextEditingController password = TextEditingController();
-  
 
-  
   MyLogin({super.key});
 
   @override
@@ -25,12 +22,11 @@ class MyLogin extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:[
+          children: [
             const Image(
-              width: 200,
-              height: 200,
-              image: AssetImage("assets/UCB_logo2.png")
-            ),
+                width: 200,
+                height: 200,
+                image: AssetImage("assets/UCB_logo2.png")),
             MyTextField(
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width * 0.7,
@@ -53,16 +49,14 @@ class MyLogin extends StatelessWidget {
               height: 10,
             ),
             MyButton(
-              fontSize: 15, 
-              width: 235, 
-              height: 50, 
+              fontSize: 15,
+              width: 235,
+              height: 50,
               textColor: Colors.white,
               color: Color(0xFF43935A),
               text: "Ingresar",
-              onPressed: (){
-                //should go to next page
-                //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
-                
+              onPressed: () {
+                Navigator.pushNamed(context, '/requestScreen');
               },
             )
           ],
