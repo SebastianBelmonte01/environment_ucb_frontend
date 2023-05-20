@@ -1,3 +1,4 @@
+import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_icon_button.dart';
@@ -12,13 +13,10 @@ class MyRequestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController cantidad_personas = TextEditingController();
     return Scaffold(
-      appBar: AppBar(
-        title: MyText(
-            text: "Solicitud de Reserva", fontSize: 25, color: Colors.white),
-        flexibleSpace: const Image(
-          image: AssetImage("assets/background.png"),
-          fit: BoxFit.cover,
-        ),
+      appBar: const MyAppBar(
+        text: "Solicitud de Reserva",
+        fontSize: 25,
+        textcolor: Colors.white,
       ),
       body: Container(
         child: Column(
@@ -28,18 +26,32 @@ class MyRequestScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    MyText(text: "Fecha", fontSize: 15, color: Colors.black),
+                    MyText(
+                      text: "Fecha",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
                   ],
                 ),
                 Row(
                   children: [
                     MyText(
-                        text: "Hora Inicio", fontSize: 15, color: Colors.black),
+                      text: "Hora Inicio",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
                   ],
                 ),
                 Row(
                   children: [
-                    MyText(text: "Hora Fin", fontSize: 15, color: Colors.black),
+                    MyText(
+                      text: "Hora Fin",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
                   ],
                 )
               ],
@@ -51,7 +63,12 @@ class MyRequestScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    MyText(text: "Ambiente", fontSize: 15, color: Colors.black),
+                    MyText(
+                      text: "Ambiente",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
                     //Dropdownbutton con tres items: Auditorio, Aula, Laboratorio
                     DropdownButton(
                       items: [
@@ -77,7 +94,11 @@ class MyRequestScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     MyText(
-                        text: "Asignatura", fontSize: 15, color: Colors.black),
+                      text: "Asignatura",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
                     //Dropdownbutton con items: Introduccion, Programacion 1, Programacion 2
                     DropdownButton(
                       items: [
@@ -103,9 +124,11 @@ class MyRequestScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     MyText(
-                        text: "Cantidad de Personas",
-                        fontSize: 15,
-                        color: Colors.black),
+                      text: "Cantidad de Personas",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
                     //Textfield de cantidad de personas
                     MyTextField(
                       height: MediaQuery.of(context).size.height * 0.03,
@@ -126,6 +149,7 @@ class MyRequestScreen extends StatelessWidget {
               color: Color(0xFF43935A),
               text: "Siguiente",
               onPressed: () {
+                Navigator.pushNamed(context, '/requestMessageScreen');
                 //should go to next page
                 //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
               },

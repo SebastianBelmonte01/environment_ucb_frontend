@@ -4,8 +4,16 @@ class MyText extends StatelessWidget {
   final String? text;
   double fontSize;
   Color color;
+  TextAlign? textAlign;
+  bool? bold = true;
 
-  MyText({super.key, required this.text, required this.fontSize, required this.color});
+  MyText(
+      {super.key,
+      required this.text,
+      required this.fontSize,
+      required this.color,
+      this.textAlign,
+      this.bold});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +23,9 @@ class MyText extends StatelessWidget {
         fontSize: fontSize,
         fontFamily: "Roboto",
         color: color,
-        fontWeight: FontWeight.bold
-      )
+        fontWeight: bold == true ? FontWeight.bold : FontWeight.normal,
+      ),
+      textAlign: textAlign,
     );
   }
 }

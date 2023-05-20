@@ -1,5 +1,7 @@
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
+import 'package:environment_ucb/screens/pending_reservations_screen.dart';
+import 'package:environment_ucb/screens/request_message.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => MyLogin(),
             '/requestScreen': (context) => MyRequestScreen(),
+            '/requestMessageScreen': (context) => MyRequestMessageScreen(),
+            '/pendingScreen': (context) => MyPendingRequestScreen(),
           },
         ));
   }

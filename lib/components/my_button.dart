@@ -45,10 +45,20 @@ class MyButton extends StatelessWidget {
                   children: [
                     icon!,
                     SizedBox(width: 10),
-                    MyText(text: text, fontSize: fontSize, color: textColor),
+                    MyText(
+                      text: text,
+                      fontSize: fontSize,
+                      color: textColor,
+                      bold: true,
+                    ),
                   ],
                 )
-              : MyText(text: text, fontSize: fontSize, color: textColor),
+              : MyText(
+                  text: text,
+                  fontSize: fontSize,
+                  color: textColor,
+                  bold: true,
+                ),
         ));
   }
 }
