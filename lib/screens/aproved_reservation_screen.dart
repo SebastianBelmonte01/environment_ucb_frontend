@@ -1,13 +1,12 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
-import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
-import 'package:environment_ucb/components/my_text.dart';
+import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class MyPendingRequestScreen extends StatelessWidget {
-  const MyPendingRequestScreen({super.key});
+class MyAprovedReservationScreen extends StatelessWidget {
+  const MyAprovedReservationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +38,15 @@ class MyPendingRequestScreen extends StatelessWidget {
           parallel: "paralelo 1",
           date: "12/12/2021",
           time: "12:00",
-          bottunText: "Cancelar",
-          bottunColor: Colors.red,
-          onPressed: () {},
+          bottunText: "Detalles",
+          bottunColor: AppTheme.secondary,
+          onPressed: () {
+            Navigator.pushNamed(context, '/infoScreen');
+          },
         )
       ])),
       bottomNavigationBar:
-          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
+          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 1),
     );
   }
 }

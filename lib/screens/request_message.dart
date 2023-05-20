@@ -1,10 +1,8 @@
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
-import 'package:environment_ucb/components/my_icon_button.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textCart.dart';
-import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 class MyRequestMessageScreen extends StatelessWidget {
@@ -12,10 +10,9 @@ class MyRequestMessageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController cantidad_personas = TextEditingController();
     int nSolicitud = 12;
     return Scaffold(
-      appBar: MyAppBar(
+      appBar: const MyAppBar(
         text: "Solicitud de Reserva",
         fontSize: 25,
         textcolor: Colors.white,

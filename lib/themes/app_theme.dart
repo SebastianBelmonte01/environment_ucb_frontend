@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static const Color primary = Color.fromRGBO(67, 147, 90, 1);
-  static const Color secondary = Colors.grey;
+  static const Color secondary = Color.fromRGBO(44, 62, 108, 1);
   static const Color alert = Color(0xffED4B4B);
   static const cardColor = Colors.white;
   static const shadow = Colors.black12;

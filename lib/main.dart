@@ -1,4 +1,6 @@
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
+import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
+import 'package:environment_ucb/screens/information_reservation_screen.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/pendingScreen': (context) => MyPendingRequestScreen(),
+            '/aprovedScreen': (context) => MyAprovedReservationScreen(),
+            '/infoScreen': (context) => MyInformationReservationScreen(),
           },
         ));
   }
