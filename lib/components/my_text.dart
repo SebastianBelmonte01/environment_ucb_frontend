@@ -5,15 +5,16 @@ class MyText extends StatelessWidget {
   double fontSize;
   Color color;
   TextAlign? textAlign;
-  bool? bold = true;
+  bool? bold;
 
-  MyText(
-      {super.key,
-      required this.text,
-      required this.fontSize,
-      required this.color,
-      this.textAlign,
-      this.bold});
+  MyText({
+    super.key,
+    required this.text,
+    required this.fontSize,
+    required this.color,
+    required this.bold,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {

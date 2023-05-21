@@ -1,4 +1,5 @@
 import 'package:environment_ucb/components/my_button.dart';
+import 'package:environment_ucb/components/my_textCart.dart';
 import 'package:flutter/material.dart';
 
 import 'my_card.dart';
@@ -16,7 +17,10 @@ class myEnvironmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardContainer(
+    return myTextCard(
+      borderColor: Colors.black,
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.3,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

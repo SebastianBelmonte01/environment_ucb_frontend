@@ -21,7 +21,7 @@ class MyRequestMessageScreen extends StatelessWidget {
         child: Column(
           children: [
             myTextCard(
-                alert: false,
+                borderColor: Colors.black,
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: MediaQuery.of(context).size.width,
                 child: Column(

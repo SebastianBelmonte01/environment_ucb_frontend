@@ -36,7 +36,6 @@ class myInformationCard extends StatelessWidget {
               textAlign: TextAlign.center),
           SizedBox(height: MediaQuery.of(context).size.height * 0.025),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               MyText(
                 text: "Asignatura",
