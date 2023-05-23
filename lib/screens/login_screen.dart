@@ -1,3 +1,4 @@
+import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../components/my_button.dart';
@@ -13,7 +14,7 @@ class MyLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background.png"),
@@ -53,7 +54,7 @@ class MyLogin extends StatelessWidget {
               width: 235,
               height: 50,
               textColor: Colors.white,
-              color: Color(0xFF43935A),
+              color: AppTheme.primary,
               text: "Ingresar",
               onPressed: () {
                 Navigator.pushNamed(context, '/requestScreen');

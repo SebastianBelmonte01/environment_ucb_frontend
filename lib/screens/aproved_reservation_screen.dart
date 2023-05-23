@@ -40,6 +40,7 @@ class MyAprovedReservationScreen extends StatelessWidget {
           time: "12:00",
           bottunText: "Detalles",
           bottunColor: AppTheme.secondary,
+          borderColor: Colors.black12,
           onPressed: () {
             Navigator.pushNamed(context, '/infoScreen');
           },

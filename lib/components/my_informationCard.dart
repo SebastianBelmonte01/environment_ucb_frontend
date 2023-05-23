@@ -1,3 +1,4 @@
+import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class myInformationCard extends StatelessWidget {
   String beginTime;
   String endTime;
   int quantity;
+  Color borderColor;
 
   myInformationCard({
     super.key,
@@ -20,11 +22,15 @@ class myInformationCard extends StatelessWidget {
     required this.beginTime,
     required this.endTime,
     required this.quantity,
+    required this.borderColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return CardContainer(
+    return mySpecialCard(
+      borderColor: borderColor,
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.33,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

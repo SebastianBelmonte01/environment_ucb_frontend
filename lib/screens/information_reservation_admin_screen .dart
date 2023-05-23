@@ -33,6 +33,7 @@ class MyInformationReservationScreen extends StatelessWidget {
               beginTime: "12:00",
               endTime: "14:00",
               quantity: 45,
+              borderColor: const Color.fromRGBO(211, 211, 211, 1),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

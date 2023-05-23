@@ -1,9 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
-import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
-import 'package:environment_ucb/components/my_text.dart';
 import 'package:flutter/material.dart';
 
 class MyPendingRequestScreen extends StatelessWidget {
@@ -41,6 +39,7 @@ class MyPendingRequestScreen extends StatelessWidget {
           time: "12:00",
           bottunText: "Cancelar",
           bottunColor: Colors.red,
+          borderColor: Colors.black12,
           onPressed: () {},
         )
       ])),

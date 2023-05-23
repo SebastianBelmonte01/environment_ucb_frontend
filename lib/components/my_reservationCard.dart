@@ -1,3 +1,4 @@
+import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class myReservationCard extends StatelessWidget {
   String date;
   String time;
   String bottunText;
+  Color borderColor;
   Color bottunColor;
   Function onPressed;
 
@@ -23,12 +25,16 @@ class myReservationCard extends StatelessWidget {
     required this.time,
     required this.bottunText,
     required this.bottunColor,
+    required this.borderColor,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return CardContainer(
+    return mySpecialCard(
+      borderColor: borderColor,
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.25,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
