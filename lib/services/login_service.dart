@@ -14,8 +14,8 @@ class LoginService {
         'Accept': 'application/json',
       },
       body: jsonEncode({
-        'username': username,
-        'password': password,
+        'email': username,
+        'secret': password,
       }),
     );
     if (response.statusCode == 200) {
