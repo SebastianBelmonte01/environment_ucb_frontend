@@ -1,8 +1,23 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
-part 'login_state.dart';
+import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
+import 'package:environment_ucb/cubit/page_status.dart';
+import 'package:environment_ucb/services/login_service.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginInitial());
+  LoginCubit() : super(const LoginState());
+  Future<void> login(String username, String password) async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      // ignore: unused_local_variable
+      await LoginService.login(username, password);
+      emit(state.copyWith(status: PageStatus.success));
+      // emit(state.copyWith(status: PageStatus.success, response: response));
+    } catch (e) {
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
+  void reset() {
+    emit(const LoginState());
+  }
 }

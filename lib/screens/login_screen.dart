@@ -1,8 +1,20 @@
+import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
+import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<LoginCubit, LoginState>(listener: (context, state));
+  }
+}
 
 class MyLogin extends StatelessWidget {
   TextEditingController mail = TextEditingController();
