@@ -3,14 +3,14 @@ import 'dart:ffi';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class mySpecialCard extends StatelessWidget {
+class MySpecialCard extends StatelessWidget {
   final bool? alert;
   final double width;
   final double height;
   final Widget child;
   final Color borderColor;
 
-  const mySpecialCard({
+  const MySpecialCard({
     Key? key,
     this.alert,
     required this.width,

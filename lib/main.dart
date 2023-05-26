@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => MyLogin(),
+            '/': (context) => MyPendingRequestScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/pendingScreen': (context) => MyPendingRequestScreen(),

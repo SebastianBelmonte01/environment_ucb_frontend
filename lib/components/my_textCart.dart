@@ -26,7 +26,7 @@ class myTextCard extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: alert == true ? AppTheme.alert : AppTheme.primary,
+        color: alert == true ? AppTheme.alert : AppTheme.success,
       ),
       child: child,
     );

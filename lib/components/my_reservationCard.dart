@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'my_card.dart';
 import 'my_text.dart';
 
-class myReservationCard extends StatelessWidget {
+class MyReservationCard extends StatelessWidget {
   String environment;
   String subject;
   String parallel;
@@ -16,7 +16,7 @@ class myReservationCard extends StatelessWidget {
   Color bottunColor;
   Function onPressed;
 
-  myReservationCard({
+  MyReservationCard({
     super.key,
     required this.environment,
     required this.subject,
@@ -31,7 +31,7 @@ class myReservationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return mySpecialCard(
+    return MySpecialCard(
       borderColor: borderColor,
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.25,

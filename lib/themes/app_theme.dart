@@ -4,6 +4,9 @@ class AppTheme {
   static const Color primary = Color.fromRGBO(67, 147, 90, 1);
   static const Color secondary = Color.fromRGBO(44, 62, 108, 1);
   static const Color alert = Color(0xffED4B4B);
+  static const Color success = Color.fromRGBO(90, 182, 116, 1);
+  static const Color warning = Color.fromRGBO(203, 59, 59, 1);
+  static const Color borderColor = Color.fromRGBO(211,211,211, 1);
   static const cardColor = Colors.white;
   static const shadow = Colors.black12;
   static const Color textButton = Colors.white;
@@ -23,7 +26,8 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
             backgroundColor: primary,
             shape: const StadiumBorder(),
-            elevation: 0)),
+            elevation: 0)
+    ),
     inputDecorationTheme: const InputDecorationTheme(
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: primary),

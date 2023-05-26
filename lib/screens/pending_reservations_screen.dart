@@ -31,7 +31,7 @@ class MyPendingRequestScreen extends StatelessWidget {
       ),
       body: Container(
           child: Column(children: [
-        myReservationCard(
+        MyReservationCard(
           environment: "Auditorio",
           subject: "Taller de Programacion",
           parallel: "paralelo 1",

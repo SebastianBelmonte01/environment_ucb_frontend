@@ -52,7 +52,6 @@ class MyRequestMessageScreen extends StatelessWidget {
                     fontSize: 25,
                     color: Colors.black,
                     bold: true),
-                SizedBox(height: 5),
                 MyText(
                     text:
                         "Su Solicitud esta siendo Revisada, la respuesta sera emitida dentro de 24 hrs",
@@ -73,19 +72,6 @@ class MyRequestMessageScreen extends StatelessWidget {
                       ))
                   .toList(),
             )),
-            MyButton(
-              fontSize: 15,
-              width: 235,
-              height: 50,
-              textColor: Colors.white,
-              color: Color(0xFF43935A),
-              text: "Ver reservas",
-              onPressed: () {
-                Navigator.pushNamed(context, '/pendingScreen');
-                //should go to next page
-                //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
-              },
-            ),
             //space between buttons
             SizedBox(
               height: 20,
@@ -96,7 +82,7 @@ class MyRequestMessageScreen extends StatelessWidget {
               height: 50,
               textColor: Colors.white,
               color: Color(0xFF43935A),
-              text: "Salir",
+              text: "Menu principal",
               onPressed: () {
                 //should go to next page
                 //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);

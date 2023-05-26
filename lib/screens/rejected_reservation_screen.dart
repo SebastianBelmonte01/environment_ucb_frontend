@@ -31,7 +31,7 @@ class MyRejectedRequestScreen extends StatelessWidget {
       ),
       body: Container(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        myReservationCard(
+        MyReservationCard(
           environment: "Auditorio",
           subject: "Taller de Programacion",
           parallel: "paralelo 1",

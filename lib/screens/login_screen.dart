@@ -90,9 +90,6 @@ class MyLogin extends StatelessWidget {
               hintText: "Correo Electrónico",
               keyboardType: TextInputType.text,
             ),
-            const SizedBox(
-              height: 20,
-            ),
             MyTextField(
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width * 0.7,
@@ -100,9 +97,6 @@ class MyLogin extends StatelessWidget {
               hintText: "Contraseña",
               keyboardType: TextInputType.text,
               isPassword: true,
-            ),
-            const SizedBox(
-              height: 10,
             ),
             MyButton(
               fontSize: 15,

@@ -16,8 +16,7 @@ class MyTextField extends StatefulWidget {
 class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
-    return 
-    Container(
+    return Container(
       width: widget.width,
       height: widget.height,
       child: TextField(
@@ -44,7 +43,7 @@ class _MyTextFieldState extends State<MyTextField> {
             ),
           ),
           contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
+                    horizontal: 1.0,
                     vertical: 1.0,
               ),
         ),

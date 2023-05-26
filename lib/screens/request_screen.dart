@@ -2,6 +2,8 @@ import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_text.dart';
+import 'package:environment_ucb/components/my_textCart.dart';
+import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,8 @@ class MyRequestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController cantidad_personas = TextEditingController();
+    TextEditingController reasonRequest = TextEditingController();
+
     return Scaffold(
       appBar: const MyAppBar(
         text: "Solicitud de Reserva",
@@ -22,124 +26,173 @@ class MyRequestScreen extends StatelessWidget {
           children: [
             CardContainer(
                 child: Column(
-              children: [
-                Row(
-                  children: [
-                    MyText(
-                      text: "Fecha",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    MyText(
-                      text: "Hora Inicio",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    MyText(
-                      text: "Hora Fin",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                  ],
-                )
-              ],
-            )),
+                children: [
+                  Row(
+                    children: [
+                      MyText(
+                        text: "Fecha:",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      MyText(
+                        text: "Hora inicio:",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      MyText(
+                        text: "Hora fin:",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                    ],
+                  )
+                ],
+              )),
+              CardContainer(
+                  child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      MyText(
+                        text: "Ambiente",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                      //Dropdownbutton con tres items: Auditorio, Aula, Laboratorio
+                      DropdownButton(
+                        items: [
+                          DropdownMenuItem(
+                            child: Text("Auditorio"),
+                            value: 1,
+                          ),
+                          DropdownMenuItem(
+                            child: Text("Aula"),
+                            value: 2,
+                          ),
+                          DropdownMenuItem(
+                            child: Text("Laboratorio"),
+                            value: 3,
+                          ),
+                        ],
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      MyText(
+                        text: "Asignatura",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                      //Dropdownbutton con items: Introduccion, Programacion 1, Programacion 2
+                      DropdownButton(
+                        items: [
+                          DropdownMenuItem(
+                            child: Text("Introduccion"),
+                            value: 1,
+                          ),
+                          DropdownMenuItem(
+                            child: Text("Programacion 1"),
+                            value: 2,
+                          ),
+                          DropdownMenuItem(
+                            child: Text("Programacion 2"),
+                            value: 3,
+                          ),
+                        ],
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      MyText(
+                        text: "Paralelo:",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                      //Dropdownbutton con items: Introduccion, Programacion 1, Programacion 2
+                      DropdownButton(
+                        items: [
+                          DropdownMenuItem(
+                            child: Text("1"),
+                            value: 1,
+                          ),
+                          DropdownMenuItem(
+                            child: Text("2"),
+                            value: 2,
+                          ),
+                          DropdownMenuItem(
+                            child: Text("3"),
+                            value: 3,
+                          ),
+                        ],
+                        onChanged: (value) {},
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      MyText(
+                        text: "Cantidad de Personas",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                      //Textfield de cantidad de personas
+                      MyTextField(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        myTextController: cantidad_personas,
+                        hintText: "1",
+                        keyboardType: TextInputType.number,
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ),
             CardContainer(
-                child: Column(
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    MyText(
-                      text: "Ambiente",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                    //Dropdownbutton con tres items: Auditorio, Aula, Laboratorio
-                    DropdownButton(
-                      items: [
-                        DropdownMenuItem(
-                          child: Text("Auditorio"),
-                          value: 1,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Aula"),
-                          value: 2,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Laboratorio"),
-                          value: 3,
-                        ),
-                      ],
-                      onChanged: (value) {},
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    MyText(
-                      text: "Asignatura",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                    //Dropdownbutton con items: Introduccion, Programacion 1, Programacion 2
-                    DropdownButton(
-                      items: [
-                        DropdownMenuItem(
-                          child: Text("Introduccion"),
-                          value: 1,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Programacion 1"),
-                          value: 2,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Programacion 2"),
-                          value: 3,
-                        ),
-                      ],
-                      onChanged: (value) {},
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    MyText(
-                      text: "Cantidad de Personas",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                    //Textfield de cantidad de personas
-                    MyTextField(
-                      height: MediaQuery.of(context).size.height * 0.03,
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      myTextController: cantidad_personas,
-                      hintText: "1",
-                      keyboardType: TextInputType.number,
-                    ),
-                  ],
-                ),
-              ],
-            )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MyText(
+                    text: "Motivo:", 
+                    fontSize: 15,
+                    color: Colors.black,
+                    bold: true,
+                  ),
+                  MyTextArea(
+                    height: MediaQuery.of(context).size.height * 0.2, 
+                    width: MediaQuery.of(context).size.width * 0.8, 
+                    myTextController: reasonRequest, 
+                    borderColor: const Color.fromRGBO(211,211,211, 1),
+                  )
+                  
+                ],
+              )
+            
+            ),
+
             MyButton(
               fontSize: 15,
               width: 235,
