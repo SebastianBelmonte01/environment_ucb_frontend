@@ -11,7 +11,6 @@ class LoginCubit extends Cubit<LoginState> {
       // ignore: unused_local_variable
       await LoginService.login(email, secret);
       emit(state.copyWith(status: PageStatus.success));
-      // emit(state.copyWith(status: PageStatus.success, response: response));
     } catch (e) {
       emit(state.copyWith(status: PageStatus.failure));
     }

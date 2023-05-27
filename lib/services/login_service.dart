@@ -1,14 +1,16 @@
 import 'dart:convert';
 import 'package:environment_ucb/data/provider/api.dart';
-import 'package:environment_ucb/dto/login_response_dto.dart';
+import 'package:environment_ucb/dto/api_response.dart';
+import 'package:environment_ucb/dto/auth_response.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:http/http.dart' as http;
 
 class LoginService {
-  static Future<LoginResponseDto> login(
+  static Future<ApiResponse> login(
       String username, String password) async {
-    String baseURL = Api.url;
     final response = await http.post(
-      Uri.parse('${baseURL}auth/login'),
+      Uri.parse('${Api.url}/auth/login'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -19,8 +21,14 @@ class LoginService {
       }),
     );
     if (response.statusCode == 200) {
-      return LoginResponseDto.fromJson(jsonDecode(response.body));
+      var responseBody = jsonDecode(response.body);
+      const storage = FlutterSecureStorage();
+      storage.write(
+          key: 'authToken', value: responseBody['response']['authToken']);
+      print(responseBody);
+      return ApiResponse.fromJson(responseBody);
     } else {
+      print("Failed to login");
       throw Exception('Failed to login');
     }
   }

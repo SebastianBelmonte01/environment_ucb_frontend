@@ -1,6 +1,7 @@
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
+import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,55 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
-      listener: (context, state) async {
-        switch (state.status) {
-          case PageStatus.initial:
-            MyLogin();
-            break;
-          case PageStatus.loading:
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            );
-            break;
-          case PageStatus.success:
-            Navigator.pushNamed(context, '/requestScreen');
-            break;
-          case PageStatus.failure:
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('Error'),
-                  content: const Text('Usuario o contraseña incorrectos'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Aceptar'),
-                    ),
-                  ],
-                );
-              },
-            );
-            break;
-          default:
-        }
-      },
-    );
-  }
-}
 
 class MyLogin extends StatelessWidget {
   TextEditingController email = TextEditingController();
@@ -115,3 +68,28 @@ class MyLogin extends StatelessWidget {
     );
   }
 }
+
+class MyLoginScreen extends StatelessWidget {
+  const MyLoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+      builder: (context, state) {
+        return Container(
+          child: state.status == PageStatus.initial
+                ? MyLogin() //We need to create a Loading for MyCredentials
+                : state.status == PageStatus.loading
+                    ? const CircularProgressIndicator()
+                    : state.status == PageStatus.success
+                        ? const MyRequestScreen() //TODO need to change List view to the backend
+                        : const Text("Error"),
+            );
+          }
+        );
+  }
+}
+
+
+
+
