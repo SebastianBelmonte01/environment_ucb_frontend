@@ -1,6 +1,8 @@
+import 'package:environment_ucb/components/dropdowns/my_dropdown_environment.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
+import 'package:environment_ucb/components/dropdowns/my_dropdown_subjects.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textCart.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
@@ -10,6 +12,7 @@ import 'package:environment_ucb/screens/request_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../components/dropdowns/my_dropdown_parallels.dart';
 import '../cubit/page_status.dart';
 
 class MyRequest extends StatelessWidget {
@@ -77,23 +80,8 @@ class MyRequest extends StatelessWidget {
                         bold: true,
                       ),
                       //Dropdownbutton con tres items: Auditorio, Aula, Laboratorio
-                      DropdownButton(
-                        items: [
-                          DropdownMenuItem(
-                            child: Text("Auditorio"),
-                            value: 1,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Aula"),
-                            value: 2,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Laboratorio"),
-                            value: 3,
-                          ),
-                        ],
-                        onChanged: (value) {},
-                      ),
+                      const MyDropDownEnvironment()
+                      
                     ],
                   ),
                   Row(
@@ -105,24 +93,8 @@ class MyRequest extends StatelessWidget {
                         color: Colors.black,
                         bold: true,
                       ),
-                      //Dropdownbutton con items: Introduccion, Programacion 1, Programacion 2
-                      DropdownButton(
-                        items: [
-                          DropdownMenuItem(
-                            child: Text("Introduccion"),
-                            value: 1,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Programacion 1"),
-                            value: 2,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Programacion 2"),
-                            value: 3,
-                          ),
-                        ],
-                        onChanged: (value) {},
-                      ),
+                     //Dropdownbutton con items: Introduccion, Programacion 1, Programacion 2
+                    const MyDropDownSubject(),
                     ],
                   ),
                   Row(
@@ -135,23 +107,7 @@ class MyRequest extends StatelessWidget {
                         bold: true,
                       ),
                       //Dropdownbutton con items: Introduccion, Programacion 1, Programacion 2
-                      DropdownButton(
-                        items: [
-                          DropdownMenuItem(
-                            child: Text("1"),
-                            value: 1,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("2"),
-                            value: 2,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("3"),
-                            value: 3,
-                          ),
-                        ],
-                        onChanged: (value) {},
-                      ),
+                      const MyDropDownParallel()
                     ],
                   ),
                   Row(
@@ -225,9 +181,7 @@ class MyRequestScreen extends StatelessWidget {
     return BlocBuilder<ProfessorCubit, ProfessorCubitState>(
       builder: (context, state) {
         return Container(
-          child: state.status == PageStatus.initial
-                ? MyRequest()
-                : state.status == PageStatus.loading
+          child: state.status == PageStatus.loading
                     ? const CircularProgressIndicator()
                     : state.status == PageStatus.success
                         ? const MyRequest() 

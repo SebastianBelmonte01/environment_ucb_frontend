@@ -78,11 +78,11 @@ class MyLoginScreen extends StatelessWidget {
       builder: (context, state) {
         return Container(
           child: state.status == PageStatus.initial
-                ? MyLogin() //We need to create a Loading for MyCredentials
+                ? MyLogin() 
                 : state.status == PageStatus.loading
                     ? const CircularProgressIndicator()
                     : state.status == PageStatus.success
-                        ? const MyRequestScreen() //TODO need to change List view to the backend
+                        ? const MyRequestScreen() 
                         : const Text("Error"),
             );
           }

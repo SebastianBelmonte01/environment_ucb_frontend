@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -20,5 +22,24 @@ class ProfessorCubit extends Cubit<ProfessorCubitState> {
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+
+  //Search the subject by name
+  void changeSelectedSubject(String subjectName) {
+    int index = state.professorDto.subjects!.indexWhere((element) => element.name == subjectName);
+    emit(state.copyWith(selectedSubjectIndex: index));
+  }
+
+  void changeSelectedParallel(String parallel) {   
+    print(parallel);
+    int index = state.professorDto.subjects![state.selectedSubjectIndex].parallels!.indexWhere((element) => element == int.parse(parallel));
+    print(index);
+    emit(state.copyWith(selectedParallelIndex: index));
+  }
+
+  void changeSelectedParallelToInitial() {
+    emit(state.copyWith(selectedParallelIndex: 0));
+  }
+
+
 
 }

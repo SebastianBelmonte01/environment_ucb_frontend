@@ -18,13 +18,15 @@ class ProfessorService {
         'Content-Type': 'application/json',
         'charset': 'utf-8',
         'Accept': 'application/json',
+        'Accept-Language': 'es',
         'Authorization': 'Bearer $authToken'
       },
     );
 
     if (response.statusCode == 200) {
-      print(jsonDecode(response.body)["response"]);
-      return ProfessorDto.fromJson(jsonDecode(response.body)["response"]);
+        final decodedResponse = utf8.decode(response.bodyBytes); // Decode response using UTF-8
+        print(jsonDecode(decodedResponse)["response"]);
+        return ProfessorDto.fromJson(jsonDecode(decodedResponse)["response"]);
 
     }
     else {
