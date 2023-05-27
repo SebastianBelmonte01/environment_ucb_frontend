@@ -5,10 +5,15 @@ import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textCart.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/components/my_textfield.dart';
+import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
+import 'package:environment_ucb/screens/request_message.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyRequestScreen extends StatelessWidget {
-  const MyRequestScreen({super.key});
+import '../cubit/page_status.dart';
+
+class MyRequest extends StatelessWidget {
+  const MyRequest({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -210,5 +215,25 @@ class MyRequestScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+class MyRequestScreen extends StatelessWidget {
+  const MyRequestScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProfessorCubit, ProfessorCubitState>(
+      builder: (context, state) {
+        return Container(
+          child: state.status == PageStatus.initial
+                ? MyRequest()
+                : state.status == PageStatus.loading
+                    ? const CircularProgressIndicator()
+                    : state.status == PageStatus.success
+                        ? const MyRequest() 
+                        : const Text("Error"),
+            );
+          }
+        );
   }
 }
