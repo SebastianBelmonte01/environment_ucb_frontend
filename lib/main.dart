@@ -1,6 +1,7 @@
 import 'package:environment_ucb/cubit/environment_cubit/environment_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
+import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
 import 'package:environment_ucb/screens/information_reservation_screen.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
@@ -30,6 +31,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<ProfessorCubit>(
             create: (context) => ProfessorCubit()..getProfessor(),
           ),
+          BlocProvider<RequestCubit>(
+            create: (context) => RequestCubit(),
+          )
         ],
         child: MaterialApp(
           initialRoute: '/',
