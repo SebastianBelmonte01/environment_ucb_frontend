@@ -3,7 +3,6 @@ import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_environmentCard.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
-import 'package:environment_ucb/components/my_reason.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
@@ -46,12 +45,17 @@ class MyInformationRejectionScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyText(
-                      text: "Motivo:",
+                      text: "Motivo Rechazo:",
                       fontSize: 15,
                       color: Colors.black,
                       bold: true,
                     ),
-                    MyReason(text: state.reservation.reasonRej as String),
+                    MyText(
+                      text: state.reservation.reasonRej as String,
+                      fontSize: 15, 
+                      color: Colors.black, 
+                      bold: false
+                    )
                   ],
               )),
               Row(
