@@ -30,11 +30,11 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
     ];
     return Scaffold(
       appBar: const MyAppBar(
-        text: "Mis Reservas",
+        text: "Solicitud de Reservas",
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: Container(
+      body: SingleChildScrollView(
           child: Column(children: [
         MyReservationCard(
           environment: "Auditorio",
@@ -51,7 +51,7 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
         )
       ])),
       bottomNavigationBar:
-          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 2),
+          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
     );
   }
 }

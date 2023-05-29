@@ -51,10 +51,11 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => MyLoginScreen(),
+            '/': (context) => MyPendingRequestAdminScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
-            '/rejectScreen': (context) => MyRejectReservationScreen(),
+            '/rejectReservationAdminScreen': (context) =>
+                MyRejectReservationAdminScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),
             '/pendingScreen': (context) => MyPendingRequestScreen(),
             '/aprovedScreen': (context) => MyAprovedReservationScreen(),

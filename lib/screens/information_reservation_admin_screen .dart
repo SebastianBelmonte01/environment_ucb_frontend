@@ -18,11 +18,11 @@ class MyInformationReservationAdminScreen extends StatelessWidget {
     TextEditingController reasonRequest = TextEditingController();
     return Scaffold(
       appBar: const MyAppBar(
-        text: "Detalle Reserva",
+        text: "Detalle Solicitud",
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
@@ -60,23 +60,25 @@ class MyInformationReservationAdminScreen extends StatelessWidget {
               children: [
                 MyButton(
                   fontSize: 15,
-                  width: 121.39,
+                  width: 170,
                   height: 50,
                   textColor: Colors.white,
                   color: AppTheme.alert,
-                  text: "Cancelar",
+                  text: "Rechazar Solicitud",
                   onPressed: () {
+                    Navigator.pushNamed(
+                        context, '/rejectReservationAdminScreen');
                     //should go to next page
                     //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
                   },
                 ),
                 MyButton(
                   fontSize: 15,
-                  width: 121.39,
+                  width: 165,
                   height: 50,
                   textColor: Colors.white,
                   color: AppTheme.primary,
-                  text: "Registrar",
+                  text: "Aceptar Solicitud",
                   onPressed: () {
                     //should go to next page
                     //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);

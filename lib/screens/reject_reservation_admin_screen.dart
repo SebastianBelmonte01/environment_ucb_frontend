@@ -8,15 +8,15 @@ import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class MyRejectReservationScreen extends StatelessWidget {
-  const MyRejectReservationScreen({super.key});
+class MyRejectReservationAdminScreen extends StatelessWidget {
+  const MyRejectReservationAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController reasonRequest = TextEditingController();
     return Scaffold(
       appBar: const MyAppBar(
-        text: "Detalle Reserva",
+        text: "Detalle de la solicitud",
         fontSize: 25,
         textcolor: Colors.white,
       ),
