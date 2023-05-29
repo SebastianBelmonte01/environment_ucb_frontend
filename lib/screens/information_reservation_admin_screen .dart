@@ -10,8 +10,8 @@ import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class MyInformationReservationScreen extends StatelessWidget {
-  const MyInformationReservationScreen({super.key});
+class MyInformationReservationAdminScreen extends StatelessWidget {
+  const MyInformationReservationAdminScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
