@@ -49,6 +49,34 @@ class RequestService {
       print("Failed to get last request");
       throw Exception('Failed to get last request');
     }
+  }
+
+  static Future<List<RequestDto>> getMyPendingRequests() async{
+    const storage = FlutterSecureStorage();
+    final authToken = await storage.read(key: 'authToken');
+    final response = await http.get(
+      Uri.parse('${Api.url}/request/pending'),
+      headers: <String, String> {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authToken'
+      }
+    );
+
+    if (response.statusCode == 200) {
+      final decodedResponse = utf8.decode(response.bodyBytes); 
+      print(jsonDecode(decodedResponse)["response"]);
+      List<RequestDto> requests = [];
+      for (var request in jsonDecode(decodedResponse)["response"]) {
+        print(request);
+        requests.add(RequestDto.fromJson(request));
+      }
+      return requests;
+    } else {
+      print("Failed to get pending requests");
+      throw Exception('Failed to get pending requests');
+    }
+    
 
 
   }

@@ -11,14 +11,15 @@ part 'pending_request_state.dart';
 class PendingRequestCubit extends Cubit<PendingRequestState> {
   PendingRequestCubit() : super(PendingRequestState());
 
-  Future<void> getRequests() async {
+  Future<void> getMyPendingRequests() async {
     emit(state.copyWith(status: PageStatus.loading));
     try {
-      List<RequestDto> requests = await RequestService.getRequests();
+      List<RequestDto> requests = await RequestService.getMyPendingRequests();
       emit(state.copyWith(status: PageStatus.success, requests: requests));
     } catch (e) {
       print(e);
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+
 }

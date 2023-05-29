@@ -13,6 +13,7 @@ import 'package:environment_ucb/components/timepickers/init_timepicker.dart';
 import 'package:environment_ucb/cubit/environment_cubit/environment_cubit.dart';
 import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
+import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -166,27 +167,41 @@ class MyRequest extends StatelessWidget {
                     )
                   ],
               )),
-              MyButton(
-                fontSize: 15,
-                width: 235,
-                height: 50,
-                textColor: Colors.white,
-                color: Color(0xFF43935A),
-                text: "Siguiente",
-                onPressed: () {
+              
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  MyButton(
+                    fontSize: 15,
+                    width: 150,
+                    height: 50,
+                    textColor: Colors.white,
+                    color: Color(0xFF2C3E6C),
+                    text: "Mis reservas",
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyPendingRequestScreen()));
+                    },
+                  ),
+                  MyButton(
+                    fontSize: 15,
+                    width: 150,
+                    height: 50,
+                    textColor: Colors.white,
+                    color: Color(0xFF43935A),
+                    text: "Siguiente",
+                    onPressed: () {
 
-                  String environment = BlocProvider.of<EnvironmentCubit>(context).state.environments![BlocProvider.of<EnvironmentCubit>(context).state.selectedEnvironmentIndex].type!;
-                  String subject = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].name!;
-                  int parallel = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].parallels![BlocProvider.of<ProfessorCubit>(context).state.selectedParallelIndex];
-                  int people = int.parse(cantidad_personas.text);
-                  String reason = reasonRequest.text;
-                  BlocProvider.of<RequestCubit>(context).postRequest(environment, subject, parallel, people, reason);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRequestMessageScreen()));
-                
-                 // Navigator.pushNamed(context, '/requestMessageScreen');
-                  //should go to next page
-                  //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
-                },
+                      String environment = BlocProvider.of<EnvironmentCubit>(context).state.environments![BlocProvider.of<EnvironmentCubit>(context).state.selectedEnvironmentIndex].type!;
+                      String subject = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].name!;
+                      int parallel = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].parallels![BlocProvider.of<ProfessorCubit>(context).state.selectedParallelIndex];
+                      int people = int.parse(cantidad_personas.text);
+                      String reason = reasonRequest.text;
+                      BlocProvider.of<RequestCubit>(context).postRequest(environment, subject, parallel, people, reason);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRequestMessageScreen()));
+                    },
+                  ),
+                  
+                ],
               )
             ],
           ),
