@@ -1,3 +1,4 @@
+import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
@@ -17,8 +18,6 @@ class MyInformationRejectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-    
     return Scaffold(
       appBar: const MyAppBar(
         text: "Detalle Rechazo",
@@ -34,30 +33,32 @@ class MyInformationRejectionScreen extends StatelessWidget {
               myInformationCard(
                 subject: state.reservation.subject as String,
                 parallel: state.reservation.parallel.toString(),
-                date:  state.reservation.reservationDate!,
+                date: state.reservation.reservationDate!,
                 beginTime: state.reservation.reservationTimeInit as String,
                 endTime: state.reservation.reservationTimeEnd as String,
                 quantity: state.reservation.people as int,
                 borderColor: const Color.fromRGBO(211, 211, 211, 1),
               ),
-              CardContainer(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MyText(
-                      text: "Motivo Rechazo:",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                    MyText(
-                      text: state.reservation.reasonRej as String,
-                      fontSize: 15, 
-                      color: Colors.black, 
-                      bold: false
-                    )
-                  ],
-              )),
+              MySpecialCard(
+                  borderColor: AppTheme.warning,
+                  height: MediaQuery.of(context).size.height * 0.25,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MyText(
+                        text: "Motivo Rechazo:",
+                        fontSize: 15,
+                        color: Colors.black,
+                        bold: true,
+                      ),
+                      MyText(
+                          text: state.reservation.reasonRej as String,
+                          fontSize: 15,
+                          color: Colors.black,
+                          bold: false)
+                    ],
+                  )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
