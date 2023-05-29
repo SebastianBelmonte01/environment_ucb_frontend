@@ -112,7 +112,7 @@ class MyReservationCard extends StatelessWidget {
                 text: bottunText,
                 fontSize: 15,
                 color: bottunColor,
-                width: 160,
+                width: 150,
                 height: 45,
                 textColor: Colors.white,
                 onPressed: onPressed,

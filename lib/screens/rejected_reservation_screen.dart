@@ -37,7 +37,7 @@ class MyRejectedRequestScreen extends StatelessWidget {
           parallel: "paralelo 1",
           date: "12/12/2021",
           time: "12:00",
-          bottunText: "Mas Información",
+          bottunText: "Detalle",
           bottunColor: Colors.red,
           borderColor: Colors.black12,
           onPressed: () {},
