@@ -7,6 +7,8 @@ import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
 import 'package:environment_ucb/screens/information_reservation_screen.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
+import 'package:environment_ucb/screens/reject_reservation_admin_screen.dart';
+import 'package:environment_ucb/screens/rejected_reservation_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
             '/': (context) => MyLoginScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
+            '/rejectScreen': (context) => MyRejectReservationScreen(),
+            '/rejectedScreen': (context) => MyRejectedRequestScreen(),
             '/pendingScreen': (context) => MyPendingRequestScreen(),
             '/aprovedScreen': (context) => MyAprovedReservationScreen(),
             '/infoScreen': (context) => MyInformationReservationScreen(),

@@ -30,7 +30,7 @@ class MyRejectedRequestScreen extends StatelessWidget {
         textcolor: Colors.white,
       ),
       body: Container(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          child: Column(children: [
         MyReservationCard(
           environment: "Auditorio",
           subject: "Taller de Programacion",
@@ -44,7 +44,7 @@ class MyRejectedRequestScreen extends StatelessWidget {
         )
       ])),
       bottomNavigationBar:
-          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
+          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 2),
     );
   }
 }

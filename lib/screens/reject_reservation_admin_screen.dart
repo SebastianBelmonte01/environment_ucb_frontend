@@ -1,27 +1,26 @@
+import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
-import 'package:environment_ucb/components/my_environmentCard.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
 import 'package:environment_ucb/components/my_text.dart';
-import 'package:environment_ucb/components/my_textCart.dart';
-import 'package:environment_ucb/components/my_textfield.dart';
+import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class MyInformationReservationScreen extends StatelessWidget {
-  const MyInformationReservationScreen({super.key});
+class MyRejectReservationScreen extends StatelessWidget {
+  const MyRejectReservationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController cantidad_personas = TextEditingController();
+    TextEditingController reasonRequest = TextEditingController();
     return Scaffold(
       appBar: const MyAppBar(
         text: "Detalle Reserva",
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
@@ -35,6 +34,45 @@ class MyInformationReservationScreen extends StatelessWidget {
               quantity: 45,
               borderColor: const Color.fromRGBO(211, 211, 211, 1),
             ),
+            CardContainer(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MyText(
+                  text: "Motivo:",
+                  fontSize: 15,
+                  color: Colors.black,
+                  bold: true,
+                ),
+                MyTextArea(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  myTextController: reasonRequest,
+                  borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                )
+              ],
+            )),
+            MySpecialCard(
+                borderColor: AppTheme.alert,
+                height: MediaQuery.of(context).size.height * 0.32,
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MyText(
+                      text: "Motivo Rechazo:",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
+                    MyTextArea(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      myTextController: reasonRequest,
+                      borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                    )
+                  ],
+                )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
@@ -57,7 +95,7 @@ class MyInformationReservationScreen extends StatelessWidget {
                   height: 50,
                   textColor: Colors.white,
                   color: AppTheme.primary,
-                  text: "Registrar",
+                  text: "Emitir",
                   onPressed: () {
                     //should go to next page
                     //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
