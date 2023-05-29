@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-class MyPendingRequestScreen extends StatelessWidget {
-  const MyPendingRequestScreen({super.key});
+class MyPendingRequest extends StatelessWidget {
+  const MyPendingRequest({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,41 +38,61 @@ class MyPendingRequestScreen extends StatelessWidget {
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: BlocBuilder<PendingRequestCubit, PendingRequestState>(
-        builder: (context, state) {
-          if (state.status == PageStatus.loading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state.status == PageStatus.success) {
-            if (state.requests.isEmpty) {
-              return const Center(child: Text('No hay solicitudes'));
+      body: Container(
+        child: BlocBuilder<PendingRequestCubit, PendingRequestState>(
+          builder: (context, state) {
+            if (state.status == PageStatus.loading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state.status == PageStatus.success) {
+              if (state.requests.isEmpty) {
+                return const Center(child: Text('No hay solicitudes'));
+              } else {
+                return ListView.builder(
+                  itemCount: state.requests.length,
+                  itemBuilder: (context, index) {
+                    RequestDto request = state.requests[index];
+                    return MyReservationCard(
+                      environment: request.environment as String,
+                      subject: request.subject.toString(),
+                      parallel: request.parallel.toString(),
+                      date: dateFormatter.format(DateTime.parse(request.date!)),
+                      time: request.initTime as String,
+                      bottunText: "Cancelar",
+                      bottunColor: Colors.red,
+                      borderColor: Colors.black12,
+                      onPressed: () {
+                        BlocProvider.of<PendingRequestCubit>(context).cancelRequest(request.id!);
+                      },
+                    );
+                  },
+                );
+              }
             } else {
-              return ListView.builder(
-                itemCount: state.requests.length,
-                itemBuilder: (context, index) {
-                  RequestDto request = state.requests[index];
-                  return MyReservationCard(
-                    environment: request.environment as String,
-                    subject: request.subject.toString(),
-                    parallel: request.parallel.toString(),
-                    date: dateFormatter.format(DateTime.parse(request.date!)),
-                    time: request.initTime as String,
-                    bottunText: "Cancelar",
-                    bottunColor: Colors.red,
-                    borderColor: Colors.black12,
-                    onPressed: () {
-                      BlocProvider.of<PendingRequestCubit>(context).cancelRequest(request.id!);
-                    },
-                  );
-                },
-              );
+              return const Center(child: Text('Error'));
             }
-          } else {
-            return const Center(child: Text('Error'));
-          }
-        },
+          },
+        ),
       ),
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
     );
+  }
+}
+
+class MyPendingRequestScreen extends StatelessWidget {
+  const MyPendingRequestScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PendingRequestCubit, PendingRequestState>(
+        builder: (context, state) {
+      return Container(
+        child: state.status == PageStatus.loading
+            ? const CircularProgressIndicator()
+            : state.status == PageStatus.success
+                ? const MyPendingRequest()
+                : const Text("Error"),
+      );
+    });
   }
 }

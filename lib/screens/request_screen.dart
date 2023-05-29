@@ -11,6 +11,7 @@ import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/components/timepickers/end_time.dart';
 import 'package:environment_ucb/components/timepickers/init_timepicker.dart';
 import 'package:environment_ucb/cubit/environment_cubit/environment_cubit.dart';
+import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
@@ -179,6 +180,7 @@ class MyRequest extends StatelessWidget {
                     color: Color(0xFF2C3E6C),
                     text: "Mis reservas",
                     onPressed: () {
+                      BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const MyPendingRequestScreen()));
                     },
                   ),
