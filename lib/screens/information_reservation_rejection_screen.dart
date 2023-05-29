@@ -3,6 +3,7 @@ import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_environmentCard.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
+import 'package:environment_ucb/components/my_reason.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
@@ -10,14 +11,18 @@ import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyInformationReservationScreen extends StatelessWidget {
-  const MyInformationReservationScreen({super.key});
+import '../components/my_textarea.dart';
+
+class MyInformationRejectionScreen extends StatelessWidget {
+  const MyInformationRejectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+  
+    
     return Scaffold(
       appBar: const MyAppBar(
-        text: "Detalle Reserva",
+        text: "Detalle Rechazo",
         fontSize: 25,
         textcolor: Colors.white,
       ),
@@ -36,11 +41,19 @@ class MyInformationReservationScreen extends StatelessWidget {
                 quantity: state.reservation.people as int,
                 borderColor: const Color.fromRGBO(211, 211, 211, 1),
               ),
-              myEnvironmentCard(
-                environment: state.reservation.environment as String,
-                classroom: " ${state.reservation.building} - ${state.reservation.classroom} ",
-                borderColor: const Color.fromRGBO(211, 211, 211, 1),
-              ),
+              CardContainer(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MyText(
+                      text: "Motivo:",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
+                    ),
+                    MyReason(text: state.reservation.reasonRej as String),
+                  ],
+              )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,

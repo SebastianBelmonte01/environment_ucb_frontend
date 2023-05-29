@@ -16,6 +16,7 @@ class MyPendingRequest extends StatelessWidget {
   Widget build(BuildContext context) {
     DateFormat dateFormatter = DateFormat('dd-MM-yyyy');
     DateFormat timeFormatter = DateFormat('HH:mm');
+    BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(
@@ -57,7 +58,7 @@ class MyPendingRequest extends StatelessWidget {
                     date: dateFormatter.format(DateTime.parse(request.date!)),
                     time: request.initTime as String,
                     bottunText: "Cancelar",
-                    bottunColor: Colors.red,
+                    bottunColor: Color(0xFFCB3B3B),
                     borderColor: Colors.black12,
                     onPressed: () {
                       BlocProvider.of<PendingRequestCubit>(context).cancelRequest(request.id!);

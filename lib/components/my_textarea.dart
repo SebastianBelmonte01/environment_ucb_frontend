@@ -7,15 +7,16 @@ class MyTextArea extends StatefulWidget {
   final double width;
   final TextEditingController myTextController;
   final Color borderColor;
+  final bool enable;
 
   const MyTextArea({
-    super.key, 
-    required this.height, 
-    required this.width, 
-    required this.myTextController, 
-    required this.borderColor
-    }
-  );
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.myTextController,
+    required this.borderColor,
+    required this.enable,
+  }) : super(key: key);
 
   @override
   State<MyTextArea> createState() => _MyTextAreaState();
@@ -27,6 +28,7 @@ class _MyTextAreaState extends State<MyTextArea> {
     return TextField(
       controller: widget.myTextController,
       keyboardType: TextInputType.multiline,
+      enabled: widget.enable,
       maxLines: 10,
       textAlign: TextAlign.left,
       decoration: InputDecoration(

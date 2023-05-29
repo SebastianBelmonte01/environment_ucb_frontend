@@ -9,7 +9,7 @@ class ReservationDto {
   int? parallel;
   int? people;
   String? requestState;
-  String? reasonRejection;
+  String? reasonRej;
   String? reason;
   String? environment;
   int? classroom;
@@ -26,52 +26,55 @@ class ReservationDto {
     this.parallel,
     this.people,
     this.requestState,
-    this.reasonRejection,
+    this.reasonRej,
     this.reason,
     this.environment,
     this.classroom,
     this.building,
   });
 
-
-  factory ReservationDto.fromJson(Map<String, dynamic> json) {
-    return ReservationDto(
-      reservationId: json['reservationId'] as int?,
-      requestId: json['requestId'] as int?,
-      professorName: json['professorName'] as String?,
-      reservationDate: json['reservationDate'] as String?,
-      reservationTimeInit: json['reservationTimeInit'] as String?,
-      reservationTimeEnd: json['reservationTimeEnd'] as String?,
-      subject: json['subject'] as String?,
-      parallel: json['parallel'] as int?,
-      people: json['people'] as int?,
-      requestState: json['requestState'] as String?,
-      reasonRejection: json['reasonRejection'] as String?,
-      reason: json['reason'] as String?,
-      environment: json['environment'] as String?,
-      classroom: json['classroom'] as int?,
-      building: json['building'] as String?,
-    );
+  
+  ReservationDto.fromJson(Map<String, dynamic> json) {
+    reservationId = json['reservationId'];
+    requestId = json['requestId'];
+    professorName = json['professorName'];
+    reservationDate = json['reservationDate'];
+    reservationTimeInit = json['reservationTimeInit'];
+    reservationTimeEnd = json['reservationTimeEnd'];
+    subject = json['subject'];
+    parallel = json['parallel'];
+    people = json['people'];
+    requestState = json['requestState'];
+    reasonRej = json['reasonRej'];
+    reason = json['reason'];
+    environment = json['environment'];
+    classroom = json['classroom'];
+    building = json['building'];
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'reservationId': reservationId,
-      'requestId': requestId,
-      'professorName': professorName,
-      'reservationDate': reservationDate,
-      'reservationTimeInit': reservationTimeInit,
-      'reservationTimeEnd': reservationTimeEnd,
-      'subject': subject,
-      'parallel': parallel,
-      'people': people,
-      'requestState': requestState,
-      'reasonRejection': reasonRejection,
-      'reason': reason,
-      'environment': environment,
-      'classroom': classroom,
-      'building': building,
-    };
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['reservationId'] = this.reservationId;
+    data['requestId'] = this.requestId;
+    data['professorName'] = this.professorName;
+    data['reservationDate'] = this.reservationDate;
+    data['reservationTimeInit'] = this.reservationTimeInit;
+    data['reservationTimeEnd'] = this.reservationTimeEnd;
+    data['subject'] = this.subject;
+    data['parallel'] = this.parallel;
+    data['people'] = this.people;
+    data['requestState'] = this.requestState;
+    data['reasonRej'] = this.reasonRej;
+    data['reason'] = this.reason;
+    data['environment'] = this.environment;
+    data['classroom'] = this.classroom;
+    data['building'] = this.building;
+    return data;
+  }
+
+  @override
+  String toString() {
+    return 'ReservationDto(reservationId: $reservationId, requestId: $requestId, professorName: $professorName, reservationDate: $reservationDate, reservationTimeInit: $reservationTimeInit, reservationTimeEnd: $reservationTimeEnd, subject: $subject, parallel: $parallel, people: $people, requestState: $requestState, reasonRej: $reasonRej, reason: $reason, environment: $environment, classroom: $classroom, building: $building)';
   }
 
 }

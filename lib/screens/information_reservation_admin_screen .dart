@@ -51,6 +51,7 @@ class MyInformationReservationAdminScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.8,
                   myTextController: reasonRequest,
                   borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                  enable: true,
                 )
               ],
             )),

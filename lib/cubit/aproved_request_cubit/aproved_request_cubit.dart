@@ -23,6 +23,17 @@ class AprovedRequestCubit extends Cubit<AprovedRequestState> {
     }
   }
 
+  Future<void> getMyRejectedReservation() async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      List<ReservationDto> requests = await ReservationService.getMyRejectedReservation();
+      emit(state.copyWith(status: PageStatus.success, reservationList: requests));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
   void setSelectedReservation(ReservationDto reservationDto){
     emit(state.copyWith(reservation: reservationDto));
   }

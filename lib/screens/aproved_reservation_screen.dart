@@ -16,8 +16,11 @@ import '../dto/request_dto.dart';
 class MyAprovedReservationScreen extends StatelessWidget {
   const MyAprovedReservationScreen({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AprovedRequestCubit>(context).getMyAprovedRequest();
+
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(
           icon: Icons.access_time, label: 'Pendiente', route: '/pendingScreen'),
@@ -26,7 +29,9 @@ class MyAprovedReservationScreen extends StatelessWidget {
       BottomNavItem(
           icon: Icons.clear_rounded,
           label: 'Rechazado',
-          route: '/rejectedScreen'),
+          route: '/rejectedScreen',
+          
+      ),
       BottomNavItem(
           icon: Icons.safety_check_sharp,
           label: 'Terminado',
