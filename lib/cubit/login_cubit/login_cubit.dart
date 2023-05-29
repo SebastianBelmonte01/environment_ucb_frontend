@@ -6,6 +6,7 @@ import 'package:environment_ucb/services/login_service.dart';
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(const LoginState());
   Future<void> login(String email, String secret) async {
+    print(email + secret);
     emit(state.copyWith(status: PageStatus.loading));
     try {
       // ignore: unused_local_variable
