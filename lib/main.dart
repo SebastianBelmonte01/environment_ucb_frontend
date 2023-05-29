@@ -12,6 +12,8 @@ import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubit/aproved_request_cubit/aproved_request_cubit.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -37,7 +39,10 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<PendingRequestCubit>(
             create: (context) => PendingRequestCubit()..getMyPendingRequests(),
-          )
+          ),
+          BlocProvider<AprovedRequestCubit>(
+            create: (context) => AprovedRequestCubit()..getMyAprovedRequest(),
+          ),
         ],
         child: MaterialApp(
           initialRoute: '/',
