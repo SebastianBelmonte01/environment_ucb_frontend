@@ -2,7 +2,6 @@ import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:flutter/material.dart';
 
-import 'my_card.dart';
 import 'my_text.dart';
 
 class myInformationCard extends StatelessWidget {
