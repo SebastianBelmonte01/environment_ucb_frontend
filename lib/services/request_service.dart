@@ -76,9 +76,25 @@ class RequestService {
       print("Failed to get pending requests");
       throw Exception('Failed to get pending requests');
     }
-    
+  }
 
-
+  static Future<void> cancelRequest(int id) async {
+    const storage = FlutterSecureStorage();
+    final authToken = await storage.read(key: 'authToken');
+    final response = await http.put(
+      Uri.parse('${Api.url}/request/$id'),
+      headers: <String, String> {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authToken'
+      }
+    );
+    if (response.statusCode == 200) {
+      print("Request id $id cancelled");
+    } else {
+      print("Failed to cancel request id $id");
+      throw Exception('Failed to cancel request');
+    }
   }
 
 }

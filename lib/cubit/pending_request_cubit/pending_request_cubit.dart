@@ -22,4 +22,16 @@ class PendingRequestCubit extends Cubit<PendingRequestState> {
     }
   }
 
+  Future<void> cancelRequest(int id) async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      await RequestService.cancelRequest(id);
+      List<RequestDto> requests = await RequestService.getMyPendingRequests();
+      emit(state.copyWith(status: PageStatus.success, requests: requests));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
 }

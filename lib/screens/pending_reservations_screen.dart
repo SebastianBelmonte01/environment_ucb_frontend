@@ -59,7 +59,9 @@ class MyPendingRequestScreen extends StatelessWidget {
                     bottunText: "Cancelar",
                     bottunColor: Colors.red,
                     borderColor: Colors.black12,
-                    onPressed: () {},
+                    onPressed: () {
+                      BlocProvider.of<PendingRequestCubit>(context).cancelRequest(request.id!);
+                    },
                   );
                 },
               );
