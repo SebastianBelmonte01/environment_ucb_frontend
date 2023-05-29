@@ -13,26 +13,30 @@ part 'request_state.dart';
 class RequestCubit extends Cubit<RequestState> {
   RequestCubit() : super(RequestState());
 
-  Future<void> postRequest() async {
+  Future<void> postRequest(String environment, String subject, int parallel, int people, String reason) async {
     emit(state.copyWith(status: PageStatus.loading));
     try {
       RequestDto newRequest = RequestDto(
         date: DateFormat('yyyy-MM-dd').format(state.date!),
         initTime: DateFormat('HH:mm:ss').format(state.initTime!),
         endTime: DateFormat('HH:mm:ss').format(state.endTime!),
-        environment: state.environment!,
-        subject: state.subject!,
-        parallel: state.parallel!,
-        people: state.people!,
-        reason: state.reason!,
+        environment: environment,
+        subject: subject,
+        parallel: parallel,
+        people: people,
+        reason: reason,
       );
       RequestDto response = await RequestService.postRequest(newRequest);
-      emit(state.copyWith(status: PageStatus.success));
+      RequestDto result = await RequestService.getLastRequest();
+      print("Response:  $result");
+      emit(state.copyWith(status: PageStatus.success, request: result));
     } catch (e) {
       print(e);
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+
+
   void setDate(DateTime date) {
     emit(state.copyWith(date: date));
   }
@@ -41,8 +45,5 @@ class RequestCubit extends Cubit<RequestState> {
   }
   void setEndTime(DateTime endTime) {
     emit(state.copyWith(endTime: endTime));
-  }
-  void setRequestInfo(String environment, String subject, int parallel, int people, String reason) {
-    emit(state.copyWith(environment: environment, subject: subject, parallel: parallel, people: people, reason: reason));
   }
 }

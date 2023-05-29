@@ -174,15 +174,15 @@ class MyRequest extends StatelessWidget {
                 color: Color(0xFF43935A),
                 text: "Siguiente",
                 onPressed: () {
-                  print("HOLAAAAA");
 
                   String environment = BlocProvider.of<EnvironmentCubit>(context).state.environments![BlocProvider.of<EnvironmentCubit>(context).state.selectedEnvironmentIndex].type!;
                   String subject = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].name!;
                   int parallel = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].parallels![BlocProvider.of<ProfessorCubit>(context).state.selectedParallelIndex];
                   int people = int.parse(cantidad_personas.text);
                   String reason = reasonRequest.text;
-                  BlocProvider.of<RequestCubit>(context).setRequestInfo(environment, subject, parallel, people, reason);
-                  BlocProvider.of<RequestCubit>(context).postRequest();
+                  BlocProvider.of<RequestCubit>(context).postRequest(environment, subject, parallel, people, reason);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRequestMessageScreen()));
+                
                  // Navigator.pushNamed(context, '/requestMessageScreen');
                   //should go to next page
                   //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);

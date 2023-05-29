@@ -21,14 +21,36 @@ class RequestService {
       body: jsonEncode(request.toJson()),
     );
     if (response.statusCode == 200) {
-      var responseBody = jsonDecode(response.body);
-      print(responseBody);
+      var responseBody = jsonDecode(response.body)['response'];
       return RequestDto.fromJson(responseBody);
     } else {
       print("Failed to post request");
       throw Exception('Failed to post request');
     }
-    
+  }
+
+  static Future<RequestDto> getLastRequest() async {
+    const storage = FlutterSecureStorage();
+    final authToken = await storage.read(key: 'authToken');
+    final response = await http.get(
+      Uri.parse('${Api.url}/request/last'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authToken'
+      }
+
+    );
+    if (response.statusCode == 200) {
+      final decodedResponse = utf8.decode(response.bodyBytes); // Decode response using UTF-8
+      print(jsonDecode(decodedResponse)["response"]);
+      return RequestDto.fromJson(jsonDecode(decodedResponse)["response"]);
+    } else {
+      print("Failed to get last request");
+      throw Exception('Failed to get last request');
+    }
+
+
   }
 
 }
