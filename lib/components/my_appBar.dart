@@ -12,11 +12,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        text!,
-        style: TextStyle(
-          fontSize: fontSize,
-          color: textcolor,
+      title: Center(
+        child: Text(
+          text!,
+          style: TextStyle(
+            fontSize: fontSize,
+            color: textcolor,
+          ),
         ),
       ),
       flexibleSpace: const Image(
