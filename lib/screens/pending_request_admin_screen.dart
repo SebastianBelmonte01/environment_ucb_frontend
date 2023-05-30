@@ -4,12 +4,22 @@ import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+
+import '../cubit/aproved_request_cubit/aproved_request_cubit.dart';
+import '../dto/reservation_dto.dart';
+import 'information_reservation_screen.dart';
 
 class MyPendingRequestAdminScreen extends StatelessWidget {
   const MyPendingRequestAdminScreen({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AprovedRequestCubit>(context).getAdminPendingRequest();
+    DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(
           icon: Icons.access_time,
@@ -34,22 +44,32 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: SingleChildScrollView(
-          child: Column(children: [
-        MyReservationCard(
-          environment: "Auditorio",
-          subject: "Taller de Programacion",
-          parallel: "paralelo 1",
-          date: "12/12/2021",
-          time: "12:00",
-          bottunText: "Mas Información",
-          bottunColor: AppTheme.secondary,
-          borderColor: Colors.black12,
-          onPressed: () {
-            Navigator.pushNamed(context, '/informationRequestAdminScreen');
-          },
-        )
-      ])),
+      body: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
+          return ListView.builder(
+                  itemCount: state.reservationList?.length,
+                  itemBuilder: (context, index) {
+                    ReservationDto? request = state.reservationList?[index];
+                    return MyReservationCard(
+                      environment: request?.environment as String,
+                      subject: request!.subject.toString(),
+                      parallel: request.parallel.toString(),
+                      date: dateFormat.format(request.reservationDate! as DateTime),
+                      time: request.reservationTimeInit as String,
+                      bottunText: "Ver detalle",
+                      bottunColor: Color(0xff2C3E6C),
+                      borderColor: Colors.black12,
+                      onPressed: () {
+                        BlocProvider.of<AprovedRequestCubit>(context).setSelectedReservation(request);
+                        //TODO NEED TO COORECT THIS OPTION
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const MyInformationReservationScreen()));
+                      },
+                    );
+                  },
+              );
+        },
+      ),
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
     );

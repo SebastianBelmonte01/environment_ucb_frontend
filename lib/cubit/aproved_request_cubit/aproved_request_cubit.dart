@@ -34,6 +34,18 @@ class AprovedRequestCubit extends Cubit<AprovedRequestState> {
     }
   }
 
+  Future<void> getAdminPendingRequest() async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      print("ON PENDING");
+      List<ReservationDto> requests = await ReservationService.getAdminPendingRequest();
+      emit(state.copyWith(status: PageStatus.success, reservationList: requests));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
   void setSelectedReservation(ReservationDto reservationDto){
     emit(state.copyWith(reservation: reservationDto));
   }

@@ -1,6 +1,7 @@
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
+import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
+import 'information_reservation_admin_screen .dart';
 
 
 
@@ -82,7 +84,7 @@ class MyLoginScreen extends StatelessWidget {
                 : state.status == PageStatus.loading
                     ? const CircularProgressIndicator()
                     : state.status == PageStatus.success
-                        ? const MyRequestScreen() 
+                        ? const MyPendingRequestAdminScreen() 
                         : const Text("Error"),
             );
           }
