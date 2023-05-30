@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
 import '../../services/request_service.dart';
+import '../../services/reservation_service.dart';
 import '../page_status.dart';
 
 part 'pending_request_state.dart';
@@ -33,5 +34,18 @@ class PendingRequestCubit extends Cubit<PendingRequestState> {
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+
+  Future<void> getAdminPendingRequest() async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      print("ON PENDING");
+      List<RequestDto> requests = await ReservationService.getAdminPendingRequest();
+      emit(state.copyWith(status: PageStatus.success, requests: requests));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
 
 }

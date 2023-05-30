@@ -2,6 +2,9 @@ import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
+import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
+import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
+import 'package:environment_ucb/dto/request_dto.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +20,7 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<AprovedRequestCubit>(context).getAdminPendingRequest();
+    BlocProvider.of<PendingRequestCubit>(context).getAdminPendingRequest();
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
     final List<BottomNavItem> _bottomNavItems = [
@@ -44,24 +47,23 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
-        buildWhen: (previous, current) => previous.status != current.status,
+      body: BlocBuilder<PendingRequestCubit, PendingRequestState>(
         builder: (context, state) {
           return ListView.builder(
-                  itemCount: state.reservationList?.length,
+                  itemCount: state.requests?.length,
                   itemBuilder: (context, index) {
-                    ReservationDto? request = state.reservationList?[index];
+                    RequestDto? request = state.requests?[index];
                     return MyReservationCard(
                       environment: request?.environment as String,
                       subject: request!.subject.toString(),
                       parallel: request.parallel.toString(),
-                      date: dateFormat.format(request.reservationDate! as DateTime),
-                      time: request.reservationTimeInit as String,
+                      date: request.date!.toString(),
+                      time: request.initTime as String,
                       bottunText: "Ver detalle",
                       bottunColor: Color(0xff2C3E6C),
                       borderColor: Colors.black12,
                       onPressed: () {
-                        BlocProvider.of<AprovedRequestCubit>(context).setSelectedReservation(request);
+                        //BlocProvider.of<AprovedRequestCubit>(context).setSelectedReservation(request);
                         //TODO NEED TO COORECT THIS OPTION
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const MyInformationReservationScreen()));
                       },

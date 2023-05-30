@@ -16,7 +16,7 @@ class MyFinishedReservationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<AprovedRequestCubit>(context).getMyRejectedReservation();
+    BlocProvider.of<AprovedRequestCubit>(context).getMyAprovedRequest();
 
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(

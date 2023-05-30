@@ -84,7 +84,7 @@ class MyLoginScreen extends StatelessWidget {
                 : state.status == PageStatus.loading
                     ? const CircularProgressIndicator()
                     : state.status == PageStatus.success
-                        ? const MyPendingRequestAdminScreen() 
+                        ? const MyRequestScreen() 
                         : const Text("Error"),
             );
           }

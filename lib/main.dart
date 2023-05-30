@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             create: (context) => PendingRequestCubit()..getMyPendingRequests(),
           ),
           BlocProvider<AprovedRequestCubit>(
-            create: (context) => AprovedRequestCubit()..getAdminPendingRequest(),
+            create: (context) => AprovedRequestCubit()..getMyAprovedRequest(),
           ),
         ],
         child: MaterialApp(

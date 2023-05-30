@@ -1,3 +1,4 @@
+import 'package:environment_ucb/dto/request_dto.dart';
 import 'package:environment_ucb/dto/reservation_dto.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:convert';
@@ -61,7 +62,7 @@ class ReservationService {
     }
   }
 
-  static Future<List<ReservationDto>> getAdminPendingRequest() async{
+  static Future<List<RequestDto>> getAdminPendingRequest() async{
     const storage = FlutterSecureStorage();
     final authToken = await storage.read(key: 'authToken');
     final response = await http.get(
@@ -76,9 +77,9 @@ class ReservationService {
     if (response.statusCode == 200) {
       final decodedResponse = utf8.decode(response.bodyBytes); 
       print(jsonDecode(decodedResponse)["response"]);
-      List<ReservationDto> requests = [];
+      List<RequestDto> requests = [];
       for (var request in jsonDecode(decodedResponse)["response"]) {
-        requests.add(ReservationDto.fromJson(request));
+        requests.add(RequestDto.fromJson(request));
       }
       return requests;
     } else {
