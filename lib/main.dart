@@ -11,6 +11,7 @@ import 'package:environment_ucb/screens/information_reservation_screen.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
+import 'package:environment_ucb/screens/qr_scan_reservation_screen.dart';
 import 'package:environment_ucb/screens/rejected_reservation_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
                 MyInformationReservationAdminScreen(),
             '/finishedScreen': (context) => MyFinishedReservationScreen(),
             '/claimScreen': (context) => MyClaimReservationScreen(),
+            '/qrScanScreen': (context) => MyQrScanReservationScreen(),
           },
         ));
   }
