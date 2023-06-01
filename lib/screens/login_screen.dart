@@ -21,7 +21,6 @@ class MyLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginCubit = BlocProvider.of<LoginCubit>(context);
     return Scaffold(
       body: Container(
         constraints: const BoxConstraints.expand(),
@@ -61,7 +60,8 @@ class MyLogin extends StatelessWidget {
               color: AppTheme.primary,
               text: "Ingresar",
               onPressed: () {
-                loginCubit.login(email.text, secret.text);
+                BlocProvider.of<LoginCubit>(context)
+                    .login(email.text, secret.text);
               },
             )
           ],

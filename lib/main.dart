@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => MyLoginScreen(),
+            '/': (context) => MyQrScanReservationScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),

@@ -16,7 +16,6 @@ class MyPendingRequest extends StatelessWidget {
   Widget build(BuildContext context) {
     DateFormat dateFormatter = DateFormat('dd-MM-yyyy');
     DateFormat timeFormatter = DateFormat('HH:mm');
-    BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(
@@ -83,6 +82,7 @@ class MyPendingRequestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     return BlocBuilder<PendingRequestCubit, PendingRequestState>(
         builder: (context, state) {
       return Container(

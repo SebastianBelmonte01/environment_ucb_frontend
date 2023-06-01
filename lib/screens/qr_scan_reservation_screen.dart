@@ -76,32 +76,42 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
       if (flag) {
         flag = false;
         var alert = AlertDialog(
-          title: Text("QR Code Detected"),
-          content: Text(result!.code as String),
+          title: Text("Ambiente detectado"),
+          content: Container(
+            height: MediaQuery.of(context).size.height * 0.03,
+            width: MediaQuery.of(context).size.width * 0.05,
+            child: Column(
+              children: [
+                Text(result!.code as String), 
+              ],
+            )
+            
+          ),
           actions: [
             MyButton(
-                fontSize: 5,
+                fontSize: 10,
                 width: 100,
-                height: 30,
+                height: 40,
                 color: AppTheme.alert,
                 textColor: Colors.white,
                 text: "Cancelar",
-                onPressed: () {
+                onPressed: () { 
                   Navigator.pop(context);
-                }),
+                }
+            ),
             MyButton(
-              fontSize: 5,
+              fontSize: 10,
               width: 100,
-              height: 30,
+              height: 40,
               color: AppTheme.primary,
               textColor: Colors.white,
               text: "Confirmar",
               onPressed: () {
-                Navigator.pop(context);
                 Navigator.pushNamed(context, '/claimScreen');
               },
             ),
           ],
+          
         );
         showDialog(context: context, builder: (context) => alert);
       }
