@@ -78,15 +78,13 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
         var alert = AlertDialog(
           title: Text("Ambiente detectado"),
           content: Container(
-            height: MediaQuery.of(context).size.height * 0.03,
-            width: MediaQuery.of(context).size.width * 0.05,
-            child: Column(
-              children: [
-                Text(result!.code as String), 
-              ],
-            )
-            
-          ),
+              height: MediaQuery.of(context).size.height * 0.03,
+              width: MediaQuery.of(context).size.width * 0.05,
+              child: Column(
+                children: [
+                  Text(result!.code as String),
+                ],
+              )),
           actions: [
             MyButton(
                 fontSize: 10,
@@ -95,10 +93,10 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
                 color: AppTheme.alert,
                 textColor: Colors.white,
                 text: "Cancelar",
-                onPressed: () { 
+                onPressed: () {
+                  aux = "";
                   Navigator.pop(context);
-                }
-            ),
+                }),
             MyButton(
               fontSize: 10,
               width: 100,
@@ -111,7 +109,6 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
               },
             ),
           ],
-          
         );
         showDialog(context: context, builder: (context) => alert);
       }
