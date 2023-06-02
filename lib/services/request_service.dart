@@ -98,6 +98,25 @@ class RequestService {
     }
   }
 
+  static Future<void> adminAcceptPendingRequest(int id) async{
+    const storage = FlutterSecureStorage();
+    final authToken = await storage.read(key: 'authToken');
+    final response = await http.put(
+      Uri.parse('${Api.url}/reservation/accept/$id'),
+      headers: <String, String> {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authToken'
+      }
+    );
+    if (response.statusCode == 200) {
+      print("Reservation id $id accepted");
+    } else {
+      print("Failed to cancel request id $id");
+      throw Exception('Failed to cancel request');
+    }
+  }
+
   
 
 }

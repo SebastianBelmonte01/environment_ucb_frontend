@@ -5,6 +5,7 @@ import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/dto/request_dto.dart';
+import 'package:environment_ucb/screens/information_reservation_admin_screen%20.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,7 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<PendingRequestCubit>(context).getAdminPendingRequest();
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+    
 
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(
@@ -50,22 +52,21 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
       body: BlocBuilder<PendingRequestCubit, PendingRequestState>(
         builder: (context, state) {
           return ListView.builder(
-                  itemCount: state.requests?.length,
+                  itemCount: state.requests.length,
                   itemBuilder: (context, index) {
-                    RequestDto? request = state.requests?[index];
+                    RequestDto? request = state.requests[index];
                     return MyReservationCard(
-                      environment: request?.environment as String,
-                      subject: request!.subject.toString(),
+                      environment: request.environment as String,
+                      subject: request.subject.toString(),
                       parallel: request.parallel.toString(),
-                      date: request.date!.toString(),
+                      date: dateFormat.format(DateTime.parse(request.date.toString())),
                       time: request.initTime as String,
                       bottunText: "Ver detalle",
                       bottunColor: Color(0xff2C3E6C),
                       borderColor: Colors.black12,
                       onPressed: () {
-                        //BlocProvider.of<AprovedRequestCubit>(context).setSelectedReservation(request);
-                        //TODO NEED TO COORECT THIS OPTION
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const MyInformationReservationScreen()));
+                        BlocProvider.of<RequestCubit>(context).setSelectedRequest(request);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const MyInformationReservationAdminScreen()));
                       },
                     );
                   },

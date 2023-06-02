@@ -181,7 +181,6 @@ class MyRequest extends StatelessWidget {
                     color: Color(0xFF2C3E6C),
                     text: "Mis reservas",
                     onPressed: () {
-                      BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
                       Navigator.push(context, MaterialPageRoute(builder: (context) => const MyPendingRequestScreen()));
                     },
                   ),

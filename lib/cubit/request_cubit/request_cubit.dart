@@ -45,4 +45,8 @@ class RequestCubit extends Cubit<RequestState> {
   void setEndTime(DateTime endTime) {
     emit(state.copyWith(endTime: endTime));
   }
+
+  void setSelectedRequest(RequestDto requestDto){
+    emit(state.copyWith(request: requestDto));
+  }
 }

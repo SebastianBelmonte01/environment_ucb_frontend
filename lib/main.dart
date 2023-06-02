@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
             create: (context) => RequestCubit(),
           ),
           BlocProvider<PendingRequestCubit>(
-            create: (context) => PendingRequestCubit()..getMyPendingRequests(),
+            create: (context) => PendingRequestCubit(),
           ),
           BlocProvider<AprovedRequestCubit>(
             create: (context) => AprovedRequestCubit()..getMyAprovedRequest(),
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => MyQrScanReservationScreen(),
+            '/': (context) => MyLoginScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),

@@ -25,7 +25,8 @@ class MyPendingRequest extends StatelessWidget {
       BottomNavItem(
           icon: Icons.clear_rounded,
           label: 'Rechazado',
-          route: '/rejectedScreen'),
+          route: '/rejectedScreen'
+      ),
       BottomNavItem(
           icon: Icons.safety_check_sharp,
           label: 'Terminado',
@@ -79,10 +80,9 @@ class MyPendingRequest extends StatelessWidget {
 
 class MyPendingRequestScreen extends StatelessWidget {
   const MyPendingRequestScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
-  BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
+    BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     return BlocBuilder<PendingRequestCubit, PendingRequestState>(
         builder: (context, state) {
       return Container(

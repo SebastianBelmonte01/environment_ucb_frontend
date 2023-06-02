@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:environment_ucb/dto/request_dto.dart';
+import 'package:environment_ucb/dto/reservation_dto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 
@@ -45,6 +46,21 @@ class PendingRequestCubit extends Cubit<PendingRequestState> {
       print(e);
       emit(state.copyWith(status: PageStatus.failure));
     }
+  }
+
+  Future<void> aproveRequest(int requestId) async{
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      await RequestService.adminAcceptPendingRequest(requestId);
+      List<RequestDto> requests = await ReservationService.getAdminPendingRequest();
+      emit(state.copyWith(status: PageStatus.success, requests: requests));
+    }
+    catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+
+
   }
 
 

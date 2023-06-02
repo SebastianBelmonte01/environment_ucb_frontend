@@ -14,6 +14,7 @@ import 'information_reservation_admin_screen .dart';
 
 
 class MyLogin extends StatelessWidget {
+  
   TextEditingController email = TextEditingController();
   TextEditingController secret = TextEditingController();
 
@@ -84,7 +85,7 @@ class MyLoginScreen extends StatelessWidget {
                 : state.status == PageStatus.loading
                     ? const CircularProgressIndicator()
                     : state.status == PageStatus.success
-                        ? const MyRequestScreen() 
+                        ? const MyRequestScreen()//MyPendingRequestAdminScreen() 
                         : const Text("Error"),
             );
           }
