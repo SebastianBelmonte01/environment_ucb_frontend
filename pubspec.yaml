@@ -42,6 +42,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   intl: ^0.18.1
   qr_code_scanner: ^1.0.1
+  camera: ^0.10.5+2
 
 dev_dependencies:
   flutter_test:

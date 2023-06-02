@@ -30,7 +30,7 @@ class MyInformationReservationScreen extends StatelessWidget {
               myInformationCard(
                 subject: state.reservation.subject as String,
                 parallel: state.reservation.parallel.toString(),
-                date:  state.reservation.reservationDate!,
+                date: state.reservation.reservationDate!,
                 beginTime: state.reservation.reservationTimeInit as String,
                 endTime: state.reservation.reservationTimeEnd as String,
                 quantity: state.reservation.people as int,
@@ -38,7 +38,8 @@ class MyInformationReservationScreen extends StatelessWidget {
               ),
               myEnvironmentCard(
                 environment: state.reservation.environment as String,
-                classroom: " ${state.reservation.building} - ${state.reservation.classroom} ",
+                classroom:
+                    " ${state.reservation.building} - ${state.reservation.classroom} ",
                 borderColor: const Color.fromRGBO(211, 211, 211, 1),
               ),
               Row(
@@ -65,6 +66,7 @@ class MyInformationReservationScreen extends StatelessWidget {
                     color: AppTheme.primary,
                     text: "Registrar",
                     onPressed: () {
+                      Navigator.pushNamed(context, '/qrScanScreen');
                       //should go to next page
                       //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
                     },

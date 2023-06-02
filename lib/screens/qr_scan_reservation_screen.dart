@@ -105,7 +105,7 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
               textColor: Colors.white,
               text: "Confirmar",
               onPressed: () {
-                Navigator.pushNamed(context, '/claimScreen');
+                Navigator.pushNamed(context, '/finishedScreen');
               },
             ),
           ],
