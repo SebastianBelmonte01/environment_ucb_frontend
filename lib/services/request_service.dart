@@ -117,6 +117,26 @@ class RequestService {
     }
   }
 
+  static Future<void> adminRejectPendingRequest(int reservationId, String reason) async {
+    const storage = FlutterSecureStorage();
+    final authToken = await storage.read(key: 'authToken');
+    final response = await http.post(
+      Uri.parse('${Api.url}/reservation/reject/$reservationId'),
+      headers: <String, String> {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authToken'
+      },
+      body: reason
+    );
+    if (response.statusCode == 200) {
+      print("Reservation id $reservationId rejected");
+    } else {
+      print("Failed to reject reservation id $reservationId");
+      throw Exception('Failed to reject reservation');
+    }
+  }
+
   
 
 }

@@ -59,8 +59,19 @@ class PendingRequestCubit extends Cubit<PendingRequestState> {
       print(e);
       emit(state.copyWith(status: PageStatus.failure));
     }
+  }
 
-
+  Future<void> rejectRequest(int reservationId, String reason) async{
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      await RequestService.adminRejectPendingRequest(reservationId, reason);
+      List<RequestDto> requests = await ReservationService.getAdminPendingRequest();
+      emit(state.copyWith(status: PageStatus.success, requests: requests));
+    }
+    catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
   }
 
 
