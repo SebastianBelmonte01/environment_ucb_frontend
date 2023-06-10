@@ -65,25 +65,13 @@ class MyInformationRejectionScreen extends StatelessWidget {
                 children: [
                   MyButton(
                     fontSize: 15,
-                    width: 121.39,
+                    width: 200,
                     height: 50,
                     textColor: Colors.white,
-                    color: AppTheme.alert,
-                    text: "Cancelar",
+                    color: Color(0xFF2C3E6C),
+                    text: "Aceptar",
                     onPressed: () {
-                      //should go to next page
-                      //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
-                    },
-                  ),
-                  MyButton(
-                    fontSize: 15,
-                    width: 121.39,
-                    height: 50,
-                    textColor: Colors.white,
-                    color: AppTheme.primary,
-                    text: "Registrar",
-                    onPressed: () {
-                      //should go to next page
+                      //Need to implement on backend an endpoint to do the logical delete on the database
                       //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
                     },
                   ),

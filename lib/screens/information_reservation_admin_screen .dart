@@ -123,6 +123,11 @@ class _MyInformationReservationAdminScreenState
                       onPressed: () {
                         if(!reject){ //Accepted Request
                           BlocProvider.of<PendingRequestCubit>(context).aproveRequest(state.request?.id as int); 
+                          Navigator.pop(context);
+                        }
+                        else{ //Reject Request
+                          BlocProvider.of<PendingRequestCubit>(context).rejectRequest(state.request?.id as int, reasonRequest.text);
+                          Navigator.pop(context);
                         }
                         //should go to next page
                         //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
