@@ -27,7 +27,7 @@ class LoginService {
         const storage = FlutterSecureStorage();
         storage.write(
             key: 'authToken', value: responseBody['response']['authToken']);
-        print(responseBody);
+        print(ApiResponse.fromJson(responseBody).response.authToken);
         return ApiResponse.fromJson(responseBody);
       } else {
         print("Failed to login");

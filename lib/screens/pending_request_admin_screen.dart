@@ -45,7 +45,7 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
     ];
     return Scaffold(
       appBar: const MyAppBar(
-        text: "Solicitud de Reservas",
+        text: "Solicitud de Reservas ADM",
         fontSize: 25,
         textcolor: Colors.white,
       ),

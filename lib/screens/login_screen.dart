@@ -73,7 +73,7 @@ class MyLogin extends StatelessWidget {
 }
 
 class MyLoginScreen extends StatelessWidget {
-  const MyLoginScreen({super.key});
+  const MyLoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,17 +81,20 @@ class MyLoginScreen extends StatelessWidget {
       builder: (context, state) {
         return Container(
           child: state.status == PageStatus.initial
-                ? MyLogin() 
-                : state.status == PageStatus.loading
-                    ? const CircularProgressIndicator()
-                    : state.status == PageStatus.success
-                        ? const MyRequestScreen() //MyPendingRequestAdminScreen() 
-                        : const Text("Error"),
-            );
-          }
+              ? MyLogin()
+              : state.status == PageStatus.loading
+                  ? const CircularProgressIndicator()
+                  : state.status == PageStatus.success
+                      ? state.isAdmin == true
+                          ? const MyPendingRequestAdminScreen()
+                          : const MyRequestScreen()
+                      : const Text("Error"),
         );
+      },
+    );
   }
 }
+
 
 
 
