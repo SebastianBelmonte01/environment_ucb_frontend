@@ -4,7 +4,6 @@ import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubi
 import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
-import 'package:environment_ucb/screens/camera_example.dart';
 import 'package:environment_ucb/screens/claim_reservation_screen.dart';
 import 'package:environment_ucb/screens/finished_reservation_screen.dart';
 import 'package:environment_ucb/screens/information_reservation_admin_screen%20.dart';
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => CameraExampleHome(),
+            '/': (context) => MyLoginScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),
