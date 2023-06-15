@@ -16,6 +16,7 @@ import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
+import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -44,7 +45,6 @@ class MyRequest extends StatelessWidget {
           child: Column(
             children: [
               CardContainer(child: BlocBuilder<RequestCubit, RequestState>(
-                
                 builder: (context, state) {
                   return Column(
                     children: [
@@ -52,7 +52,8 @@ class MyRequest extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           MyText(
-                            text: "Fecha: ${state.date == null ? "" : '${dateFormat.format(state.date!)}'}",
+                            text:
+                                "Fecha: ${state.date == null ? "" : '${dateFormat.format(state.date!)}'}",
                             fontSize: 15,
                             color: Colors.black,
                             bold: true,
@@ -64,7 +65,8 @@ class MyRequest extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           MyText(
-                            text: "Hora inicio: ${state.initTime == null ? "" : timeFormat.format(state.initTime!)}",
+                            text:
+                                "Hora inicio: ${state.initTime == null ? "" : timeFormat.format(state.initTime!)}",
                             fontSize: 15,
                             color: Colors.black,
                             bold: true,
@@ -76,7 +78,8 @@ class MyRequest extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           MyText(
-                            text: "Hora fin: ${state.endTime == null ? "" : timeFormat.format(state.endTime!)}",
+                            text:
+                                "Hora fin: ${state.endTime == null ? "" : timeFormat.format(state.endTime!)}",
                             fontSize: 15,
                             color: Colors.black,
                             bold: true,
@@ -151,25 +154,24 @@ class MyRequest extends StatelessWidget {
                 ],
               )),
               CardContainer(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MyText(
-                      text: "Motivo:",
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: true,
-                    ),
-                    MyTextArea(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      myTextController: reasonRequest,
-                      borderColor: const Color.fromRGBO(211, 211, 211, 1),
-                      enable: true,
-                    )
-                  ],
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MyText(
+                    text: "Motivo:",
+                    fontSize: 15,
+                    color: Colors.black,
+                    bold: true,
+                  ),
+                  MyTextArea(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    myTextController: reasonRequest,
+                    borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                    enable: true,
+                  )
+                ],
               )),
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -178,10 +180,10 @@ class MyRequest extends StatelessWidget {
                     width: 150,
                     height: 50,
                     textColor: Colors.white,
-                    color: Color(0xFF2C3E6C),
-                    text: "Mis reservas",
+                    color: AppTheme.alert,
+                    text: "Cancelar",
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyPendingRequestScreen()));
+                      Navigator.pushNamed(context, "/pendingScreen");
                     },
                   ),
                   MyButton(
@@ -192,17 +194,39 @@ class MyRequest extends StatelessWidget {
                     color: Color(0xFF43935A),
                     text: "Siguiente",
                     onPressed: () {
-
-                      String environment = BlocProvider.of<EnvironmentCubit>(context).state.environments![BlocProvider.of<EnvironmentCubit>(context).state.selectedEnvironmentIndex].type!;
-                      String subject = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].name!;
-                      int parallel = BlocProvider.of<ProfessorCubit>(context).state.professorDto.subjects![BlocProvider.of<ProfessorCubit>(context).state.selectedSubjectIndex].parallels![BlocProvider.of<ProfessorCubit>(context).state.selectedParallelIndex];
+                      String environment =
+                          BlocProvider.of<EnvironmentCubit>(context)
+                              .state
+                              .environments![
+                                  BlocProvider.of<EnvironmentCubit>(context)
+                                      .state
+                                      .selectedEnvironmentIndex]
+                              .type!;
+                      String subject = BlocProvider.of<ProfessorCubit>(context)
+                          .state
+                          .professorDto
+                          .subjects![BlocProvider.of<ProfessorCubit>(context)
+                              .state
+                              .selectedSubjectIndex]
+                          .name!;
+                      int parallel = BlocProvider.of<ProfessorCubit>(context)
+                              .state
+                              .professorDto
+                              .subjects![
+                                  BlocProvider.of<ProfessorCubit>(context)
+                                      .state
+                                      .selectedSubjectIndex]
+                              .parallels![
+                          BlocProvider.of<ProfessorCubit>(context)
+                              .state
+                              .selectedParallelIndex];
                       int people = int.parse(cantidad_personas.text);
                       String reason = reasonRequest.text;
-                      BlocProvider.of<RequestCubit>(context).postRequest(environment, subject, parallel, people, reason);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const MyRequestMessageScreen()));
+                      BlocProvider.of<RequestCubit>(context).postRequest(
+                          environment, subject, parallel, people, reason);
+                      Navigator.pushNamed(context, "/pendingScreen");
                     },
                   ),
-                  
                 ],
               )
             ],

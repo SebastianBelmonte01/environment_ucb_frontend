@@ -5,6 +5,7 @@ import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/dto/request_dto.dart';
+import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +17,7 @@ class MyPendingRequest extends StatelessWidget {
   Widget build(BuildContext context) {
     DateFormat dateFormatter = DateFormat('dd-MM-yyyy');
     DateFormat timeFormatter = DateFormat('HH:mm');
-    
+
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(
           icon: Icons.access_time, label: 'Pendiente', route: '/pendingScreen'),
@@ -25,8 +26,7 @@ class MyPendingRequest extends StatelessWidget {
       BottomNavItem(
           icon: Icons.clear_rounded,
           label: 'Rechazado',
-          route: '/rejectedScreen'
-      ),
+          route: '/rejectedScreen'),
       BottomNavItem(
           icon: Icons.safety_check_sharp,
           label: 'Terminado',
@@ -61,7 +61,8 @@ class MyPendingRequest extends StatelessWidget {
                     bottunColor: Color(0xFFCB3B3B),
                     borderColor: Colors.black12,
                     onPressed: () {
-                      BlocProvider.of<PendingRequestCubit>(context).cancelRequest(request.id!);
+                      BlocProvider.of<PendingRequestCubit>(context)
+                          .cancelRequest(request.id!);
                     },
                   );
                 },
@@ -71,6 +72,14 @@ class MyPendingRequest extends StatelessWidget {
             return const Center(child: Text('Error'));
           }
         },
+      ),
+      //floating action button add request
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/addRequestScreen');
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: AppTheme.secondary,
       ),
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
