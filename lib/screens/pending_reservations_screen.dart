@@ -76,7 +76,7 @@ class MyPendingRequest extends StatelessWidget {
       //floating action button add request
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/addRequestScreen');
+          Navigator.pushNamed(context, '/requestScreen');
         },
         child: const Icon(Icons.add),
         backgroundColor: AppTheme.secondary,

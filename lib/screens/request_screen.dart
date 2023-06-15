@@ -183,7 +183,7 @@ class MyRequest extends StatelessWidget {
                     color: AppTheme.alert,
                     text: "Cancelar",
                     onPressed: () {
-                      Navigator.pushNamed(context, "/pendingScreen");
+                      Navigator.pop(context);
                     },
                   ),
                   MyButton(
