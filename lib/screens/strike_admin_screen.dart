@@ -7,12 +7,12 @@ import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class MyInformationClaimScreen extends StatelessWidget {
-  const MyInformationClaimScreen({super.key});
+class MyStrikeAdminScreen extends StatelessWidget {
+  const MyStrikeAdminScreen({super.key});
   @override
   Widget build(BuildContext context) {
     TextEditingController reasonClaim = TextEditingController();
-    TextEditingController claimAnswer = TextEditingController();
+    TextEditingController reasonStrike = TextEditingController();
     return Scaffold(
       appBar: const MyAppBar(
         text: "Detalle Reserva",
@@ -56,17 +56,6 @@ class MyInformationClaimScreen extends StatelessWidget {
                     )
                   ],
                 )),
-            MyButton(
-              fontSize: 15,
-              width: 170,
-              height: 50,
-              textColor: Colors.white,
-              color: AppTheme.secondary,
-              text: "Ver Prueba",
-              onPressed: () {
-                Navigator.pushNamed(context, '/imageClaimScreen');
-              },
-            ),
             MySpecialCard(
                 borderColor: Color(0xFFE0C879),
                 height: MediaQuery.of(context).size.height * 0.2,
@@ -75,7 +64,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyText(
-                      text: "Respuesta:",
+                      text: "Motivo Strike:",
                       fontSize: 15,
                       color: Colors.black,
                       bold: true,
@@ -83,7 +72,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                     MyTextArea(
                       height: MediaQuery.of(context).size.height * 0.2,
                       width: MediaQuery.of(context).size.width * 0.8,
-                      myTextController: claimAnswer,
+                      myTextController: reasonStrike,
                       borderColor: const Color.fromRGBO(211, 211, 211, 1),
                       enable: true,
                       maxLines: 5,
@@ -119,22 +108,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                   },
                 ),
               ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            MyButton(
-              fontSize: 15,
-              width: 165,
-              height: 50,
-              textColor: Colors.white,
-              color: Color(0xFFE0C879),
-              text: "Strike",
-              onPressed: () {
-                //should go to next page
-                //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
-              },
-            ),
+            )
           ],
         ),
       ),

@@ -2,12 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:async';
 import 'dart:io';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../themes/app_theme.dart';
