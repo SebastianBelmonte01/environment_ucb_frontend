@@ -54,6 +54,17 @@ class MyClaimReservationScreen extends StatelessWidget {
                 )
               ],
             )),
+            MyButton(
+              fontSize: 15,
+              width: 170,
+              height: 50,
+              textColor: Colors.white,
+              color: AppTheme.alert,
+              text: "Añadir Imagenes",
+              onPressed: () {
+                Navigator.pushNamed(context, '/imageClaimScreen');
+              },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,

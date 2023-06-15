@@ -13,17 +13,17 @@ import 'package:image_picker/image_picker.dart';
 import '../themes/app_theme.dart';
 
 /// Camera example home widget.
-class CameraExampleHome extends StatefulWidget {
+class MyImageClaimScreen extends StatefulWidget {
   /// Default Constructor
-  const CameraExampleHome({super.key});
+  const MyImageClaimScreen({super.key});
 
   @override
-  State<CameraExampleHome> createState() {
-    return _CameraExampleHomeState();
+  State<MyImageClaimScreen> createState() {
+    return _MyImageClaimScreenState();
   }
 }
 
-class _CameraExampleHomeState extends State<CameraExampleHome> {
+class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
   File? file;
   ImagePicker image = ImagePicker();
   @override
