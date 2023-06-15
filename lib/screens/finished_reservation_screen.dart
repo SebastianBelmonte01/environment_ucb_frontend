@@ -52,7 +52,7 @@ class MyFinishedReservationScreen extends StatelessWidget {
         },
       ),
       bottomNavigationBar:
-          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 2),
+          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 3),
     );
   }
 }

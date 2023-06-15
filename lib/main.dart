@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => CameraExampleHome(),
+            '/': (context) => MyLoginScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),
@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
                 MyInformationReservationAdminScreen(),
             '/finishedScreen': (context) => MyFinishedReservationScreen(),
             '/claimScreen': (context) => MyClaimReservationScreen(),
+            '/imageClaimScreen': (context) => MyImageClaimScreen(),
             '/qrScanScreen': (context) => MyQrScanReservationScreen(),
           },
         ));
