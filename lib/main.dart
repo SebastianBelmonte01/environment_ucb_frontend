@@ -7,6 +7,7 @@ import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
 import 'package:environment_ucb/screens/claim_reservation_screen.dart';
 import 'package:environment_ucb/screens/finished_reservation_screen.dart';
 import 'package:environment_ucb/screens/image_claim_screen.dart';
+import 'package:environment_ucb/screens/information_claim_admin_screen.dart';
 import 'package:environment_ucb/screens/information_reservation_admin_screen%20.dart';
 import 'package:environment_ucb/screens/information_reservation_screen.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => MyLoginScreen(),
+            '/': (context) => MyInformationClaimScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
                 MyInformationReservationAdminScreen(),
             '/finishedScreen': (context) => MyFinishedReservationScreen(),
             '/claimScreen': (context) => MyClaimReservationScreen(),
+            '/informationClaimScreen': (context) => MyInformationClaimScreen(),
             '/imageClaimScreen': (context) => MyImageClaimScreen(),
             '/qrScanScreen': (context) => MyQrScanReservationScreen(),
           },

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-
 class MyTextArea extends StatefulWidget {
-
   final double height;
   final double width;
   final TextEditingController myTextController;
   final Color borderColor;
   final bool enable;
-
+  final int maxLines;
   const MyTextArea({
     Key? key,
     required this.height,
@@ -16,6 +14,7 @@ class MyTextArea extends StatefulWidget {
     required this.myTextController,
     required this.borderColor,
     required this.enable,
+    this.maxLines = 10,
   }) : super(key: key);
 
   @override
@@ -29,7 +28,8 @@ class _MyTextAreaState extends State<MyTextArea> {
       controller: widget.myTextController,
       keyboardType: TextInputType.multiline,
       enabled: widget.enable,
-      maxLines: 10,
+      //if maxLines is null, number of lines is 10
+      maxLines: widget.maxLines,
       textAlign: TextAlign.left,
       decoration: InputDecoration(
         filled: true,
@@ -56,12 +56,10 @@ class _MyTextAreaState extends State<MyTextArea> {
           ),
         ),
         contentPadding: EdgeInsets.symmetric(
-                  horizontal: 15.0,
-                  vertical: 12.0,
-            ),
+          horizontal: 15.0,
+          vertical: 12.0,
+        ),
       ),
-
     );
   }
 }
-

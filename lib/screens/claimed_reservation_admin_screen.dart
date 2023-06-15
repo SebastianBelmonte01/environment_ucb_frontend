@@ -2,14 +2,10 @@ import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
-import 'package:environment_ucb/screens/claim_reservation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/aproved_request_cubit/aproved_request_cubit.dart';
-import '../dto/reservation_dto.dart';
-import 'information_reservation_rejection_screen.dart';
-import 'information_reservation_screen.dart';
 
 class MyFinishedReservationScreen extends StatelessWidget {
   const MyFinishedReservationScreen({super.key});

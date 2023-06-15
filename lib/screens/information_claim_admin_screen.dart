@@ -2,146 +2,144 @@ import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
+import 'package:environment_ucb/components/my_environmentCard.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
 import 'package:environment_ucb/components/my_text.dart';
+import 'package:environment_ucb/components/my_textCart.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
-import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
-import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
+import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
-class MyInformationReservationAdminScreen extends StatefulWidget {
-  const MyInformationReservationAdminScreen({super.key});
-
-  @override
-  State<MyInformationReservationAdminScreen> createState() =>
-      _MyInformationReservationAdminScreenState();
-}
-
-class _MyInformationReservationAdminScreenState
-    extends State<MyInformationReservationAdminScreen> {
-  TextEditingController reasonRequest = TextEditingController();
-  DateFormat dateFormat = DateFormat('dd/MM/yyyy');
-
-  bool reject = false;
+class MyInformationClaimScreen extends StatelessWidget {
+  const MyInformationClaimScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    TextEditingController reasonRequest = TextEditingController();
-
+    TextEditingController reasonClaim = TextEditingController();
+    TextEditingController claimAnswer = TextEditingController();
     return Scaffold(
       appBar: const MyAppBar(
-        text: "Detalle Solicitud",
+        text: "Detalle Reserva",
         fontSize: 25,
         textcolor: Colors.white,
       ),
       body: SingleChildScrollView(
-        child: BlocBuilder<RequestCubit, RequestState>(
-          builder: (context, state) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                myInformationCard(
-                  subject: state.request!.subject as String,
-                  parallel: state.request!.parallel.toString(),
-                  date: dateFormat
-                      .format(DateTime.parse(state.request!.date.toString())),
-                  beginTime: state.request!.initTime.toString(),
-                  endTime: state.request!.endTime.toString(),
-                  quantity: state.request!.people as int,
-                  borderColor: const Color.fromRGBO(211, 211, 211, 1),
-                ),
-                CardContainer(
-                    child: Column(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            myInformationCard(
+              subject: "Arquitectura del Software",
+              parallel: "Paralelo 1",
+              date: "12/12/2021",
+              beginTime: "12:00",
+              endTime: "14:00",
+              quantity: 45,
+              borderColor: const Color.fromRGBO(211, 211, 211, 1),
+            ),
+            MySpecialCard(
+                borderColor: AppTheme.alert,
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MyText(
-                      text: "Motivo:",
+                      text: "Motivo Rechazo:",
                       fontSize: 15,
                       color: Colors.black,
                       bold: true,
                     ),
-                    MyText(
-                      text: state.request!.reason as String,
-                      fontSize: 15,
-                      color: Colors.black,
-                      bold: false,
-                    ),
+                    MyTextArea(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      myTextController: reasonClaim,
+                      borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                      enable: false,
+                      maxLines: 5,
+                    )
                   ],
                 )),
-                reject // ignore: dead_code
-                    ? MySpecialCard(
-                        borderColor: AppTheme.alert,
-                        height: MediaQuery.of(context).size.height * 0.32,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            MyText(
-                              text: "Motivo Rechazo:",
-                              fontSize: 15,
-                              color: Colors.black,
-                              bold: true,
-                            ),
-                            MyTextArea(
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              myTextController: reasonRequest,
-                              borderColor:
-                                  const Color.fromRGBO(211, 211, 211, 1),
-                              enable: true,
-                            )
-                          ],
-                        ))
-                    : Container(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.max,
+            MyButton(
+              fontSize: 15,
+              width: 170,
+              height: 50,
+              textColor: Colors.white,
+              color: AppTheme.secondary,
+              text: "Ver Prueba",
+              onPressed: () {
+                Navigator.pushNamed(context, '/imageClaimScreen');
+              },
+            ),
+            MySpecialCard(
+                borderColor: Color(0xFFE0C879),
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MyButton(
-                      fontSize: 12,
-                      width: 170,
-                      height: 50,
-                      textColor: Colors.white,
-                      color: AppTheme.alert,
-                      text: reject ? "Cancelar" : "Rechazar solicitud",
-                      onPressed: () {
-                        setState(() {
-                          reject = !reject;
-                        });
-                      },
+                    MyText(
+                      text: "Respuesta:",
+                      fontSize: 15,
+                      color: Colors.black,
+                      bold: true,
                     ),
-                    MyButton(
-                      fontSize: 12,
-                      width: 165,
-                      height: 50,
-                      textColor: Colors.white,
-                      color: AppTheme.primary,
-                      text: reject ? "Emitir" : "Aceptar solicitud",
-                      onPressed: () {
-                        if (!reject) {
-                          //Accepted Request
-                          BlocProvider.of<PendingRequestCubit>(context)
-                              .aproveRequest(state.request?.id as int);
-                          Navigator.pop(context);
-                        } else {
-                          //Reject Request
-                          BlocProvider.of<PendingRequestCubit>(context)
-                              .rejectRequest(
-                                  state.request?.id as int, reasonRequest.text);
-                          Navigator.pop(context);
-                        }
-                        //should go to next page
-                        //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
-                      },
-                    ),
+                    MyTextArea(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      myTextController: reasonClaim,
+                      borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                      enable: true,
+                      maxLines: 5,
+                    )
                   ],
-                )
+                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                MyButton(
+                  fontSize: 15,
+                  width: 170,
+                  height: 50,
+                  textColor: Colors.white,
+                  color: AppTheme.alert,
+                  text: "Cancelar",
+                  onPressed: () {
+                    //should go to next page
+                    //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
+                  },
+                ),
+                MyButton(
+                  fontSize: 15,
+                  width: 165,
+                  height: 50,
+                  textColor: Colors.white,
+                  color: AppTheme.primary,
+                  text: "Emitir",
+                  onPressed: () {
+                    //should go to next page
+                    //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
+                  },
+                ),
               ],
-            );
-          },
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            MyButton(
+              fontSize: 15,
+              width: 165,
+              height: 50,
+              textColor: Colors.white,
+              color: Color(0xFFE0C879),
+              text: "Strike",
+              onPressed: () {
+                //should go to next page
+                //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
+              },
+            ),
+          ],
         ),
       ),
     );
