@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/aproved_request_cubit/aproved_request_cubit.dart';
 
-class MyFinishedReservationScreen extends StatelessWidget {
-  const MyFinishedReservationScreen({super.key});
+class MyClaimedAdminReservationScreen extends StatelessWidget {
+  const MyClaimedAdminReservationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
