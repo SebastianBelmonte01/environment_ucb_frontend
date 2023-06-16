@@ -25,16 +25,18 @@ import '../components/dropdowns/my_dropdown_parallels.dart';
 import '../cubit/page_status.dart';
 
 class MyRequest extends StatelessWidget {
-  const MyRequest({super.key});
+  TextEditingController cantidad_personas = TextEditingController();
+  TextEditingController reasonRequest = TextEditingController();
+  MyRequest({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController cantidad_personas = TextEditingController();
-    TextEditingController reasonRequest = TextEditingController();
+    
     DateFormat timeFormat = DateFormat('HH:mm');
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
     return Scaffold(
+      
       appBar: const MyAppBar(
         text: "Solicitud de Reserva",
         fontSize: 25,
@@ -144,7 +146,7 @@ class MyRequest extends StatelessWidget {
                       ),
                       //Textfield de cantidad de personas
                       MyTextField(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: MediaQuery.of(context).size.height * 0.05,
                         width: MediaQuery.of(context).size.width * 0.2,
                         myTextController: cantidad_personas,
                         keyboardType: TextInputType.number,
@@ -253,7 +255,7 @@ class MyRequestScreen extends StatelessWidget {
         child: state.status == PageStatus.loading
             ? const CircularProgressIndicator()
             : state.status == PageStatus.success
-                ? const MyRequest()
+                ? MyRequest()
                 : const Text("Error"),
       );
     });
