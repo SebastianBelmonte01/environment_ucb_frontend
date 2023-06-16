@@ -5,6 +5,7 @@ import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/dto/request_dto.dart';
+import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,7 +77,9 @@ class MyPendingRequest extends StatelessWidget {
       //floating action button add request
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/requestScreen');
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const MyRequestScreen();
+          }));
         },
         child: const Icon(Icons.add),
         backgroundColor: AppTheme.secondary,
@@ -93,6 +96,7 @@ class MyPendingRequestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     return BlocBuilder<PendingRequestCubit, PendingRequestState>(
+      buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
       return Container(
         child: state.status == PageStatus.loading

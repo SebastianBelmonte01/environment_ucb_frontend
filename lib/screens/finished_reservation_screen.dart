@@ -16,7 +16,7 @@ class MyFinishedReservationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<AprovedRequestCubit>(context).getMyAprovedRequest();
+    BlocProvider.of<AprovedRequestCubit>(context).getMyCompletedRequests();
 
     final List<BottomNavItem> _bottomNavItems = [
       BottomNavItem(
@@ -38,17 +38,28 @@ class MyFinishedReservationScreen extends StatelessWidget {
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: MyReservationCard(
-        environment: "Laboratorio 1",
-        subject: "Arquitectura de software",
-        parallel: "1",
-        date: "25/42/14",
-        time: "12:30",
-        bottunText: "Ver detalle",
-        bottunColor: Color.fromRGBO(224, 200, 121, 1),
-        borderColor: Colors.black12,
-        onPressed: () {
-          Navigator.pushNamed(context, '/claimScreen');
+      body: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
+        builder: (context, state) {
+          return ListView.builder(
+                  itemCount: state.reservationList?.length,
+                  itemBuilder: (context, index) {
+                    ReservationDto? request = state.reservationList?[index];
+                    return MyReservationCard(
+                      environment: request?.environment as String,
+                      subject: request!.subject.toString(),
+                      parallel: request.parallel.toString(),
+                      date: request.reservationDate!,
+                      time: request.reservationTimeInit as String,
+                      bottunText: "Ver detalle",
+                      bottunColor: Color.fromRGBO(224, 200, 121, 1),
+                      borderColor: Colors.black12,
+                      onPressed: () {
+                        BlocProvider.of<AprovedRequestCubit>(context).setSelectedReservation(request);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const MyClaimReservationScreen()));
+                      },
+                    );
+                  },
+              );
         },
       ),
       bottomNavigationBar:
