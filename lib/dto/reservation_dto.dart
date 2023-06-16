@@ -52,6 +52,8 @@ class ReservationDto {
     building = json['building'];
   }
 
+  get idReservation => null;
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['reservationId'] = this.reservationId;

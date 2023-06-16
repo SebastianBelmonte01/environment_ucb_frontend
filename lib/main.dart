@@ -1,3 +1,4 @@
+import 'package:environment_ucb/cubit/entrance_cubit/entrance_cubit.dart';
 import 'package:environment_ucb/cubit/environment_cubit/environment_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<AprovedRequestCubit>(
             create: (context) => AprovedRequestCubit()..getMyAprovedRequest(),
           ),
+          BlocProvider<EntranceCubit>(
+            create: (context) => EntranceCubit()
+          )
         ],
         child: MaterialApp(
           initialRoute: '/',
@@ -71,7 +75,6 @@ class MyApp extends StatelessWidget {
             '/claimScreen': (context) => MyClaimReservationScreen(),
             '/informationClaimScreen': (context) => MyInformationClaimScreen(),
             '/imageClaimScreen': (context) => MyImageClaimScreen(),
-            '/qrScanScreen': (context) => MyQrScanReservationScreen(),
             '/strikeAdminScreen': (context) => MyStrikeAdminScreen(),
             '/claimedAdminScreen': (context) =>
                 MyClaimedAdminReservationScreen(),
