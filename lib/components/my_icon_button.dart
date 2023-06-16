@@ -1,3 +1,4 @@
+import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MyIconButton extends StatelessWidget {
@@ -13,14 +14,21 @@ class MyIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: SizedBox(
-        width: double.infinity,
-        child: OutlinedButton.icon(
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.2,
+      height: MediaQuery.of(context).size.height * 0.05,
+      child: Center(
+        child: ElevatedButton.icon(
           onPressed: onPressed,
           icon: Icon(icon),
-          label: Text(text),
+          label: Text(""),
+          style: ElevatedButton.styleFrom(
+            alignment: Alignment.centerRight,
+            primary: AppTheme.secondary,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25),
+            ),
+          ),
         ),
       ),
     );

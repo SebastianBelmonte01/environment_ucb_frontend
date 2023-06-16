@@ -6,9 +6,16 @@ import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubi
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:clipboard/clipboard.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class MyInformationReservationScreen extends StatelessWidget {
+  Future<void> share(String textShare) async {
+    await FlutterShare.share(
+        title: 'Example share',
+        text: textShare,
+        chooserTitle: 'Example Chooser Title');
+  }
+
   const MyInformationReservationScreen({super.key});
 
   @override
@@ -33,6 +40,20 @@ class MyInformationReservationScreen extends StatelessWidget {
                 endTime: state.reservation.reservationTimeEnd as String,
                 quantity: state.reservation.people as int,
                 borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                boton: true,
+                onPressed: () {
+                  String shareText =
+                      // ignore: prefer_interpolation_to_compose_strings
+                      '¡Hola! Te invitamos a una clase extra especial:\n\n' +
+                          'Asunto: ${state.reservation.subject}\n' +
+                          'Paralelo: ${state.reservation.parallel}\n' +
+                          'Fecha: ${state.reservation.reservationDate}\n' +
+                          'Hora de inicio: ${state.reservation.reservationTimeInit}\n' +
+                          'Hora de finalización: ${state.reservation.reservationTimeEnd}\n' +
+                          'Ambiente: ${state.reservation.environment}\n' +
+                          'Bloque: ${state.reservation.building}\n';
+                  share(shareText);
+                },
               ),
               myEnvironmentCard(
                 environment: state.reservation.environment as String,
@@ -70,7 +91,7 @@ class MyInformationReservationScreen extends StatelessWidget {
                     },
                   ),
                 ],
-              )
+              ),
             ],
           );
         },

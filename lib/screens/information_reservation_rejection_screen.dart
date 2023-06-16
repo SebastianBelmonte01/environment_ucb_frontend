@@ -1,19 +1,12 @@
 import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
-import 'package:environment_ucb/components/my_card.dart';
-import 'package:environment_ucb/components/my_environmentCard.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
 import 'package:environment_ucb/components/my_text.dart';
-import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
-import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
-import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../components/my_textarea.dart';
 
 class MyInformationRejectionScreen extends StatelessWidget {
   const MyInformationRejectionScreen({super.key});
@@ -66,19 +59,19 @@ class MyInformationRejectionScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   MyButton(
-                    fontSize: 15,
-                    width: 200,
-                    height: 50,
-                    textColor: Colors.white,
-                    color: Color(0xFF2C3E6C),
-                    text: "Aceptar",
-                    onPressed: () {
-                      BlocProvider.of<AprovedRequestCubit>(context).acceptRejectionRequest(state.reservation.reservationId as int);
-                                        
-                      Navigator.pop(context);
+                      fontSize: 15,
+                      width: 200,
+                      height: 50,
+                      textColor: Colors.white,
+                      color: Color(0xFF2C3E6C),
+                      text: "Aceptar",
+                      onPressed: () {
+                        BlocProvider.of<AprovedRequestCubit>(context)
+                            .acceptRejectionRequest(
+                                state.reservation.reservationId as int);
 
-                    }
-                  ),
+                        Navigator.pop(context);
+                      }),
                 ],
               )
             ],

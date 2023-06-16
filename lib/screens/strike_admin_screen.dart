@@ -7,6 +7,7 @@ import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class MyStrikeAdminScreen extends StatelessWidget {
   const MyStrikeAdminScreen({super.key});
@@ -26,14 +27,13 @@ class MyStrikeAdminScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             myInformationCard(
-              subject: "Arquitectura del Software",
-              parallel: "Paralelo 1",
-              date: "12/12/2021",
-              beginTime: "12:00",
-              endTime: "14:00",
-              quantity: 45,
-              borderColor: const Color.fromRGBO(211, 211, 211, 1),
-            ),
+                subject: "Arquitectura del Software",
+                parallel: "Paralelo 1",
+                date: "12/12/2021",
+                beginTime: "12:00",
+                endTime: "14:00",
+                quantity: 45,
+                borderColor: const Color.fromRGBO(211, 211, 211, 1)),
             MySpecialCard(
                 borderColor: AppTheme.alert,
                 height: MediaQuery.of(context).size.height * 0.22,
@@ -113,14 +113,6 @@ class MyStrikeAdminScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            FloatingActionButton(
-              onPressed: () {
-                FlutterClipboard.copy("reasonStrike.text \n hola")
-                    .then((value) => print('copied'));
-              },
-              child: const Icon(Icons.copy),
-              backgroundColor: AppTheme.primary,
-            )
           ],
         ),
       ),
