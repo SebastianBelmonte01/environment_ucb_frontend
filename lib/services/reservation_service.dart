@@ -129,6 +129,7 @@ class ReservationService {
     if (response.statusCode == 200) {
       final decodedResponse = utf8.decode(response.bodyBytes); 
       print(jsonDecode(decodedResponse)["response"]);
+      print("Reservation deleted");
       return ApiResponse.fromJson(jsonDecode(decodedResponse));
     } else {
       print("Failed to delete reservation");

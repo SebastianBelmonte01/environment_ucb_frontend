@@ -20,6 +20,7 @@ class MyInformationReservationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<AprovedRequestCubit>(context).getMyAprovedRequest();
     return Scaffold(
       appBar: const MyAppBar(
         text: "Detalle Reserva",
@@ -74,7 +75,10 @@ class MyInformationReservationScreen extends StatelessWidget {
                     text: "Cancelar",
                     onPressed: () {
                       //should go to next page
-                      //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
+                      print("H)OLA");
+                      BlocProvider.of<AprovedRequestCubit>(context).deleteReservation(state.reservation.reservationId!);
+                      BlocProvider.of<AprovedRequestCubit>(context).getMyAprovedRequest();
+                      Navigator.pop(context);
                     },
                   ),
                   MyButton(
