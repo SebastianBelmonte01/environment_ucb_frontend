@@ -1,16 +1,21 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:environment_ucb/components/my_button.dart';
+import 'package:environment_ucb/cubit/entrance_cubit/entrance_cubit.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 String aux = "a";
 bool flag = false;
 
+
 class MyQrScanReservationScreen extends StatefulWidget {
-  const MyQrScanReservationScreen({Key? key}) : super(key: key);
+  final int idReservation;
+
+  MyQrScanReservationScreen({Key? key, required this.idReservation}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _MyQrScanReservationScreenState();
@@ -75,8 +80,9 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
       });
       if (flag) {
         flag = false;
+        //TODO NEED TO IMPLEMENT THE LOGIC TO VALIDATE THE QR CODE
         var alert = AlertDialog(
-          title: Text("Ambiente detectado"),
+          title: Text("Ambiente Detectado"),
           content: Container(
               height: MediaQuery.of(context).size.height * 0.03,
               width: MediaQuery.of(context).size.width * 0.05,
@@ -105,6 +111,11 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
               textColor: Colors.white,
               text: "Confirmar",
               onPressed: () {
+                print("RESE");
+                print(widget.idReservation!);
+                aux = "";
+                BlocProvider.of<EntranceCubit>(context)
+                    .registerEntrance(result!.code as String, widget.idReservation);  
                 Navigator.pushNamed(context, '/finishedScreen');
               },
             ),
