@@ -13,9 +13,11 @@ class LoginCubit extends Cubit<LoginState> {
     try {
       // ignore: unused_local_variable
       ApiResponse res = await LoginService.login(email, secret);
+      print("conectado backend");
       bool isAdmin = Jwt.parseJwt(res.response.authToken)['isAdmin'];
       print("is admin: " + isAdmin.toString());
-      emit(state.copyWith(status: PageStatus.success, email: email, isAdmin:isAdmin));
+      emit(state.copyWith(
+          status: PageStatus.success, email: email, isAdmin: isAdmin));
     } catch (e) {
       emit(state.copyWith(status: PageStatus.failure));
     }
