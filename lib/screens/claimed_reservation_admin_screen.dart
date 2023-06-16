@@ -40,7 +40,7 @@ class MyFinishedReservationScreen extends StatelessWidget {
         bottunColor: Color.fromRGBO(224, 200, 121, 1),
         borderColor: Colors.black12,
         onPressed: () {
-          Navigator.pushNamed(context, '/claimScreen');
+          Navigator.pushNamed(context, 'informationClaimScreen');
         },
       ),
       bottomNavigationBar:

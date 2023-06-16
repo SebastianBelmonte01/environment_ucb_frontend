@@ -17,6 +17,7 @@ import 'package:environment_ucb/screens/qr_scan_reservation_screen.dart';
 import 'package:environment_ucb/screens/rejected_reservation_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
+import 'package:environment_ucb/screens/strike_admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
             '/finishedScreen': (context) => MyFinishedReservationScreen(),
             '/claimScreen': (context) => MyClaimReservationScreen(),
             '/informationClaimScreen': (context) => MyInformationClaimScreen(),
+            '/strikeScreen': (context) => MyStrikeAdminScreen(),
             '/imageClaimScreen': (context) => MyImageClaimScreen(),
             '/qrScanScreen': (context) => MyQrScanReservationScreen(),
           },
