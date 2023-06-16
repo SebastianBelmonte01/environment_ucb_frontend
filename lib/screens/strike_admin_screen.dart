@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
@@ -35,7 +36,7 @@ class MyStrikeAdminScreen extends StatelessWidget {
             ),
             MySpecialCard(
                 borderColor: AppTheme.alert,
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.22,
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +59,7 @@ class MyStrikeAdminScreen extends StatelessWidget {
                 )),
             MySpecialCard(
                 borderColor: Color(0xFFE0C879),
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: MediaQuery.of(context).size.height * 0.22,
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,6 +109,17 @@ class MyStrikeAdminScreen extends StatelessWidget {
                   },
                 ),
               ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                FlutterClipboard.copy("reasonStrike.text \n hola")
+                    .then((value) => print('copied'));
+              },
+              child: const Icon(Icons.copy),
+              backgroundColor: AppTheme.primary,
             )
           ],
         ),
