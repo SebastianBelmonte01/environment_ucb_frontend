@@ -11,16 +11,17 @@ class myInformationCard extends StatelessWidget {
   String beginTime;
   String endTime;
   int quantity;
+  String? environment;
   Color borderColor;
 
   myInformationCard({
-    super.key,
     required this.subject,
     required this.parallel,
     required this.date,
     required this.beginTime,
     required this.endTime,
     required this.quantity,
+    this.environment,
     required this.borderColor,
   });
 
@@ -135,7 +136,25 @@ class myInformationCard extends StatelessWidget {
                 bold: false,
               ),
             ],
-          )
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          environment!= null ? Row(
+            children: [
+              MyText(
+                text: "Hora fin:",
+                fontSize: 15,
+                color: Colors.black,
+                bold: true,
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.05),
+              MyText(
+                text: endTime,
+                fontSize: 15,
+                color: Colors.black,
+                bold: false,
+              ),
+            ],
+          ):Container(),
         ],
       ),
     );

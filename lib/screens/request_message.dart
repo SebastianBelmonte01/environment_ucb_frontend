@@ -3,6 +3,10 @@ import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textCart.dart';
+import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
+import 'package:environment_ucb/screens/login_screen.dart';
+import 'package:environment_ucb/screens/pending_reservations_screen.dart';
+import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -90,7 +94,11 @@ class MyRequestMessageScreen extends StatelessWidget {
                 textColor: Colors.white,
                 color: Color(0xFF43935A),
                 text: "Menu principal",
-                onPressed: () {},
+                onPressed: () {
+                BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
+
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                },
               )
             ],
           );

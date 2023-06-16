@@ -36,6 +36,8 @@ class RequestCubit extends Cubit<RequestState> {
     }
   }
 
+  
+
   void setDate(DateTime date) {
     emit(state.copyWith(date: date));
   }

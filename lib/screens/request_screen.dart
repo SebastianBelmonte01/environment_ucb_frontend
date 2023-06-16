@@ -224,7 +224,11 @@ class MyRequest extends StatelessWidget {
                       String reason = reasonRequest.text;
                       BlocProvider.of<RequestCubit>(context).postRequest(
                           environment, subject, parallel, people, reason);
-                      Navigator.pushNamed(context, "/pendingScreen");
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyRequestMessageScreen()));
                     },
                   ),
                 ],
@@ -242,6 +246,7 @@ class MyRequestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     return BlocBuilder<ProfessorCubit, ProfessorCubitState>(
         builder: (context, state) {
       return Container(

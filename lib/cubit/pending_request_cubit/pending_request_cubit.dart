@@ -17,6 +17,7 @@ class PendingRequestCubit extends Cubit<PendingRequestState> {
     emit(state.copyWith(status: PageStatus.loading));
     try {
       List<RequestDto> requests = await RequestService.getMyPendingRequests();
+      print("HOLA MY PENDING REQUESTS");
       emit(state.copyWith(status: PageStatus.success, requests: requests));
     } catch (e) {
       print(e);
@@ -73,6 +74,9 @@ class PendingRequestCubit extends Cubit<PendingRequestState> {
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+
+  
+
 
 
 }
