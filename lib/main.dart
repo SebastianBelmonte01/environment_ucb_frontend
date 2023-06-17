@@ -1,9 +1,11 @@
+import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
 import 'package:environment_ucb/cubit/entrance_cubit/entrance_cubit.dart';
 import 'package:environment_ucb/cubit/environment_cubit/environment_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
+import 'package:environment_ucb/dto/claim_dto.dart';
 import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
 import 'package:environment_ucb/screens/claim_reservation_screen.dart';
 import 'package:environment_ucb/screens/claimed_reservation_admin_screen.dart';
@@ -56,6 +58,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<EntranceCubit>(
             create: (context) => EntranceCubit()
+          ),
+          BlocProvider<ClaimCubit>(
+            create: (context) => ClaimCubit()
           )
         ],
         child: MaterialApp(
