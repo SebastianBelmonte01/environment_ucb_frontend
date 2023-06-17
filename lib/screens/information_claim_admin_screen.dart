@@ -74,7 +74,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                 ),
                 MySpecialCard(
                     borderColor: Color(0xFFE0C879),
-                    height: MediaQuery.of(context).size.height * 0.2,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +91,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                           myTextController: claimAnswer,
                           borderColor: const Color.fromRGBO(211, 211, 211, 1),
                           enable: true,
-                          maxLines: 5,
+                          maxLines: 7,
                         )
                       ],
                     )),
