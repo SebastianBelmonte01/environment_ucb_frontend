@@ -60,7 +60,7 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
                 width: 235,
                 height: 50,
                 textColor: Colors.white,
-                color: AppTheme.primary,
+                color: AppTheme.secondary,
                 text: "Galeria",
                 onPressed: (){
                   getgall();
@@ -71,7 +71,7 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
                 width: 235,
                 height: 50,
                 textColor: Colors.white,
-                color: AppTheme.primary,
+                color: AppTheme.secondary,
                 text: "Camara",
                 onPressed: (){
                   getcam();
@@ -91,6 +91,32 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
                   Navigator.pop(context);
                 },
               ),
+              Row(
+                children: [
+                  MyButton(
+                    fontSize: 15,
+                    width: 100,
+                    height: 50,
+                    textColor: Colors.white,
+                    color: AppTheme.alert,
+                    text: "Cancelar",
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  MyButton(
+                    fontSize: 15,
+                    width: 100,
+                    height: 50,
+                    textColor: Colors.white,
+                    color: AppTheme.primary,
+                    text: "Enviar",
+                    onPressed: () {
+                      //cubit enviar
+                    },
+                  ),
+                ],
+              )
             ],
           ),
         ),
