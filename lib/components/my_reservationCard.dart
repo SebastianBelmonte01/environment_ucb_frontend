@@ -107,7 +107,7 @@ class MyReservationCard extends StatelessWidget {
                 color: Colors.black,
                 bold: false,
               ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.2),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.12),
               MyButton(
                 text: bottunText,
                 fontSize: 15,

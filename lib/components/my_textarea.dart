@@ -14,7 +14,7 @@ class MyTextArea extends StatefulWidget {
     required this.myTextController,
     required this.borderColor,
     required this.enable,
-    this.maxLines = 10,
+    this.maxLines = 7,
   }) : super(key: key);
 
   @override

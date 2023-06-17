@@ -32,12 +32,13 @@ class myInformationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("boton: $boton");
     return MySpecialCard(
       borderColor: borderColor,
       width: MediaQuery.of(context).size.width * 0.9,
       height: boton
-          ? MediaQuery.of(context).size.height * 0.45
-          : MediaQuery.of(context).size.height * 0.35,
+          ? MediaQuery.of(context).size.height * 0.43
+          : MediaQuery.of(context).size.height * 0.40,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

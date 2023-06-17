@@ -86,7 +86,7 @@ class _MyInformationReservationAdminScreenState
                               bold: true,
                             ),
                             MyTextArea(
-                              height: MediaQuery.of(context).size.height * 0.2,
+                              height: MediaQuery.of(context).size.height * 0.05,
                               width: MediaQuery.of(context).size.width * 0.8,
                               myTextController: reasonRequest,
                               borderColor:
