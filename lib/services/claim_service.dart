@@ -35,8 +35,38 @@ class ClaimService {
       print("Failed to get pending claims");
       throw Exception('Failed to get pending claims');
     }
-    
-
   }
+
+  static Future<String> registerNewClaim(int reservationId, String newClaim, List<int> imageData) async {
+    final storage = FlutterSecureStorage();
+    final authToken = await storage.read(key: 'authToken');
+
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse("${Api.url}/claim/reservation/${reservationId}"),
+    );
+
+      request.headers['Authorization'] = 'Bearer $authToken';
+      request.fields['newClaim'] = newClaim;
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'imageFile',
+          imageData,
+          filename: 'image.jpg',
+        ),
+      );
+
+      final response = await request.send();
+      final responseString = await response.stream.bytesToString();
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(responseString);
+        print("Se logró");
+        return "Claim created successfully";
+      } else {
+        throw Exception('Failed to create new claim');
+      }
+  }
+
   
 }

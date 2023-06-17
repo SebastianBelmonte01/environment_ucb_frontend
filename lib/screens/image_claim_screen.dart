@@ -5,7 +5,9 @@
 import 'dart:io';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
+import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../themes/app_theme.dart';
@@ -60,7 +62,7 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
                 textColor: Colors.white,
                 color: AppTheme.primary,
                 text: "Galeria",
-                onPressed: () {
+                onPressed: (){
                   getgall();
                 },
               ),
@@ -71,8 +73,22 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
                 textColor: Colors.white,
                 color: AppTheme.primary,
                 text: "Camara",
-                onPressed: () {
+                onPressed: (){
                   getcam();
+
+                },
+              ),
+
+              MyButton(
+                fontSize: 15,
+                width: 235,
+                height: 50,
+                textColor: Colors.white,
+                color: AppTheme.primary,
+                text: "Enviar",
+                onPressed: (){
+                  BlocProvider.of<ClaimCubit>(context).setImage(file!);
+                  Navigator.pop(context);
                 },
               ),
             ],

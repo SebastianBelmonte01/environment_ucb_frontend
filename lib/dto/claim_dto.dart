@@ -1,17 +1,17 @@
 import 'package:environment_ucb/dto/reservation_dto.dart';
 
 class ClaimDto {
-  final int claimId;
-  final ReservationDto reservationDto;
+  final int? claimId;
+  final ReservationDto? reservationDto;
   final String? resClaim;
   final String date;
   final String desClaim;
   final String claimState;
   final String image;
 
-  const ClaimDto({
-    required this.claimId,
-    required this.reservationDto,
+  ClaimDto({
+    this.claimId,
+    this.reservationDto,
     this.resClaim,
     required this.date,
     required this.desClaim,
@@ -33,7 +33,7 @@ class ClaimDto {
 
   Map<String, dynamic> toJson() => {
         'claimId': claimId,
-        'reservationDto': reservationDto.toJson(),
+        'reservationDto': reservationDto!.toJson(),
         'resClaim': resClaim,
         'date': date,
         'desClaim': desClaim,
@@ -41,7 +41,9 @@ class ClaimDto {
         'image': image,
       };
 
+      
 
+  
 
 
 }

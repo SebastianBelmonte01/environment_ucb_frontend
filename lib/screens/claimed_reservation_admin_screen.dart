@@ -31,7 +31,7 @@ class MyClaimedAdminReservationScreen extends StatelessWidget {
     ];
     return Scaffold(
       appBar: const MyAppBar(
-        text: "Mis Reservas",
+        text: "Reclamos",
         fontSize: 25,
         textcolor: Colors.white,
       ),
@@ -42,11 +42,11 @@ class MyClaimedAdminReservationScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) { 
               ClaimDto claim = state.claimList[index];
               return MyReservationCard(
-              environment: claim.reservationDto.environment as String,
-              subject: claim.reservationDto.subject.toString(),
-              parallel: claim.reservationDto.parallel.toString(),
-              date: dateFormat.format(DateTime.parse(claim.reservationDto.reservationDate.toString())),
-              time: claim.reservationDto.reservationTimeInit as String,
+              environment: claim.reservationDto?.environment as String,
+              subject: claim.reservationDto!.subject.toString(),
+              parallel: claim.reservationDto!.parallel.toString(),
+              date: dateFormat.format(DateTime.parse(claim.reservationDto!.reservationDate.toString())),
+              time: claim.reservationDto?.reservationTimeInit as String,
               bottunText: "Ver detalle",
               bottunColor: Color.fromRGBO(224, 200, 121, 1),
               borderColor: Colors.black12,

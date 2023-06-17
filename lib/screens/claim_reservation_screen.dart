@@ -6,6 +6,7 @@ import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
+import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,8 +94,9 @@ class MyClaimReservationScreen extends StatelessWidget {
                       color: Color.fromRGBO(224, 200, 121, 1),
                       text: "Registrar Reclamo",
                       onPressed: () {
-                        //should go to next page
-                        //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
+                        print("ID");
+                        print(state.reservation.reservationId);
+                        BlocProvider.of<ClaimCubit>(context).registerNewClaim(state.reservation.reservationId!, reasonRequest.text);
                       },
                     ),
                   ],

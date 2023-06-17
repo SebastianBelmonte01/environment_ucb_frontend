@@ -32,12 +32,12 @@ class MyInformationClaimScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 myInformationCard(
-                  subject: state.selectedClaim!.reservationDto.subject.toString(),
-                  parallel: state.selectedClaim!.reservationDto.parallel.toString(),
-                  date: dateFormat.format(DateTime.parse(state.selectedClaim!.reservationDto.reservationDate.toString())),
-                  beginTime: state.selectedClaim!.reservationDto.reservationTimeInit.toString(),
-                  endTime: state.selectedClaim!.reservationDto.reservationTimeEnd.toString(),
-                  quantity: state.selectedClaim!.reservationDto.people as int,
+                  subject: state.selectedClaim!.reservationDto!.subject.toString(),
+                  parallel: state.selectedClaim!.reservationDto!.parallel.toString(),
+                  date: dateFormat.format(DateTime.parse(state.selectedClaim!.reservationDto!.reservationDate.toString())),
+                  beginTime: state.selectedClaim!.reservationDto!.reservationTimeInit.toString(),
+                  endTime: state.selectedClaim!.reservationDto!.reservationTimeEnd.toString(),
+                  quantity: state.selectedClaim!.reservationDto?.people as int,
                   borderColor: const Color.fromRGBO(211, 211, 211, 1),
                 ),
                 MySpecialCard(
