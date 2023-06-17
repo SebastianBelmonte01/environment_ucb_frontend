@@ -38,7 +38,7 @@ class myInformationCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.9,
       height: boton
           ? MediaQuery.of(context).size.height * 0.43
-          : MediaQuery.of(context).size.height * 0.40,
+          : MediaQuery.of(context).size.height * 0.35,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
