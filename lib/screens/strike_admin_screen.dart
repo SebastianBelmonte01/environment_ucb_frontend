@@ -2,6 +2,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
+import 'package:environment_ucb/components/my_imageDialog.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
@@ -92,6 +93,10 @@ class MyStrikeAdminScreen extends StatelessWidget {
                   color: AppTheme.alert,
                   text: "Cancelar",
                   onPressed: () {
+                    Image src = Image.asset("assets/UCB_logo2.png");
+                    showDialog(
+                        context: context,
+                        builder: (_) => myImageDialog(image: src));
                     //should go to next page
                     //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
                   },
