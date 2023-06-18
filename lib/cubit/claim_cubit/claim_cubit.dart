@@ -12,7 +12,11 @@ part 'claim_state.dart';
 class ClaimCubit extends Cubit<ClaimState> {
   ClaimCubit() : super(ClaimState());
 
-  void getPendingClaims() async {
+  void changeToogle(bool? value) {
+    emit(state.copyWith(isAnswered: value));
+  }
+
+  void getPendingClaimsAdmin() async {
     emit(state.copyWith(status: PageStatus.loading));
     try {
       List<ClaimDto> claims = await ClaimService.getPendingClaims();
@@ -39,6 +43,29 @@ class ClaimCubit extends Cubit<ClaimState> {
       print(claimReason);
       await ClaimService.registerNewClaim(reservationId, claimReason ,imageData);
       emit(state.copyWith(status: PageStatus.success));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
+  void getPendingClaimsUser() async {
+    print("PENDING CLAIMS USER");
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      List<ClaimDto> claims = await ClaimService.getPendingClaimsUser();
+      emit(state.copyWith(status: PageStatus.success, claimList: claims));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
+  void getAnsweredClaimsUser() async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      List<ClaimDto> claims = await ClaimService.getAnsweredClaimsUser();
+      emit(state.copyWith(status: PageStatus.success, claimList: claims));
     } catch (e) {
       print(e);
       emit(state.copyWith(status: PageStatus.failure));

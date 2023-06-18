@@ -41,6 +41,13 @@ class ClaimDto {
         'image': image,
       };
 
+
+  @override
+
+  String toString() {
+    return 'ClaimDto{claimId: $claimId, resClaim: $resClaim, date: $date, desClaim: $desClaim, claimState: $claimState}';
+  }
+
       
 
   

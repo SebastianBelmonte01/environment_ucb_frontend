@@ -8,7 +8,7 @@ import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
 import 'package:environment_ucb/screens/claim_reservation_screen.dart';
 import 'package:environment_ucb/screens/claimed_reservation_admin_screen.dart';
-import 'package:environment_ucb/screens/claimed_reservation_screen.dart';
+import 'package:environment_ucb/screens/claimed_state_reservation_screen.dart';
 import 'package:environment_ucb/screens/finished_reservation_screen.dart';
 import 'package:environment_ucb/screens/image_claim_screen.dart';
 import 'package:environment_ucb/screens/information_claim_admin_screen.dart';
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
             '/strikeAdminScreen': (context) => MyStrikeAdminScreen(),
             '/claimedAdminScreen': (context) =>
                 MyClaimedAdminReservationScreen(),
-            '/claimedScreen': (context) => MyClaimedReservationScreen(),
+            '/claimedScreen': (context) => MyClaimScreen(),
           },
         ));
   }

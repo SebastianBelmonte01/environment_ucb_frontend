@@ -8,23 +8,34 @@ import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/dto/claim_dto.dart';
 import 'package:environment_ucb/screens/information_claim_admin_screen.dart';
+import 'package:environment_ucb/screens/information_claim_pending_screen.dart';
+import 'package:environment_ucb/screens/information_claim_screen.dart';
+import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 
-import '../cubit/aproved_request_cubit/aproved_request_cubit.dart';
+bool flag = true;
 
-class MyClaimedAdminReservation extends StatelessWidget {
-  const MyClaimedAdminReservation({super.key});
+class MyClaimedReservationScreen extends StatefulWidget {
+  MyClaimedReservationScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+  State<MyClaimedReservationScreen> createState() => _MyClaimedReservationScreenState();
+}
 
-    final List<BottomNavItem> _bottomNavItems = NavItems().bottomNavItemsAdmin;
+class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen> {
+  @override
+  Widget build(BuildContext context) {
+
+
+    DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+    final List<BottomNavItem> _bottomNavItems =
+        NavItems().bottomNavItemsProfessor;
     return Scaffold(
-      appBar: const MyAppBar(
-        text: "Reclamos",
+      appBar: MyAppBar(
+        text: "Mis Reclamos",
         fontSize: 25,
         textcolor: Colors.white,
       ),
@@ -42,44 +53,71 @@ class MyClaimedAdminReservation extends StatelessWidget {
                     claim.reservationDto!.reservationDate.toString())),
                 time: claim.reservationDto?.reservationTimeInit as String,
                 bottunText: "Ver detalle",
-                bottunColor: Color.fromRGBO(224, 200, 121, 1),
-                borderColor: Colors.black12,
+                bottunColor: state.isAnswered!
+                    ? AppTheme.primary
+                    : AppTheme.alert,
+                borderColor: state.isAnswered!
+                    ? AppTheme.primary
+                    : AppTheme.alert,
                 onPressed: () {
-                  BlocProvider.of<ClaimCubit>(context).setSelectedClaim(claim);
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              MyInformationClaimAdminScreen()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyInformationClaimScreen(),
+                    ),
+                  );
                 },
               );
             },
           );
         },
       ),
+      floatingActionButton: GFToggle(
+        onChanged: (value) {
+          setState(
+            () {
+              flag = value!;
+            },
+          );
+          if (value!) {
+            BlocProvider.of<ClaimCubit>(context).getAnsweredClaimsUser();
+            BlocProvider.of<ClaimCubit>(context).changeToogle(true);
+
+          } else {
+            BlocProvider.of<ClaimCubit>(context).getPendingClaimsUser();
+            BlocProvider.of<ClaimCubit>(context).changeToogle(false);
+            
+          }
+        },
+        value: flag,
+        type: GFToggleType.ios,
+      ),
       bottomNavigationBar:
-          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 1),
+          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 4),
     );
   }
 }
 
-class MyClaimedAdminReservationScreen extends StatelessWidget {
-  const MyClaimedAdminReservationScreen({super.key});
+
+class MyClaimScreen extends StatelessWidget {
+  const MyClaimScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    List<BottomNavItem> navItems = NavItems().bottomNavItemsAdmin;
-    BlocProvider.of<ClaimCubit>(context).getPendingClaimsAdmin();
+    List<BottomNavItem> navItems = NavItems().bottomNavItemsProfessor;
+    BlocProvider.of<ClaimCubit>(context).getAnsweredClaimsUser();
+    
     return BlocBuilder<ClaimCubit, ClaimState>(
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
           return Container(
             child: state.status == PageStatus.loading
                 ? myLoadingPage(
-                    text: "Reclamos", index: 1, bottomNavItems: navItems)
+                    text: "Mis Reclamos \n Respondidos", index: 4, bottomNavItems: navItems)
                 : state.status == PageStatus.success
-                    ? const MyClaimedAdminReservation()
+                    ? MyClaimedReservationScreen()
                     : const Text("Error"),
           );
         });
   }
 }
+
