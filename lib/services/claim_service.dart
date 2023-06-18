@@ -13,7 +13,7 @@ class ClaimService {
     final authToken = await storage.read(key: 'authToken');
 
     final response = await http.get(
-      Uri.parse("${Api.url}/pending/claim"),
+      Uri.parse("${Api.url}/pending/claim/admin"),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'charset': 'utf-8',
@@ -61,7 +61,6 @@ class ClaimService {
 
       if (response.statusCode == 200) {
         final responseData = json.decode(responseString);
-        print("Se logró");
         return "Claim created successfully";
       } else {
         throw Exception('Failed to create new claim');
