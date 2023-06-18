@@ -64,6 +64,8 @@ class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen>
                     context,
                     MaterialPageRoute(
                       builder: (context) => const MyInformationClaimScreen(),
+                      //INFORMATION FINSHED
+                      //
                     ),
                   );
                 },
