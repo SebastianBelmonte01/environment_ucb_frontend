@@ -5,6 +5,7 @@ import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/screens/information_claim_admin_screen.dart';
 import 'package:environment_ucb/screens/information_claim_pending_screen.dart';
+import 'package:environment_ucb/screens/information_claim_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +53,11 @@ class _MyClaimedReservationScreenState
                   context,
                   MaterialPageRoute(
                       builder: (context) => const MyInformationClaimScreen()))
-              : Navigator.pushNamed(context, '/claimScreen');
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const MyInformationClaimPendingScreen()));
         },
       ),
       floatingActionButton: GFToggle(

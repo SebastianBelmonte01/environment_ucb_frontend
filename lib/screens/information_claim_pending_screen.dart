@@ -6,8 +6,8 @@ import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
-class MyInformationClaimScreen extends StatelessWidget {
-  const MyInformationClaimScreen({super.key});
+class MyInformationClaimPendingScreen extends StatelessWidget {
+  const MyInformationClaimPendingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,26 +50,8 @@ class MyInformationClaimScreen extends StatelessWidget {
                   ),
                 ],
               )),
-              CardContainer(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyText(
-                    text: "Respuesta:",
-                    fontSize: 15,
-                    color: Colors.black,
-                    bold: true,
-                  ),
-                  MyText(
-                    text: "Se le dara una sancion al encargado del ambiente",
-                    fontSize: 15,
-                    color: Colors.black,
-                    bold: false,
-                  ),
-                ],
-              )),
               MyButton(
-                  fontSize: 12,
+                  fontSize: 18,
                   width: 170,
                   height: 50,
                   textColor: Colors.white,
