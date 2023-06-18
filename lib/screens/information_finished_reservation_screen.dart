@@ -11,6 +11,8 @@ import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+bool flag = true;
+
 class MyClaimReservationScreen extends StatelessWidget {
   const MyClaimReservationScreen({super.key});
   @override
@@ -30,14 +32,16 @@ class MyClaimReservationScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 myInformationCard(
-                subject: state.reservation.subject as String,
-                parallel: state.reservation.parallel.toString(),
-                date: state.reservation.reservationDate!,
-                beginTime: state.reservation.reservationTimeInit as String,
-                endTime: state.reservation.reservationTimeEnd as String,
-                quantity: state.reservation.people as int,
-                borderColor: const Color.fromRGBO(211, 211, 211, 1),
-              ),
+                  subject: state.reservation.subject as String,
+                  parallel: state.reservation.parallel.toString(),
+                  date: state.reservation.reservationDate!,
+                  beginTime: state.reservation.reservationTimeInit as String,
+                  endTime: state.reservation.reservationTimeEnd as String,
+                  quantity: state.reservation.people as int,
+                  environment:
+                      ("${state.reservation.environment} ${state.reservation.building}-${state.reservation.classroom}"),
+                  borderColor: const Color.fromRGBO(211, 211, 211, 1),
+                ),
                 CardContainer(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,8 +85,11 @@ class MyClaimReservationScreen extends StatelessWidget {
                       color: AppTheme.alert,
                       text: "Eliminar Reserva",
                       onPressed: () {
-                        BlocProvider.of<AprovedRequestCubit>(context).deleteReservation(state.reservation.reservationId!);
-                        BlocProvider.of<AprovedRequestCubit>(context).getMyCompletedRequests();
+                        BlocProvider.of<AprovedRequestCubit>(context)
+                            .deleteReservation(
+                                state.reservation.reservationId!);
+                        BlocProvider.of<AprovedRequestCubit>(context)
+                            .getMyCompletedRequests();
                         Navigator.pop(context);
                       },
                     ),
@@ -96,7 +103,9 @@ class MyClaimReservationScreen extends StatelessWidget {
                       onPressed: () {
                         print("ID");
                         print(state.reservation.reservationId);
-                        BlocProvider.of<ClaimCubit>(context).registerNewClaim(state.reservation.reservationId!, reasonRequest.text);
+                        BlocProvider.of<ClaimCubit>(context).registerNewClaim(
+                            state.reservation.reservationId!,
+                            reasonRequest.text);
                       },
                     ),
                   ],
