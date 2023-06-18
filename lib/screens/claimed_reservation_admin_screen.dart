@@ -19,7 +19,6 @@ class MyClaimedAdminReservation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<ClaimCubit>(context).getPendingClaims();
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
     final List<BottomNavItem> _bottomNavItems = NavItems().bottomNavItemsAdmin;
@@ -76,7 +75,7 @@ class MyClaimedAdminReservationScreen extends StatelessWidget {
           return Container(
             child: state.status == PageStatus.loading
                 ? myLoadingPage(
-                    text: "Reclamos", index: 0, bottomNavItems: navItems)
+                    text: "Reclamos", index: 1, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyClaimedAdminReservation()
                     : const Text("Error"),
