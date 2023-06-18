@@ -102,7 +102,7 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                           myTextController: claimAnswer,
                           borderColor: const Color.fromRGBO(211, 211, 211, 1),
                           enable: true,
-                          maxLines: 7,
+                          maxLines: 6,
                         )
                       ],
                     )),
