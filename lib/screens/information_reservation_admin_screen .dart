@@ -22,7 +22,6 @@ class MyInformationReservationAdminScreen extends StatefulWidget {
 
 class _MyInformationReservationAdminScreenState
     extends State<MyInformationReservationAdminScreen> {
-
   TextEditingController reasonRequest = TextEditingController();
   DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
@@ -47,7 +46,9 @@ class _MyInformationReservationAdminScreenState
                 myInformationCard(
                   subject: state.request!.subject as String,
                   parallel: state.request!.parallel.toString(),
-                  date: dateFormat.format(DateTime.parse(state.request!.date.toString())),
+                  professor: state.request!.professroName as String,
+                  date: dateFormat
+                      .format(DateTime.parse(state.request!.date.toString())),
                   beginTime: state.request!.initTime.toString(),
                   endTime: state.request!.endTime.toString(),
                   quantity: state.request!.people as int,
@@ -121,12 +122,16 @@ class _MyInformationReservationAdminScreenState
                       color: AppTheme.primary,
                       text: reject ? "Emitir" : "Aceptar solicitud",
                       onPressed: () {
-                        if(!reject){ //Accepted Request
-                          BlocProvider.of<PendingRequestCubit>(context).aproveRequest(state.request?.id as int); 
+                        if (!reject) {
+                          //Accepted Request
+                          BlocProvider.of<PendingRequestCubit>(context)
+                              .aproveRequest(state.request?.id as int);
                           Navigator.pop(context);
-                        }
-                        else{ //Reject Request
-                          BlocProvider.of<PendingRequestCubit>(context).rejectRequest(state.request?.id as int, reasonRequest.text);
+                        } else {
+                          //Reject Request
+                          BlocProvider.of<PendingRequestCubit>(context)
+                              .rejectRequest(
+                                  state.request?.id as int, reasonRequest.text);
                           Navigator.pop(context);
                         }
                         //should go to next page

@@ -36,6 +36,8 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                       state.selectedClaim!.reservationDto!.subject.toString(),
                   parallel:
                       state.selectedClaim!.reservationDto!.parallel.toString(),
+                  professor: state.selectedClaim!.reservationDto!.professorName
+                      .toString(),
                   date: dateFormat.format(DateTime.parse(state
                       .selectedClaim!.reservationDto!.reservationDate
                       .toString())),
@@ -46,6 +48,8 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                       .selectedClaim!.reservationDto!.reservationTimeEnd
                       .toString(),
                   quantity: state.selectedClaim!.reservationDto?.people as int,
+                  environment:
+                      ("${state.selectedClaim!.reservationDto!.environment} ${state.selectedClaim!.reservationDto!.building}-${state.selectedClaim!.reservationDto!.classroom}"),
                   borderColor: const Color.fromRGBO(211, 211, 211, 1),
                 ),
                 MySpecialCard(
@@ -98,7 +102,7 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                           myTextController: claimAnswer,
                           borderColor: const Color.fromRGBO(211, 211, 211, 1),
                           enable: true,
-                          maxLines: 7,
+                          maxLines: 6,
                         )
                       ],
                     )),
