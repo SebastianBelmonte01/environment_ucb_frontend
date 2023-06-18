@@ -1,6 +1,9 @@
+import 'package:environment_ucb/classes/bottomNavItem_class.dart';
+import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
+import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
@@ -74,7 +77,8 @@ class MyLogin extends StatelessWidget {
 }
 
 class MyLoginScreen extends StatelessWidget {
-  const MyLoginScreen({Key? key}) : super(key: key);
+  
+  MyLoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +88,17 @@ class MyLoginScreen extends StatelessWidget {
           child: state.status == PageStatus.initial
               ? MyLogin()
               : state.status == PageStatus.loading
-                  ? const CircularProgressIndicator()
+                  ? state.isAdmin == true
+                      ? myLoadingPage(
+                          text: "Administración de reservas",
+                          bottomNavItems: NavItems().bottomNavItemsAdmin, 
+                          index: 0,
+                        )
+                      : myLoadingPage(
+                          text: "Mis Reservas",
+                          bottomNavItems: NavItems().bottomNavItemsProfessor,
+                          index: 0,
+                        )
                   : state.status == PageStatus.success
                       ? state.isAdmin == true
                           ? const MyPendingRequestAdminScreen()
