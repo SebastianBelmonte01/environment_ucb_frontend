@@ -12,7 +12,7 @@ class myInformationCard extends StatelessWidget {
   String beginTime;
   String endTime;
   int quantity;
-  String? environment;
+  String environment;
   Color borderColor;
   bool boton;
   final VoidCallback? onPressed;
@@ -24,7 +24,7 @@ class myInformationCard extends StatelessWidget {
     required this.beginTime,
     required this.endTime,
     required this.quantity,
-    this.environment,
+    this.environment = "",
     this.boton = false,
     this.onPressed,
     required this.borderColor,
@@ -159,18 +159,18 @@ class myInformationCard extends StatelessWidget {
                 )
               : Container(),
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-          environment != null
+          environment != ""
               ? Row(
                   children: [
                     MyText(
-                      text: "Hora fin:",
+                      text: "Ambiente:",
                       fontSize: 15,
                       color: Colors.black,
                       bold: true,
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.05),
                     MyText(
-                      text: endTime,
+                      text: environment,
                       fontSize: 15,
                       color: Colors.black,
                       bold: false,

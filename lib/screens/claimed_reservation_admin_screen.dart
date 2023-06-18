@@ -50,7 +50,8 @@ class MyClaimedAdminReservation extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => MyInformationClaimScreen()));
+                          builder: (context) =>
+                              MyInformationClaimAdminScreen()));
                 },
               );
             },

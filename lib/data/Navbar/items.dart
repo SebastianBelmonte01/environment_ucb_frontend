@@ -15,6 +15,11 @@ class NavItems {
         icon: Icons.safety_check_sharp,
         label: 'Terminado',
         route: '/finishedScreen'),
+    BottomNavItem(
+      icon: Icons.arrow_drop_down_circle_outlined,
+      label: 'Reclamos',
+      route: '/claimedScreen',
+    ),
   ];
   final List<BottomNavItem> bottomNavItemsAdmin = [
     BottomNavItem(

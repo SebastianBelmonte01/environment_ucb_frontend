@@ -10,12 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-class MyInformationClaimScreen extends StatelessWidget {
-  const MyInformationClaimScreen({super.key});
+class MyInformationClaimAdminScreen extends StatelessWidget {
+  const MyInformationClaimAdminScreen({super.key});
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
-    
+
     TextEditingController reasonClaim = TextEditingController();
     TextEditingController claimAnswer = TextEditingController();
     return Scaffold(
@@ -32,11 +32,19 @@ class MyInformationClaimScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 myInformationCard(
-                  subject: state.selectedClaim!.reservationDto!.subject.toString(),
-                  parallel: state.selectedClaim!.reservationDto!.parallel.toString(),
-                  date: dateFormat.format(DateTime.parse(state.selectedClaim!.reservationDto!.reservationDate.toString())),
-                  beginTime: state.selectedClaim!.reservationDto!.reservationTimeInit.toString(),
-                  endTime: state.selectedClaim!.reservationDto!.reservationTimeEnd.toString(),
+                  subject:
+                      state.selectedClaim!.reservationDto!.subject.toString(),
+                  parallel:
+                      state.selectedClaim!.reservationDto!.parallel.toString(),
+                  date: dateFormat.format(DateTime.parse(state
+                      .selectedClaim!.reservationDto!.reservationDate
+                      .toString())),
+                  beginTime: state
+                      .selectedClaim!.reservationDto!.reservationTimeInit
+                      .toString(),
+                  endTime: state
+                      .selectedClaim!.reservationDto!.reservationTimeEnd
+                      .toString(),
                   quantity: state.selectedClaim!.reservationDto?.people as int,
                   borderColor: const Color.fromRGBO(211, 211, 211, 1),
                 ),
@@ -54,11 +62,10 @@ class MyInformationClaimScreen extends StatelessWidget {
                           bold: true,
                         ),
                         MyText(
-                          text: state.selectedClaim!.desClaim.toString(),
-                          fontSize: 15, 
-                          color: Colors.black, 
-                          bold: false
-                        )
+                            text: state.selectedClaim!.desClaim.toString(),
+                            fontSize: 15,
+                            color: Colors.black,
+                            bold: false)
                       ],
                     )),
                 MyButton(
