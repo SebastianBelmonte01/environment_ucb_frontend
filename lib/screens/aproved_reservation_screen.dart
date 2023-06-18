@@ -29,12 +29,12 @@ class MyAprovedReservation extends StatelessWidget {
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
           return ListView.builder(
-            itemCount: state.reservationList?.length,
+            itemCount: state.reservationList.length,
             itemBuilder: (context, index) {
-              ReservationDto? request = state.reservationList?[index];
+              ReservationDto? request = state.reservationList[index];
               return MyReservationCard(
-                environment: request?.environment as String,
-                subject: request!.subject.toString(),
+                environment: request.environment as String,
+                subject: request.subject.toString(),
                 parallel: request.parallel.toString(),
                 date: request.reservationDate!,
                 time: request.reservationTimeInit as String,

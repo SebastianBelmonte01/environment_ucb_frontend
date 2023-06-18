@@ -7,8 +7,6 @@ import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/dto/claim_dto.dart';
-import 'package:environment_ucb/screens/information_claim_admin_screen.dart';
-import 'package:environment_ucb/screens/information_claim_pending_screen.dart';
 import 'package:environment_ucb/screens/information_claim_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';

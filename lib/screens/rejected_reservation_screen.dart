@@ -11,7 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubit/aproved_request_cubit/aproved_request_cubit.dart';
 import '../dto/reservation_dto.dart';
 import 'information_reservation_rejection_screen.dart';
-import 'information_reservation_screen.dart';
 
 class MyRejectedRequest extends StatelessWidget {
   const MyRejectedRequest({super.key});
@@ -30,12 +29,12 @@ class MyRejectedRequest extends StatelessWidget {
         builder: (context, state) {
           //Run the function getMyRejectedReservation() from the cubit
           return ListView.builder(
-            itemCount: state.reservationList?.length,
+            itemCount: state.reservationList.length,
             itemBuilder: (context, index) {
-              ReservationDto? request = state.reservationList?[index];
+              ReservationDto? request = state.reservationList[index];
               return MyReservationCard(
-                environment: request?.environment as String,
-                subject: request!.subject.toString(),
+                environment: request.environment as String,
+                subject: request.subject.toString(),
                 parallel: request.parallel.toString(),
                 date: request.reservationDate!,
                 time: request.reservationTimeInit as String,

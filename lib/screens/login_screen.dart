@@ -1,4 +1,3 @@
-import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
@@ -6,17 +5,16 @@ import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
-import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
-import 'information_reservation_admin_screen .dart';
 
 
 
+// ignore: must_be_immutable
 class MyLogin extends StatelessWidget {
   
   TextEditingController email = TextEditingController();
@@ -78,7 +76,7 @@ class MyLogin extends StatelessWidget {
 
 class MyLoginScreen extends StatelessWidget {
   
-  MyLoginScreen({Key? key}) : super(key: key);
+  const MyLoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -112,7 +112,7 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
               text: "Confirmar",
               onPressed: () {
                 print("RESE");
-                print(widget.idReservation!);
+                print(widget.idReservation);
                 aux = "";
                 BlocProvider.of<EntranceCubit>(context)
                     .registerEntrance(result!.code as String, widget.idReservation);  

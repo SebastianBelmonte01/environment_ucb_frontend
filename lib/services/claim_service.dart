@@ -57,10 +57,7 @@ class ClaimService {
       );
 
       final response = await request.send();
-      final responseString = await response.stream.bytesToString();
-
       if (response.statusCode == 200) {
-        final responseData = json.decode(responseString);
         return "Claim created successfully";
       } else {
         throw Exception('Failed to create new claim');

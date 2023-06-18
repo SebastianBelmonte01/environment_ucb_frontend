@@ -1,4 +1,3 @@
-import 'package:clipboard/clipboard.dart';
 import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
@@ -8,7 +7,6 @@ import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_share/flutter_share.dart';
 
 class MyStrikeAdminScreen extends StatelessWidget {
   const MyStrikeAdminScreen({super.key});

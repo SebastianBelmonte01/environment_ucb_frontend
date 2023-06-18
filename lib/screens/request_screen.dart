@@ -5,7 +5,6 @@ import 'package:environment_ucb/components/my_calendar.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/dropdowns/my_dropdown_subjects.dart';
 import 'package:environment_ucb/components/my_text.dart';
-import 'package:environment_ucb/components/my_textCart.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/components/timepickers/end_time.dart';
@@ -14,7 +13,6 @@ import 'package:environment_ucb/cubit/environment_cubit/environment_cubit.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
-import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +22,7 @@ import 'package:intl/intl.dart';
 import '../components/dropdowns/my_dropdown_parallels.dart';
 import '../cubit/page_status.dart';
 
+// ignore: must_be_immutable
 class MyRequest extends StatelessWidget {
   TextEditingController cantidad_personas = TextEditingController();
   TextEditingController reasonRequest = TextEditingController();
@@ -199,7 +198,7 @@ class MyRequest extends StatelessWidget {
                       String environment =
                           BlocProvider.of<EnvironmentCubit>(context)
                               .state
-                              .environments![
+                              .environments[
                                   BlocProvider.of<EnvironmentCubit>(context)
                                       .state
                                       .selectedEnvironmentIndex]

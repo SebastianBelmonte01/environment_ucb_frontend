@@ -4,7 +4,6 @@ import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
-import 'package:environment_ucb/components/my_textfield.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
 import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
@@ -20,7 +19,6 @@ class MyClaimReservationScreen extends StatefulWidget {
 }
 
 class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
-  @override
   TextEditingController reasonRequest = TextEditingController();
   bool flag = false;
   Widget build(BuildContext context) {

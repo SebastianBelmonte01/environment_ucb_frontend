@@ -19,7 +19,6 @@ class MyPendingRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormatter = DateFormat('dd-MM-yyyy');
-    DateFormat timeFormatter = DateFormat('HH:mm');
 
     final List<BottomNavItem> _bottomNavItems =
         NavItems().bottomNavItemsProfessor;

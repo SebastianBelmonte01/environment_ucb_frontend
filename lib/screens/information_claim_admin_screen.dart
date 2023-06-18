@@ -17,7 +17,6 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
-    TextEditingController reasonClaim = TextEditingController();
     TextEditingController claimAnswer = TextEditingController();
     return Scaffold(
       appBar: const MyAppBar(
