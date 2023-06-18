@@ -1,9 +1,12 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
+import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
+import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/dto/request_dto.dart';
 import 'package:environment_ucb/screens/information_reservation_admin_screen%20.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
@@ -15,24 +18,14 @@ import '../cubit/aproved_request_cubit/aproved_request_cubit.dart';
 import '../dto/reservation_dto.dart';
 import 'information_reservation_screen.dart';
 
-class MyPendingRequestAdminScreen extends StatelessWidget {
-  const MyPendingRequestAdminScreen({super.key});
+class MyPendingRequestAdmin extends StatelessWidget {
+  const MyPendingRequestAdmin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<PendingRequestCubit>(context).getAdminPendingRequest();
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
-    final List<BottomNavItem> _bottomNavItems = [
-      BottomNavItem(
-          icon: Icons.access_time,
-          label: 'Pendiente',
-          route: '/pendingAdminScreen'),
-      BottomNavItem(
-          icon: Icons.arrow_drop_down_circle_outlined,
-          label: 'Reclamos',
-          route: '/claimedAdminScreen'),
-    ];
+    final List<BottomNavItem> _bottomNavItems = NavItems().bottomNavItemsAdmin;
     return Scaffold(
       appBar: const MyAppBar(
         text: "Administración de reservas",
@@ -72,5 +65,28 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
     );
+  }
+}
+
+class MyPendingRequestAdminScreen extends StatelessWidget {
+  const MyPendingRequestAdminScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    List<BottomNavItem> navItems = NavItems().bottomNavItemsAdmin;
+    BlocProvider.of<PendingRequestCubit>(context).getAdminPendingRequest();
+    return BlocBuilder<PendingRequestCubit, PendingRequestState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
+          return Container(
+            child: state.status == PageStatus.loading
+                ? myLoadingPage(
+                    text: "Administración de reservas",
+                    index: 0,
+                    bottomNavItems: navItems)
+                : state.status == PageStatus.success
+                    ? const MyPendingRequestAdmin()
+                    : const Text("Error"),
+          );
+        });
   }
 }
