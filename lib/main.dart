@@ -22,6 +22,7 @@ import 'package:environment_ucb/screens/rejected_reservation_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:environment_ucb/screens/strike_admin_screen.dart';
+import 'package:environment_ucb/components/test_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,17 +57,13 @@ class MyApp extends StatelessWidget {
           BlocProvider<AprovedRequestCubit>(
             create: (context) => AprovedRequestCubit()..getMyAprovedRequest(),
           ),
-          BlocProvider<EntranceCubit>(
-            create: (context) => EntranceCubit()
-          ),
-          BlocProvider<ClaimCubit>(
-            create: (context) => ClaimCubit()
-          )
+          BlocProvider<EntranceCubit>(create: (context) => EntranceCubit()),
+          BlocProvider<ClaimCubit>(create: (context) => ClaimCubit())
         ],
         child: MaterialApp(
           initialRoute: '/',
           routes: {
-            '/': (context) => MyLoginScreen(),
+            '/': (context) => MyLogin(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),

@@ -1,6 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
@@ -96,15 +97,15 @@ class MyPendingRequestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     return BlocBuilder<PendingRequestCubit, PendingRequestState>(
-      buildWhen: (previous, current) => previous.status != current.status,
+        buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
-      return Container(
-        child: state.status == PageStatus.loading
-            ? const CircularProgressIndicator()
-            : state.status == PageStatus.success
-                ? const MyPendingRequest()
-                : const Text("Error"),
-      );
-    });
+          return Container(
+            child: state.status == PageStatus.loading
+                ? const myLoadingPage(text: "Mis Reservas", index: 0)
+                : state.status == PageStatus.success
+                    ? const MyPendingRequest()
+                    : const Text("Error"),
+          );
+        });
   }
 }
