@@ -1,6 +1,7 @@
 import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
+import 'package:environment_ucb/components/my_imageDialog.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
@@ -106,6 +107,23 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                         )
                       ],
                     )),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                MyButton(
+                  fontSize: 15,
+                  width: 165,
+                  height: 50,
+                  textColor: Colors.white,
+                  color: AppTheme.secondary,
+                  text: "Ver Pruebas",
+                  onPressed: () {
+                    Image image = state.selectedClaim!.image as Image;
+                    showDialog(
+                        context: context,
+                        builder: (_) => myImageDialog(image: image));
+                  },
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.max,
@@ -135,21 +153,6 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                       },
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                MyButton(
-                  fontSize: 15,
-                  width: 165,
-                  height: 50,
-                  textColor: Colors.white,
-                  color: Color(0xFFE0C879),
-                  text: "Strike",
-                  onPressed: () {
-                    //should go to next page
-                    //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
-                  },
                 ),
               ],
             );

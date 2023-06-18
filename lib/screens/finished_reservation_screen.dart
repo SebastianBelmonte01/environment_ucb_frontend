@@ -5,7 +5,7 @@ import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/data/Navbar/items.dart';
-import 'package:environment_ucb/screens/claim_reservation_screen.dart';
+import 'package:environment_ucb/screens/information_finished_reservation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
