@@ -5,6 +5,7 @@ import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
+import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/dto/request_dto.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
@@ -20,21 +21,8 @@ class MyPendingRequest extends StatelessWidget {
     DateFormat dateFormatter = DateFormat('dd-MM-yyyy');
     DateFormat timeFormatter = DateFormat('HH:mm');
 
-    final List<BottomNavItem> _bottomNavItems = [
-      BottomNavItem(
-          icon: Icons.access_time, label: 'Pendiente', route: '/pendingScreen'),
-      BottomNavItem(
-          icon: Icons.check_box, label: 'Aceptado', route: '/aprovedScreen'),
-      BottomNavItem(
-          icon: Icons.clear_rounded,
-          label: 'Rechazado',
-          route: '/rejectedScreen'),
-      BottomNavItem(
-          icon: Icons.safety_check_sharp,
-          label: 'Terminado',
-          route: '/finishedScreen'),
-    ];
-
+    final List<BottomNavItem> _bottomNavItems =
+        NavItems().bottomNavItemsProfessor;
     return Scaffold(
       appBar: const MyAppBar(
         text: "Mis Reservas",
@@ -95,13 +83,15 @@ class MyPendingRequestScreen extends StatelessWidget {
   const MyPendingRequestScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    List<BottomNavItem> navItems = NavItems().bottomNavItemsProfessor;
     BlocProvider.of<PendingRequestCubit>(context).getMyPendingRequests();
     return BlocBuilder<PendingRequestCubit, PendingRequestState>(
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
           return Container(
             child: state.status == PageStatus.loading
-                ? const myLoadingPage(text: "Mis Reservas", index: 0)
+                ? myLoadingPage(
+                    text: "Mis Reservas", index: 0, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyPendingRequest()
                     : const Text("Error"),

@@ -7,24 +7,15 @@ import 'package:flutter/material.dart';
 class myLoadingPage extends StatelessWidget {
   final String text;
   final int index;
-  const myLoadingPage({required this.text, super.key, required this.index});
+  final List<BottomNavItem> bottomNavItems;
+  const myLoadingPage(
+      {required this.text,
+      super.key,
+      required this.index,
+      required this.bottomNavItems});
 
   @override
   Widget build(BuildContext context) {
-    final List<BottomNavItem> _bottomNavItems = [
-      BottomNavItem(
-          icon: Icons.access_time, label: 'Pendiente', route: '/pendingScreen'),
-      BottomNavItem(
-          icon: Icons.check_box, label: 'Aceptado', route: '/aprovedScreen'),
-      BottomNavItem(
-          icon: Icons.clear_rounded,
-          label: 'Rechazado',
-          route: '/rejectedScreen'),
-      BottomNavItem(
-          icon: Icons.safety_check_sharp,
-          label: 'Terminado',
-          route: '/finishedScreen'),
-    ];
     return Scaffold(
       appBar: MyAppBar(fontSize: 25, text: text, textcolor: Colors.white),
       body: ListView.builder(
@@ -38,7 +29,7 @@ class myLoadingPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar:
-          myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
+          myBottomNavigationBar(items: bottomNavItems, currentIndex: 0),
     );
   }
 }
