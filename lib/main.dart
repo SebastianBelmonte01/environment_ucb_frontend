@@ -79,6 +79,7 @@ class MyApp extends StatelessWidget {
             '/strikeAdminScreen': (context) => MyStrikeAdminScreen(),
             '/claimedAdminScreen': (context) =>
                 MyClaimedAdminReservationScreen(),
+            '/claimedScreen': (context) => MyClaimedReservationScreen(),
           },
         ));
   }
