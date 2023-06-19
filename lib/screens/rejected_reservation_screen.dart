@@ -1,6 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_error.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
@@ -25,37 +26,39 @@ class MyRejectedRequest extends StatelessWidget {
         textcolor: Colors.white,
       ),
       body: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
-        buildWhen: (previous, current) => previous.status != current.status,
-        builder: (context, state) {
-          //Run the function getMyRejectedReservation() from the cubit
-          return ListView.builder(
-            itemCount: state.reservationList.length,
-            itemBuilder: (context, index) {
-              ReservationDto? request = state.reservationList[index];
-              return MyReservationCard(
-                environment: request.environment as String,
-                subject: request.subject.toString(),
-                parallel: request.parallel.toString(),
-                date: request.reservationDate!,
-                time: request.reservationTimeInit as String,
-                bottunText: "Ver detalle",
-                bottunColor: Color(0xFFCB3B3B),
-                borderColor: Colors.black12,
-                onPressed: () {
-                  BlocProvider.of<AprovedRequestCubit>(context)
-                      .setSelectedReservation(request);
-                  //TODO CHANGE TO REJECTED
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const MyInformationRejectionScreen()));
+          buildWhen: (previous, current) => previous.status != current.status,
+          builder: (context, state) {
+            if (state.reservationList.isEmpty) {
+              return const Center(child: Text('No hay solicitudes'));
+            } else {
+              return ListView.builder(
+                itemCount: state.reservationList.length,
+                itemBuilder: (context, index) {
+                  ReservationDto? request = state.reservationList[index];
+                  return MyReservationCard(
+                    environment: request.environment as String,
+                    subject: request.subject.toString(),
+                    parallel: request.parallel.toString(),
+                    date: request.reservationDate!,
+                    time: request.reservationTimeInit as String,
+                    bottunText: "Ver detalle",
+                    bottunColor: Color(0xFFCB3B3B),
+                    borderColor: Colors.black12,
+                    onPressed: () {
+                      BlocProvider.of<AprovedRequestCubit>(context)
+                          .setSelectedReservation(request);
+                      //TODO CHANGE TO REJECTED
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const MyInformationRejectionScreen()));
+                    },
+                  );
                 },
               );
-            },
-          );
-        },
-      ),
+            }
+          }),
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 2),
     );
@@ -77,7 +80,7 @@ class MyRejectedRequestScreen extends StatelessWidget {
                     text: "Mis Reservas", index: 2, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyRejectedRequest()
-                    : const Text("Error"),
+                    : MyError(error: "Error al cargar las reservas"),
           );
         });
   }

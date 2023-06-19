@@ -4,6 +4,8 @@ import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_calendar.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/dropdowns/my_dropdown_subjects.dart';
+import 'package:environment_ucb/components/my_error.dart';
+import 'package:environment_ucb/components/my_requestShimmer.dart';
 import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/components/my_textfield.dart';
@@ -30,12 +32,10 @@ class MyRequest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     DateFormat timeFormat = DateFormat('HH:mm');
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
 
     return Scaffold(
-      
       appBar: const MyAppBar(
         text: "Solicitud de Reserva",
         fontSize: 25,
@@ -229,7 +229,8 @@ class MyRequest extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MyRequestMessageScreen()));
+                              builder: (context) =>
+                                  const MyRequestMessageScreen()));
                     },
                   ),
                 ],
@@ -252,10 +253,10 @@ class MyRequestScreen extends StatelessWidget {
         builder: (context, state) {
       return Container(
         child: state.status == PageStatus.loading
-            ? const CircularProgressIndicator()
+            ? MyShimmerRequest()
             : state.status == PageStatus.success
                 ? MyRequest()
-                : const Text("Error"),
+                : MyError(error: "Error al cargar el formulario"),
       );
     });
   }

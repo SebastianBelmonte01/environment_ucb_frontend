@@ -1,6 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_error.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
@@ -26,34 +27,36 @@ class MyFinishedReservation extends StatelessWidget {
         textcolor: Colors.white,
       ),
       body: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
-        builder: (context, state) {
+          builder: (context, state) {
+        if (state.reservationList.isEmpty) {
+          return const Center(child: Text('No hay solicitudes'));
+        } else {
           return ListView.builder(
-            itemCount: state.reservationList.length,
-            itemBuilder: (context, index) {
-              ReservationDto? request = state.reservationList[index];
-              return MyReservationCard(
-                environment: request.environment as String,
-                subject: request.subject.toString(),
-                parallel: request.parallel.toString(),
-                date: request.reservationDate!,
-                time: request.reservationTimeInit as String,
-                bottunText: "Ver detalle",
-                bottunColor: Color.fromRGBO(224, 200, 121, 1),
-                borderColor: Colors.black12,
-                onPressed: () {
-                  BlocProvider.of<AprovedRequestCubit>(context)
-                      .setSelectedReservation(request);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const MyClaimReservationScreen()));
-                },
-              );
-            },
-          );
-        },
-      ),
+              itemCount: state.reservationList.length,
+              itemBuilder: (context, index) {
+                ReservationDto? request = state.reservationList[index];
+                return MyReservationCard(
+                  environment: request.environment as String,
+                  subject: request.subject.toString(),
+                  parallel: request.parallel.toString(),
+                  date: request.reservationDate!,
+                  time: request.reservationTimeInit as String,
+                  bottunText: "Ver detalle",
+                  bottunColor: Color.fromRGBO(224, 200, 121, 1),
+                  borderColor: Colors.black12,
+                  onPressed: () {
+                    BlocProvider.of<AprovedRequestCubit>(context)
+                        .setSelectedReservation(request);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const MyClaimReservationScreen()));
+                  },
+                );
+              });
+        }
+      }),
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 3),
     );
@@ -70,14 +73,14 @@ class MyFinishedReservationScreen extends StatelessWidget {
     BlocProvider.of<AprovedRequestCubit>(context).getMyCompletedRequests();
     return BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
         builder: (context, state) {
-          return Container(
-            child: state.status == PageStatus.loading
-                ? myLoadingPage(
-                    text: "Mis Reservas", index: 3, bottomNavItems: navItems)
-                : state.status == PageStatus.success
-                    ? const MyFinishedReservation()
-                    : const Text("Error"),
-          );
-        });
+      return Container(
+        child: state.status == PageStatus.loading
+            ? myLoadingPage(
+                text: "Mis Reservas", index: 3, bottomNavItems: navItems)
+            : state.status == PageStatus.success
+                ? const MyFinishedReservation()
+                : MyError(error: "Error al cargar las reservas"),
+      );
+    });
   }
 }

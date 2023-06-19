@@ -1,6 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_error.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
@@ -21,14 +22,14 @@ class MyClaimedReservationScreen extends StatefulWidget {
   MyClaimedReservationScreen({Key? key}) : super(key: key);
 
   @override
-  State<MyClaimedReservationScreen> createState() => _MyClaimedReservationScreenState();
+  State<MyClaimedReservationScreen> createState() =>
+      _MyClaimedReservationScreenState();
 }
 
-class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen> {
+class _MyClaimedReservationScreenState
+    extends State<MyClaimedReservationScreen> {
   @override
   Widget build(BuildContext context) {
-
-
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
     final List<BottomNavItem> _bottomNavItems =
         NavItems().bottomNavItemsProfessor;
@@ -38,8 +39,10 @@ class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen>
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: BlocBuilder<ClaimCubit, ClaimState>(
-        builder: (context, state) {
+      body: BlocBuilder<ClaimCubit, ClaimState>(builder: (context, state) {
+        if (state.claimList.isEmpty) {
+          return const Center(child: Text('No hay reclamos'));
+        } else {
           return ListView.builder(
             itemCount: state.claimList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -52,39 +55,36 @@ class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen>
                     claim.reservationDto!.reservationDate.toString())),
                 time: claim.reservationDto?.reservationTimeInit as String,
                 bottunText: "Ver detalle",
-                bottunColor: state.isAnswered!
-                    ? AppTheme.primary
-                    : AppTheme.alert,
-                borderColor: state.isAnswered!
-                    ? AppTheme.primary
-                    : AppTheme.alert,
+                bottunColor:
+                    state.isAnswered! ? AppTheme.primary : AppTheme.alert,
+                borderColor:
+                    state.isAnswered! ? AppTheme.primary : AppTheme.alert,
                 onPressed: () {
-                  
-                  if(state.isAnswered!){
-                      Navigator.push(
+                  if (state.isAnswered!) {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyInformationClaimScreen(claim: claim),
+                        builder: (context) =>
+                            MyInformationClaimScreen(claim: claim),
                         //INFORMATION FINSHED
                         //
                       ),
                     );
-                  }
-                  else {
+                  } else {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyInformationClaimPendingScreen(claim: claim),
+                        builder: (context) =>
+                            MyInformationClaimPendingScreen(claim: claim),
                       ),
                     );
-                    
                   }
                 },
               );
             },
           );
-        },
-      ),
+        }
+      }),
       floatingActionButton: GFToggle(
         onChanged: (value) {
           setState(
@@ -95,11 +95,9 @@ class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen>
           if (value!) {
             BlocProvider.of<ClaimCubit>(context).getAnsweredClaimsUser();
             BlocProvider.of<ClaimCubit>(context).changeToogle(true);
-
           } else {
             BlocProvider.of<ClaimCubit>(context).getPendingClaimsUser();
             BlocProvider.of<ClaimCubit>(context).changeToogle(false);
-            
           }
         },
         value: flag,
@@ -111,14 +109,13 @@ class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen>
   }
 }
 
-
 class MyClaimScreen extends StatelessWidget {
   const MyClaimScreen({super.key});
   @override
   Widget build(BuildContext context) {
     List<BottomNavItem> navItems = NavItems().bottomNavItemsProfessor;
     BlocProvider.of<ClaimCubit>(context).getAnsweredClaimsUser();
-    
+
     return BlocBuilder<ClaimCubit, ClaimState>(
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
@@ -128,9 +125,8 @@ class MyClaimScreen extends StatelessWidget {
                     text: "Mis Reclamos", index: 4, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? MyClaimedReservationScreen()
-                    : const Text("Error"),
+                    : MyError(error: "Error al cargar los reclamos"),
           );
         });
   }
 }
-

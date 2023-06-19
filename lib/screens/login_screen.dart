@@ -1,3 +1,4 @@
+import 'package:environment_ucb/components/my_error.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
@@ -12,11 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 
-
-
 // ignore: must_be_immutable
 class MyLogin extends StatelessWidget {
-  
   TextEditingController email = TextEditingController();
   TextEditingController secret = TextEditingController();
 
@@ -63,6 +61,16 @@ class MyLogin extends StatelessWidget {
               color: AppTheme.primary,
               text: "Ingresar",
               onPressed: () {
+                //validar que los campos no esten vacios
+                if (email.text.isEmpty || secret.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: AppTheme.alert,
+                      content: Text("*Los campos no pueden estar vacios"),
+                    ),
+                  );
+                  return;
+                }
                 BlocProvider.of<LoginCubit>(context)
                     .login(email.text, secret.text);
               },
@@ -75,7 +83,6 @@ class MyLogin extends StatelessWidget {
 }
 
 class MyLoginScreen extends StatelessWidget {
-  
   const MyLoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -89,7 +96,7 @@ class MyLoginScreen extends StatelessWidget {
                   ? state.isAdmin == true
                       ? myLoadingPage(
                           text: "Administración de reservas",
-                          bottomNavItems: NavItems().bottomNavItemsAdmin, 
+                          bottomNavItems: NavItems().bottomNavItemsAdmin,
                           index: 0,
                         )
                       : myLoadingPage(
@@ -101,14 +108,9 @@ class MyLoginScreen extends StatelessWidget {
                       ? state.isAdmin == true
                           ? const MyPendingRequestAdminScreen()
                           : const MyPendingRequestScreen()
-                      : const Text("Error"),
+                      : MyError(),
         );
       },
     );
   }
 }
-
-
-
-
-

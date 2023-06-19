@@ -1,6 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_error.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
@@ -30,35 +31,29 @@ class MyPendingRequest extends StatelessWidget {
       ),
       body: BlocBuilder<PendingRequestCubit, PendingRequestState>(
         builder: (context, state) {
-          if (state.status == PageStatus.loading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state.status == PageStatus.success) {
-            if (state.requests.isEmpty) {
-              return const Center(child: Text('No hay solicitudes'));
-            } else {
-              return ListView.builder(
-                itemCount: state.requests.length,
-                itemBuilder: (context, index) {
-                  RequestDto request = state.requests[index];
-                  return MyReservationCard(
-                    environment: request.environment as String,
-                    subject: request.subject.toString(),
-                    parallel: request.parallel.toString(),
-                    date: dateFormatter.format(DateTime.parse(request.date!)),
-                    time: request.initTime as String,
-                    bottunText: "Cancelar",
-                    bottunColor: Color(0xFFCB3B3B),
-                    borderColor: Colors.black12,
-                    onPressed: () {
-                      BlocProvider.of<PendingRequestCubit>(context)
-                          .cancelRequest(request.id!);
-                    },
-                  );
-                },
-              );
-            }
+          if (state.requests.isEmpty) {
+            return const Center(child: Text('No hay solicitudes'));
           } else {
-            return const Center(child: Text('Error'));
+            return ListView.builder(
+              itemCount: state.requests.length,
+              itemBuilder: (context, index) {
+                RequestDto request = state.requests[index];
+                return MyReservationCard(
+                  environment: request.environment as String,
+                  subject: request.subject.toString(),
+                  parallel: request.parallel.toString(),
+                  date: dateFormatter.format(DateTime.parse(request.date!)),
+                  time: request.initTime as String,
+                  bottunText: "Cancelar",
+                  bottunColor: Color(0xFFCB3B3B),
+                  borderColor: Colors.black12,
+                  onPressed: () {
+                    BlocProvider.of<PendingRequestCubit>(context)
+                        .cancelRequest(request.id!);
+                  },
+                );
+              },
+            );
           }
         },
       ),
@@ -93,7 +88,7 @@ class MyPendingRequestScreen extends StatelessWidget {
                     text: "Mis Reservas", index: 0, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyPendingRequest()
-                    : const Text("Error"),
+                    : MyError(error: "Error al cargar las Solicitudes"),
           );
         });
   }

@@ -1,6 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_error.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
@@ -12,14 +13,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-
 class MyClaimedAdminReservation extends StatelessWidget {
   const MyClaimedAdminReservation({super.key});
 
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
-
     final List<BottomNavItem> _bottomNavItems = NavItems().bottomNavItemsAdmin;
     return Scaffold(
       appBar: const MyAppBar(
@@ -27,8 +26,10 @@ class MyClaimedAdminReservation extends StatelessWidget {
         fontSize: 25,
         textcolor: Colors.white,
       ),
-      body: BlocBuilder<ClaimCubit, ClaimState>(
-        builder: (context, state) {
+      body: BlocBuilder<ClaimCubit, ClaimState>(builder: (context, state) {
+        if (state.claimList.isEmpty) {
+          return const Center(child: Text('No hay reclamos'));
+        } else {
           return ListView.builder(
             itemCount: state.claimList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -54,8 +55,8 @@ class MyClaimedAdminReservation extends StatelessWidget {
               );
             },
           );
-        },
-      ),
+        }
+      }),
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 1),
     );
@@ -77,7 +78,7 @@ class MyClaimedAdminReservationScreen extends StatelessWidget {
                     text: "Reclamos", index: 1, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyClaimedAdminReservation()
-                    : const Text("Error"),
+                    : MyError(error: "Error al cargar los reclamos"),
           );
         });
   }
