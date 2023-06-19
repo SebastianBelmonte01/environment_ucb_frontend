@@ -23,6 +23,7 @@ import 'package:environment_ucb/screens/request_screen.dart';
 import 'package:environment_ucb/screens/strike_admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 import 'cubit/aproved_request_cubit/aproved_request_cubit.dart';
 
@@ -59,9 +60,21 @@ class MyApp extends StatelessWidget {
           BlocProvider<ClaimCubit>(create: (context) => ClaimCubit())
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           initialRoute: '/',
           routes: {
-            '/': (context) => MyLoginScreen(),
+            '/': (context) => AnimatedSplashScreen(splash:
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/UCB_logo.png')
+                ]), 
+              nextScreen: MyLoginScreen(),
+              splashIconSize: 600, 
+              splashTransition: SplashTransition.fadeTransition,
+              duration: 500,
+              backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            ),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),
