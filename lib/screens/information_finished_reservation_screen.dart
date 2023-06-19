@@ -135,6 +135,7 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                           BlocProvider.of<ClaimCubit>(context).registerNewClaim(
                               state.reservation.reservationId!,
                               reasonRequest.text);
+                          Navigator.pop(context);
 
                         }
                       },

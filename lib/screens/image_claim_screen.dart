@@ -79,23 +79,12 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
                 },
               ),
 
-              MyButton(
-                fontSize: 15,
-                width: 235,
-                height: 50,
-                textColor: Colors.white,
-                color: AppTheme.primary,
-                text: "Enviar",
-                onPressed: (){
-                  BlocProvider.of<ClaimCubit>(context).setImage(file!);
-                  Navigator.pop(context);
-                },
-              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   MyButton(
                     fontSize: 15,
-                    width: 100,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     height: 50,
                     textColor: Colors.white,
                     color: AppTheme.alert,
@@ -104,15 +93,19 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
                       Navigator.pop(context);
                     },
                   ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.05,
+                  ),
                   MyButton(
                     fontSize: 15,
-                    width: 100,
+                    width: MediaQuery.of(context).size.width * 0.4,
                     height: 50,
                     textColor: Colors.white,
                     color: AppTheme.primary,
                     text: "Enviar",
                     onPressed: () {
-                      //cubit enviar
+                      BlocProvider.of<ClaimCubit>(context).setImage(file!);
+                      Navigator.pop(context);
                     },
                   ),
                 ],

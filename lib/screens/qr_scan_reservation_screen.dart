@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
 import 'package:environment_ucb/screens/finished_reservation_screen.dart';
@@ -40,6 +41,11 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(
+        text: "Escanear QR",
+        fontSize: 25,
+        textcolor: Colors.white,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
@@ -100,7 +106,9 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
                 textColor: Colors.white,
                 text: "Cancelar",
                 onPressed: () {
-                  aux = "";
+                  setState(() {
+                    aux = "";
+                  });
                   Navigator.pop(context);
                 }),
             MyButton(
@@ -114,6 +122,9 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
                 BlocProvider.of<AprovedRequestCubit>(context)
                     .registerEntrance(result!.code as String, widget.idReservation);
                 Navigator.popUntil(context, (route) => route.isFirst);
+                setState(() {
+                    aux = "";
+                  });
                 Navigator.push(
                       context,
                       MaterialPageRoute(
