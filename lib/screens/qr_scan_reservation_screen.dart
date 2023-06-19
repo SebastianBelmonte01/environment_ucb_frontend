@@ -41,7 +41,7 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(
+      appBar: const MyAppBar(
         text: "Escanear QR",
         fontSize: 25,
         textcolor: Colors.white,

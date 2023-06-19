@@ -76,7 +76,7 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                             width: 170,
                             height: 50,
                             textColor: Colors.white,
-                            color: AppTheme.alert,
+                            color: AppTheme.secondary,
                             text: "Añadir Imagenes",
                             onPressed: () {
                               Navigator.pushNamed(context, '/imageClaimScreen');

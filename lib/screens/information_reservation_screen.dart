@@ -87,7 +87,6 @@ class MyInformationReservationScreen extends StatelessWidget {
                       color: AppTheme.primary,
                       text: "Registrar",
                       onPressed: () {
-                        print('IDDDDDDDDD');
                         print( state.reservation.reservationId!);
                         Navigator.push(context, MaterialPageRoute(builder: (context) =>  MyQrScanReservationScreen(idReservation: state.reservation.reservationId!,) ));
                         //should go to next page

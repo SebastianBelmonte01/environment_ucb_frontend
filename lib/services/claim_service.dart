@@ -60,6 +60,7 @@ class ClaimService {
       if (response.statusCode == 200) {
         return "Claim created successfully";
       } else {
+        print(response);
         throw Exception('Failed to create new claim');
       }
   }
