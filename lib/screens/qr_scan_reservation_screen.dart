@@ -1,9 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:environment_ucb/components/my_button.dart';
+import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
 import 'package:environment_ucb/cubit/entrance_cubit/entrance_cubit.dart';
+import 'package:environment_ucb/screens/finished_reservation_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -111,12 +112,16 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
               textColor: Colors.white,
               text: "Confirmar",
               onPressed: () {
-                print("RESE");
-                print(widget.idReservation);
-                aux = "";
-                BlocProvider.of<EntranceCubit>(context)
-                    .registerEntrance(result!.code as String, widget.idReservation);  
-                Navigator.pushNamed(context, '/finishedScreen');
+                BlocProvider.of<AprovedRequestCubit>(context)
+                    .registerEntrance(result!.code as String, widget.idReservation);
+                Navigator.popUntil(context, (route) => route.isFirst);
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const MyFinishedReservationScreen()));
+
+                //Navigator.pushNamed(context, '/finishedScreen');
               },
             ),
           ],

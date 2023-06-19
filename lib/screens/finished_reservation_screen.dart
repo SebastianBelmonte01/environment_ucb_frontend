@@ -65,9 +65,10 @@ class MyFinishedReservationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<BottomNavItem> navItems = NavItems().bottomNavItemsProfessor;
+    print("FINISHED");
+
     BlocProvider.of<AprovedRequestCubit>(context).getMyCompletedRequests();
     return BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
-        buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
           return Container(
             child: state.status == PageStatus.loading

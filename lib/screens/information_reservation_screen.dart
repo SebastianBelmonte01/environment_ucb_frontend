@@ -75,10 +75,7 @@ class MyInformationReservationScreen extends StatelessWidget {
                       color: AppTheme.alert,
                       text: "Cancelar",
                       onPressed: () {
-                        //should go to next page
-                        print("H)OLA");
                         BlocProvider.of<AprovedRequestCubit>(context).deleteReservation(state.reservation.reservationId!);
-                        BlocProvider.of<AprovedRequestCubit>(context).getMyAprovedRequest();
                         Navigator.pop(context);
                       },
                     ),

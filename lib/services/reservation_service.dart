@@ -115,7 +115,7 @@ class ReservationService {
     }
   }
   
-  static Future<ApiResponse> deleteReservation(int reservationId) async {
+  static Future<String> deleteReservation(int reservationId) async {
     const storage = FlutterSecureStorage();
     final authToken = await storage.read(key: 'authToken');
     final response = await http.put(
@@ -130,7 +130,7 @@ class ReservationService {
       final decodedResponse = utf8.decode(response.bodyBytes); 
       print(jsonDecode(decodedResponse)["response"]);
       print("Reservation deleted");
-      return ApiResponse.fromJson(jsonDecode(decodedResponse));
+      return 'Reservation deleted';
     } else {
       print("Failed to delete reservation");
       throw Exception('Failed to delete reservation');

@@ -4,10 +4,15 @@ class AprovedRequestState extends Equatable {
   final PageStatus status;
   final List<ReservationDto> reservationList;
   final ReservationDto reservation;
+  final EntranceDto? entranceDto;
+  final String? message;
+
 
   AprovedRequestState({
   this.status = PageStatus.initial,
   this.reservationList = const [],
+  this.entranceDto,
+  this.message,
   ReservationDto? reservation,
 }) : reservation = reservation ?? ReservationDto();
 
@@ -16,11 +21,15 @@ class AprovedRequestState extends Equatable {
     PageStatus? status,
     List<ReservationDto>? reservationList,
     ReservationDto? reservation,
+    EntranceDto? entranceDto,
+    String? message,
   }) {
     return AprovedRequestState(
       status: status ?? this.status,
       reservationList: reservationList ?? this.reservationList,
       reservation: reservation ?? this.reservation,
+      entranceDto: entranceDto ?? this.entranceDto,
+      message: message ?? this.message,
     );
   }
 
