@@ -120,6 +120,28 @@ class ClaimService {
       throw Exception('Failed to get pending claims');
     }
   }
+
+  static Future<void> acceptClaimResponse(int claimId) async {
+    const storage = FlutterSecureStorage();
+    final authToken = await storage.read(key: 'authToken');
+    final response = await http.put(
+      Uri.parse("${Api.url}/accept/claim/$claimId"),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'charset': 'utf-8',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authToken'
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print("Claim accepted");
+    } else {
+      print(response.body);
+      print("Failed to accept claim");
+      throw Exception('Failed to accept claim');
+    }
+  }
   
 
   

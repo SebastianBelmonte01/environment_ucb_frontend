@@ -58,14 +58,20 @@ class _MyClaimedReservationScreenState extends State<MyClaimedReservationScreen>
                     ? AppTheme.primary
                     : AppTheme.alert,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyInformationClaimScreen(),
-                      //INFORMATION FINSHED
-                      //
-                    ),
-                  );
+                  
+                  if(state.isAnswered!){
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyInformationClaimScreen(claim: claim),
+                        //INFORMATION FINSHED
+                        //
+                      ),
+                    );
+                  }
+                  else {
+                    
+                  }
                 },
               );
             },

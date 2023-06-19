@@ -35,7 +35,6 @@ class _MyEndTimePickerState extends State<MyEndTimePicker> {
                       maximumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 20, 0, 0),
                       // This is called when the user changes the time.
                       onDateTimeChanged: (DateTime newTime) {
-                        print(newTime.hour);
                         BlocProvider.of<RequestCubit>(context).setEndTime(newTime);
                       },
                     ),

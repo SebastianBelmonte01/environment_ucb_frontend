@@ -3,11 +3,18 @@ import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:environment_ucb/components/my_informationCard.dart';
 import 'package:environment_ucb/components/my_text.dart';
+import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
+import 'package:environment_ucb/dto/claim_dto.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class MyInformationClaimScreen extends StatelessWidget {
-  const MyInformationClaimScreen({super.key});
+  ClaimDto claim;
+  DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+
+  MyInformationClaimScreen({super.key, required this.claim});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +30,14 @@ class MyInformationClaimScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
               myInformationCard(
-                subject: "Ingenieria de Software 1",
-                parallel: "1",
-                date: "12/12/2021",
-                beginTime: "12:00",
-                endTime: "14:00",
-                quantity: 20,
-                environment: "Aula 1",
+                subject: claim.reservationDto!.subject!,
+                parallel: claim.reservationDto!.parallel!.toString(),
+                date: dateFormat.format(DateTime.parse(
+                    claim.reservationDto!.reservationDate.toString())),
+                beginTime: claim.reservationDto!.reservationTimeInit!,
+                endTime: claim.reservationDto!.reservationTimeEnd!,
+                quantity: claim.reservationDto!.people!,
+                environment: "${claim.reservationDto!.environment!} ${claim.reservationDto!.building!}-${claim.reservationDto!.classroom!}",
                 borderColor: const Color.fromRGBO(211, 211, 211, 1),
               ),
               CardContainer(
@@ -43,7 +51,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                     bold: true,
                   ),
                   MyText(
-                    text: "El ambiente no se encontraba en buenas condiciones",
+                    text: claim.desClaim,
                     fontSize: 15,
                     color: Colors.black,
                     bold: false,
@@ -61,7 +69,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                     bold: true,
                   ),
                   MyText(
-                    text: "Se le dara una sancion al encargado del ambiente",
+                    text: claim.resClaim,
                     fontSize: 15,
                     color: Colors.black,
                     bold: false,
@@ -76,6 +84,7 @@ class MyInformationClaimScreen extends StatelessWidget {
                   color: AppTheme.secondary,
                   text: "Aceptar",
                   onPressed: () {
+                    BlocProvider.of<ClaimCubit>(context).acceptClaimResponse(claim.claimId!);
                     Navigator.pop(context);
                   }),
             ])));
