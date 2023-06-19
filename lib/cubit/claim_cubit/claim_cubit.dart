@@ -83,4 +83,16 @@ class ClaimCubit extends Cubit<ClaimState> {
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+
+  void attendClaimAdmin(int claimId, String response) async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      await ClaimService.attendClaimAdmin(claimId, response);
+      List<ClaimDto> claims = await ClaimService.getPendingClaims();
+      emit(state.copyWith(status: PageStatus.success, claimList: claims));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
 }

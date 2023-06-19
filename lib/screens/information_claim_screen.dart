@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class MyInformationClaimScreen extends StatelessWidget {
   ClaimDto claim;
   DateFormat dateFormat = DateFormat('dd/MM/yyyy');

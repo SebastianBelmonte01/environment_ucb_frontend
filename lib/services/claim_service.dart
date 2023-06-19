@@ -142,6 +142,30 @@ class ClaimService {
       throw Exception('Failed to accept claim');
     }
   }
+
+  static Future<void> attendClaimAdmin(int claimId, String claimResponse) async {
+  const storage = FlutterSecureStorage();
+  final authToken = await storage.read(key: 'authToken');
+  final httpResponse = await http.put(
+    Uri.parse("${Api.url}/attend/claim/$claimId"),
+    headers: <String, String>{
+      'Content-Type': 'application/json',
+      'charset': 'utf-8',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $authToken'
+    },
+    body: claimResponse,
+  );
+
+  if (httpResponse.statusCode == 200) {
+    print("Claim Responded Admin");
+  } else {
+    print(httpResponse.body);
+    print("Failed to respond to claim");
+    throw Exception('Failed to accept claim');
+  }
+}
+
   
 
   

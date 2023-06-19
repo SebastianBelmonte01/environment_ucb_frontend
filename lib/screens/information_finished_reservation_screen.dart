@@ -20,7 +20,7 @@ class MyClaimReservationScreen extends StatefulWidget {
 
 class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
   TextEditingController reasonRequest = TextEditingController();
-  bool flag = false;
+  bool flag = true;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppBar(
@@ -47,7 +47,7 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                   borderColor: const Color.fromRGBO(211, 211, 211, 1),
                 ),
                 flag
-                    ? CardContainer(
+                    ? Container(): CardContainer(
                         child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -66,9 +66,9 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                           )
                         ],
                       ))
-                    : Container(),
+                    ,
                 flag
-                    ? Column(
+                    ? Container():Column(
                         children: [
                           const SizedBox(height: 10),
                           MyButton(
@@ -83,8 +83,8 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                             },
                           ),
                         ],
-                      )
-                    : Container(),
+                      ),
+                    
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -96,19 +96,24 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                       height: 50,
                       textColor: Colors.white,
                       color: AppTheme.alert,
-                      text: flag ? "Cancelar" : "Eliminar Reserva",
+                      text: flag ? "Eliminar" : "Cancelar",
                       onPressed: () {
-                        if (!flag) {
-                          BlocProvider.of<AprovedRequestCubit>(context)
-                              .deleteReservation(
-                                  state.reservation.reservationId!);
-                          BlocProvider.of<AprovedRequestCubit>(context)
-                              .getMyCompletedRequests();
-                          Navigator.pop(context);
+                        if (flag) {
+                          setState(() {
+                              BlocProvider.of<AprovedRequestCubit>(context)
+                                .deleteReservation(
+                                    state.reservation.reservationId!);
+                            BlocProvider.of<AprovedRequestCubit>(context)
+                                .getMyCompletedRequests();
+                            Navigator.pop(context);
+                          });
+                          
                         } else {
                           setState(() {
-                            flag = false;
-                          });
+                            flag = true;
+                          }); 
+                          
+                          
                         }
                       },
                     ),
@@ -118,18 +123,19 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                       height: 50,
                       textColor: Colors.white,
                       color: flag
-                          ? AppTheme.primary
-                          : Color.fromRGBO(224, 200, 121, 1),
-                      text: flag ? "Emitir" : "Registrar Reclamo",
+                          ? Color.fromRGBO(224, 200, 121, 1)
+                          : AppTheme.primary,
+                      text: flag ? "Registrar Reclamo" : "Emitir",
                       onPressed: () {
                         if (flag) {
                           setState(() {
-                            flag = true;
+                            flag = false;
                           });
                         } else {
                           BlocProvider.of<ClaimCubit>(context).registerNewClaim(
                               state.reservation.reservationId!,
                               reasonRequest.text);
+
                         }
                       },
                     ),

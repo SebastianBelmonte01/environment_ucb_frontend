@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_button.dart';
@@ -72,17 +75,6 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                             bold: false)
                       ],
                     )),
-                MyButton(
-                  fontSize: 15,
-                  width: 170,
-                  height: 50,
-                  textColor: Colors.white,
-                  color: AppTheme.secondary,
-                  text: "Ver Prueba",
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/imageClaimScreen');
-                  },
-                ),
                 MySpecialCard(
                     borderColor: Color(0xFFE0C879),
                     height: MediaQuery.of(context).size.height * 0.3,
@@ -117,10 +109,13 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                   color: AppTheme.secondary,
                   text: "Ver Pruebas",
                   onPressed: () {
-                    Image image = state.selectedClaim!.image as Image;
+                    String image = state.selectedClaim!.image;
+                    List<int> bytes = base64Decode(image);
+                    Uint8List uint8List = Uint8List.fromList(bytes);
+                    Image convertedImage = Image.memory(uint8List);
                     showDialog(
                         context: context,
-                        builder: (_) => myImageDialog(image: image));
+                        builder: (_) => myImageDialog(image: convertedImage));
                   },
                 ),
                 Row(
@@ -135,6 +130,7 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                       color: AppTheme.alert,
                       text: "Cancelar",
                       onPressed: () {
+                        Navigator.pop(context);
                         //should go to next page
                         //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
                       },
@@ -148,6 +144,9 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                       text: "Emitir",
                       onPressed: () {
                         //should go to next page
+                        BlocProvider.of<ClaimCubit>(context)
+                            .attendClaimAdmin(state.selectedClaim!.claimId! , claimAnswer.text);
+                        Navigator.pop(context);
                         //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
                       },
                     ),
