@@ -112,7 +112,7 @@ class MyClaimScreen extends StatelessWidget {
           return Container(
             child: state.status == PageStatus.loading
                 ? myLoadingPage(
-                    text: "Mis Reclamos \n Respondidos", index: 4, bottomNavItems: navItems)
+                    text: "Mis Reclamos", index: 4, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? MyClaimedReservationScreen()
                     : const Text("Error"),

@@ -29,7 +29,7 @@ class myLoadingPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar:
-          myBottomNavigationBar(items: bottomNavItems, currentIndex: 0),
+          myBottomNavigationBar(items: bottomNavItems, currentIndex: index),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:environment_ucb/components/my_button.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
-import 'package:environment_ucb/cubit/entrance_cubit/entrance_cubit.dart';
 import 'package:environment_ucb/screens/finished_reservation_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
