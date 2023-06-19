@@ -1,6 +1,7 @@
 import 'package:environment_ucb/classes/bottomNavItem_class.dart';
 import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_bottomNavigationBar.dart';
+import 'package:environment_ucb/components/my_error.dart';
 import 'package:environment_ucb/components/my_loading.dart';
 import 'package:environment_ucb/components/my_reservationCard.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
@@ -12,7 +13,6 @@ import 'package:environment_ucb/screens/information_reservation_admin_screen%20.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
 
 class MyPendingRequestAdmin extends StatelessWidget {
   const MyPendingRequestAdmin({super.key});
@@ -29,7 +29,10 @@ class MyPendingRequestAdmin extends StatelessWidget {
         textcolor: Colors.white,
       ),
       body: BlocBuilder<PendingRequestCubit, PendingRequestState>(
-        builder: (context, state) {
+          builder: (context, state) {
+        if (state.requests.isEmpty) {
+          return const Center(child: Text('No hay solicitudes'));
+        } else {
           return ListView.builder(
             itemCount: state.requests.length,
             itemBuilder: (context, index) {
@@ -56,8 +59,8 @@ class MyPendingRequestAdmin extends StatelessWidget {
               );
             },
           );
-        },
-      ),
+        }
+      }),
       bottomNavigationBar:
           myBottomNavigationBar(items: _bottomNavItems, currentIndex: 0),
     );
@@ -81,7 +84,7 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
                     bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyPendingRequestAdmin()
-                    : const Text("Error"),
+                    : MyError(error: "Error al cargar las Solicitudes"),
           );
         });
   }
