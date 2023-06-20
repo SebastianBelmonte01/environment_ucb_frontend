@@ -1,7 +1,9 @@
 import 'package:environment_ucb/components/my_text.dart';
+import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/my_button.dart';
 
@@ -46,8 +48,9 @@ class MyError extends StatelessWidget {
               color: AppTheme.primary,
               text: "Reintentar",
               onPressed: () {
+                BlocProvider.of<LoginCubit>(context).reset();
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => MyLogin()));
+                    MaterialPageRoute(builder: (context) => MyLoginScreen()));
               },
             )
           ],
