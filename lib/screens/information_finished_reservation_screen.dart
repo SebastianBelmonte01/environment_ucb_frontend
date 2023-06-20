@@ -6,6 +6,7 @@ import 'package:environment_ucb/components/my_text.dart';
 import 'package:environment_ucb/components/my_textarea.dart';
 import 'package:environment_ucb/cubit/aproved_request_cubit/aproved_request_cubit.dart';
 import 'package:environment_ucb/cubit/claim_cubit/claim_cubit.dart';
+import 'package:environment_ucb/screens/claimed_state_reservation_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,8 +101,8 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                       onPressed: () {
                         if (flag) {
                           setState(() {
-                            BlocProvider.of<ClaimCubit>(context)
-                                .deleteReservation(
+                            BlocProvider.of<AprovedRequestCubit>(context)
+                                .deleteCompletedReservation(
                                     state.reservation.reservationId!);
                             Navigator.pop(context);
                           });
@@ -133,7 +134,10 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                             BlocProvider.of<ClaimCubit>(context).registerNewClaim(
                                 state.reservation.reservationId!,
                                 reasonRequest.text);
-                            Navigator.pop(context);  
+                            
+                            Navigator.push(context, 
+                            MaterialPageRoute(builder: (context) =>  MyClaimScreen()) );
+                            
                           });
                         }
                       },

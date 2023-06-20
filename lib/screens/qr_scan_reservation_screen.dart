@@ -119,12 +119,12 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
               textColor: Colors.white,
               text: "Confirmar",
               onPressed: () {
-                BlocProvider.of<AprovedRequestCubit>(context)
-                    .registerEntrance(result!.code as String, widget.idReservation);
-                Navigator.popUntil(context, (route) => route.isFirst);
                 setState(() {
                     aux = "";
                   });
+                BlocProvider.of<AprovedRequestCubit>(context)
+                    .registerEntrance(result!.code as String, widget.idReservation);
+                Navigator.popUntil(context, (route) => route.isFirst);
                 Navigator.push(
                       context,
                       MaterialPageRoute(

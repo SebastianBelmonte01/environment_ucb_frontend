@@ -1,3 +1,4 @@
+import 'package:environment_ucb/components/my_appBar.dart';
 import 'package:environment_ucb/components/my_card.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -6,8 +7,10 @@ class MyShimmerRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Solicitud de Reserva'),
+      appBar: const MyAppBar(
+        text: "Solicitud de Reserva",
+        fontSize: 25,
+        textcolor: Colors.white,
       ),
       body: SingleChildScrollView(
         child: Column(

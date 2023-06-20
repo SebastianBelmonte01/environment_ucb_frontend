@@ -93,6 +93,19 @@ class AprovedRequestCubit extends Cubit<AprovedRequestState> {
       print(e);
       emit(state.copyWith(status: PageStatus.failure));
     }
+
+  }
+
+  Future<void> deleteCompletedReservation(int id) async {
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      await ReservationService.deleteReservation(id);
+      List<ReservationDto> requests = await ReservationService.getMyCompletedRequests();
+      emit(state.copyWith(status: PageStatus.success, reservationList: requests));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
   }
 
 }
