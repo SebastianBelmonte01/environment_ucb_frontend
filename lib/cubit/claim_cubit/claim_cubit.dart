@@ -5,6 +5,7 @@ import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/dto/claim_dto.dart';
 import 'package:environment_ucb/dto/reservation_dto.dart';
 import 'package:environment_ucb/services/claim_service.dart';
+import 'package:environment_ucb/services/reservation_service.dart';
 import 'package:equatable/equatable.dart';
 
 part 'claim_state.dart';
@@ -39,10 +40,9 @@ class ClaimCubit extends Cubit<ClaimState> {
     emit(state.copyWith(status: PageStatus.loading));
     try {
       final imageData = await state.image!.readAsBytes();
-      print("Service");
-      print(claimReason);
       await ClaimService.registerNewClaim(reservationId, claimReason ,imageData);
-      emit(state.copyWith(status: PageStatus.success));
+      List<ClaimDto> claims = await ClaimService.getPendingClaimsUser();
+      emit(state.copyWith(status: PageStatus.success, claimList: claims));
     } catch (e) {
       print(e);
       emit(state.copyWith(status: PageStatus.failure));
@@ -89,6 +89,19 @@ class ClaimCubit extends Cubit<ClaimState> {
     try {
       await ClaimService.attendClaimAdmin(claimId, response);
       List<ClaimDto> claims = await ClaimService.getPendingClaims();
+      emit(state.copyWith(status: PageStatus.success, claimList: claims));
+    } catch (e) {
+      print(e);
+      emit(state.copyWith(status: PageStatus.failure));
+    }
+  }
+
+  Future<void> deleteReservation(int id) async {
+    print("Deleting reservation in claim");
+    emit(state.copyWith(status: PageStatus.loading));
+    try {
+      await ReservationService.deleteReservation(id);
+      List<ClaimDto> claims = await ClaimService.getPendingClaimsUser();
       emit(state.copyWith(status: PageStatus.success, claimList: claims));
     } catch (e) {
       print(e);

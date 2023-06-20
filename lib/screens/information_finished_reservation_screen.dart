@@ -76,7 +76,7 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                             width: 170,
                             height: 50,
                             textColor: Colors.white,
-                            color: AppTheme.alert,
+                            color: AppTheme.secondary,
                             text: "Añadir Imagenes",
                             onPressed: () {
                               Navigator.pushNamed(context, '/imageClaimScreen');
@@ -85,7 +85,7 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                         ],
                       ),
                     
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.max,
@@ -100,14 +100,11 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                       onPressed: () {
                         if (flag) {
                           setState(() {
-                              BlocProvider.of<AprovedRequestCubit>(context)
+                            BlocProvider.of<ClaimCubit>(context)
                                 .deleteReservation(
                                     state.reservation.reservationId!);
-                            BlocProvider.of<AprovedRequestCubit>(context)
-                                .getMyCompletedRequests();
                             Navigator.pop(context);
                           });
-                          
                         } else {
                           setState(() {
                             flag = true;
@@ -132,11 +129,12 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                             flag = false;
                           });
                         } else {
-                          BlocProvider.of<ClaimCubit>(context).registerNewClaim(
-                              state.reservation.reservationId!,
-                              reasonRequest.text);
-                          Navigator.pop(context);
-
+                          setState(() {
+                            BlocProvider.of<ClaimCubit>(context).registerNewClaim(
+                                state.reservation.reservationId!,
+                                reasonRequest.text);
+                            Navigator.pop(context);  
+                          });
                         }
                       },
                     ),
