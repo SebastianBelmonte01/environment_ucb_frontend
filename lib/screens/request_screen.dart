@@ -195,6 +195,16 @@ class MyRequest extends StatelessWidget {
                     color: Color(0xFF43935A),
                     text: "Siguiente",
                     onPressed: () {
+                      if (cantidad_personas.text.isEmpty ||
+                          reasonRequest.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Complete todos los campos"),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                        return;
+                      }
                       String environment =
                           BlocProvider.of<EnvironmentCubit>(context)
                               .state

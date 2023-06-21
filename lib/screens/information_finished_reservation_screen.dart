@@ -48,7 +48,8 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                   borderColor: const Color.fromRGBO(211, 211, 211, 1),
                 ),
                 flag
-                    ? Container(): CardContainer(
+                    ? Container()
+                    : CardContainer(
                         child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -66,10 +67,10 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                             enable: true,
                           )
                         ],
-                      ))
-                    ,
+                      )),
                 flag
-                    ? Container():Column(
+                    ? Container()
+                    : Column(
                         children: [
                           const SizedBox(height: 10),
                           MyButton(
@@ -85,7 +86,6 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                           ),
                         ],
                       ),
-                    
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,9 +109,7 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                         } else {
                           setState(() {
                             flag = true;
-                          }); 
-                          
-                          
+                          });
                         }
                       },
                     ),
@@ -131,13 +129,24 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
                           });
                         } else {
                           setState(() {
-                            BlocProvider.of<ClaimCubit>(context).registerNewClaim(
-                                state.reservation.reservationId!,
-                                reasonRequest.text);
-                            
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) =>  MyClaimScreen()) );
-                            
+                            if (reasonRequest.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                      'Por favor ingrese el motivo del reclamo'),
+                                ),
+                              );
+                              return;
+                            }
+                            BlocProvider.of<ClaimCubit>(context)
+                                .registerNewClaim(
+                                    state.reservation.reservationId!,
+                                    reasonRequest.text);
+
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyClaimScreen()));
                           });
                         }
                       },

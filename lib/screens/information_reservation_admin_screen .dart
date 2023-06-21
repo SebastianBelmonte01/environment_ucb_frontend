@@ -129,6 +129,15 @@ class _MyInformationReservationAdminScreenState
                           Navigator.pop(context);
                         } else {
                           //Reject Request
+                          if (reasonRequest.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: AppTheme.alert,
+                                content: Text("Llene todos los campos"),
+                              ),
+                            );
+                            return;
+                          }
                           BlocProvider.of<PendingRequestCubit>(context)
                               .rejectRequest(
                                   state.request?.id as int, reasonRequest.text);

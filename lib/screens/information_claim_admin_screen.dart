@@ -146,9 +146,19 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                       color: AppTheme.primary,
                       text: "Emitir",
                       onPressed: () {
+                        if (claimAnswer.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              backgroundColor: AppTheme.alert,
+                              content: Text("Debe ingresar una respuesta"),
+                            ),
+                          );
+
+                          return;
+                        }
                         //should go to next page
-                        BlocProvider.of<ClaimCubit>(context)
-                            .attendClaimAdmin(state.selectedClaim!.claimId! , claimAnswer.text);
+                        BlocProvider.of<ClaimCubit>(context).attendClaimAdmin(
+                            state.selectedClaim!.claimId!, claimAnswer.text);
                         Navigator.pop(context);
                         //BlocProvider.of<LoginCubit>(context).setAccountInfo(mail.text, password.text);
                       },
