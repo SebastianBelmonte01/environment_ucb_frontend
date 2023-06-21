@@ -107,5 +107,6 @@ flutter_icons:
   image_path: "assets/UCB_logo2.png"
   android: true
   ios: true
-  remove_alpha_ios: true
+  adaptive_icon_background: "#000000"
   resize_behavior: shrink_only
+

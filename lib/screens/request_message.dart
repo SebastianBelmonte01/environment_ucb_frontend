@@ -17,7 +17,7 @@ class MyRequestMessageScreen extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBar(
         text: "Solicitud de Reserva",
-        fontSize: 25,
+        fontSize: 20,
         textcolor: Colors.white,
       ),
       body: BlocBuilder<RequestCubit, RequestState>(
