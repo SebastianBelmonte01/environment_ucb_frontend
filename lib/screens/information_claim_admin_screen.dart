@@ -118,6 +118,9 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
                         builder: (_) => myImageDialog(image: convertedImage));
                   },
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.max,

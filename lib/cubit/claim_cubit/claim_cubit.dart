@@ -41,6 +41,7 @@ class ClaimCubit extends Cubit<ClaimState> {
     try {
       final imageData = await state.image!.readAsBytes();
       await ClaimService.registerNewClaim(reservationId, claimReason ,imageData);
+      
       List<ClaimDto> claims = await ClaimService.getPendingClaimsUser();
       emit(state.copyWith(status: PageStatus.success, claimList: claims));
     } catch (e) {
@@ -95,6 +96,7 @@ class ClaimCubit extends Cubit<ClaimState> {
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+  /*
 
   Future<void> deleteReservation(int id) async {
     print("Deleting reservation in claim");
@@ -108,4 +110,5 @@ class ClaimCubit extends Cubit<ClaimState> {
       emit(state.copyWith(status: PageStatus.failure));
     }
   }
+  */
 }
