@@ -17,7 +17,10 @@ class myLoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(fontSize: 25, text: text, textcolor: Colors.white),
+      appBar: MyAppBar(
+          fontSize: text == "Administración de reservas" ? 20 : 25,
+          text: text,
+          textcolor: Colors.white),
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) => Padding(

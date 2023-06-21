@@ -54,11 +54,6 @@ class _MyTextFieldState extends State<MyTextField> {
               vertical: 1.0,
             ),
           ),
-          onChanged: (value) {
-            setState(() {
-              widget.myTextController.text = value;
-            });
-          },
         ));
   }
 }

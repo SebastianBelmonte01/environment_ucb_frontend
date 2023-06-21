@@ -1,0 +1,6 @@
+flutter_icons:  
+  android:
+    icon: assets/UCB_logo2.png
+    android_foreground_color: "#ffffff"
+  ios:
+    icon: assets/UCB_logo2.png

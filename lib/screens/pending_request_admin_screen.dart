@@ -25,7 +25,7 @@ class MyPendingRequestAdmin extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBar(
         text: "Administración de reservas",
-        fontSize: 25,
+        fontSize: 20,
         textcolor: Colors.white,
       ),
       body: BlocBuilder<PendingRequestCubit, PendingRequestState>(

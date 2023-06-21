@@ -15,11 +15,10 @@ import '../components/my_textfield.dart';
 
 // ignore: must_be_immutable
 class MyLogin extends StatelessWidget {
-  TextEditingController email = TextEditingController();
-  TextEditingController secret = TextEditingController();
-
   MyLogin({super.key});
 
+  TextEditingController email = TextEditingController();
+  TextEditingController secret = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +32,7 @@ class MyLogin extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
             const Image(
                 width: 200,
@@ -71,6 +71,27 @@ class MyLogin extends StatelessWidget {
                   );
                   return;
                 }
+                //validar que el correo sea institucional en String[]
+                bool isInst = false;
+                List<String> a = email.text.split("@");
+                for (int i = 0; i < a.length; i++) {
+                  print(a[i]);
+                  if (a[i] == "ucb.edu.bo") {
+                    isInst = true;
+                    break;
+                  }
+                }
+
+                if (!isInst) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: AppTheme.alert,
+                      content: Text("*El correo debe ser institucional"),
+                    ),
+                  );
+                  return;
+                }
+
                 BlocProvider.of<LoginCubit>(context)
                     .login(email.text, secret.text);
               },
@@ -108,7 +129,7 @@ class MyLoginScreen extends StatelessWidget {
                       ? state.isAdmin == true
                           ? const MyPendingRequestAdminScreen()
                           : const MyPendingRequestScreen()
-                      : MyError(),
+                      : MyError(error: "Usuario o contraseña incorrectos"),
         );
       },
     );
