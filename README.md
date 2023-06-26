@@ -65,12 +65,11 @@ This screenshot shows a response from the administrator of the University.
 ### Admin Screens
 
 #### Professor's Reservation Information
-<img src="readme-screen/admin/admin.jpeg.jpeg" width="300">
+<img src="readme-screen/admin/admin.jpeg" width="300">
 
 #### Pending Claims
 <img src="readme-screen/admin/admin_claim.jpeg" width="300">
 
-The admin can view the picture submitted by the professor for a claim.
 <img src="readme-screen/admin/admin_see_claim.jpeg" width="300">
 
 Feel free to explore the repository for more information about the app's implementation and usage.
