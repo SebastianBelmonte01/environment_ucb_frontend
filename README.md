@@ -22,55 +22,55 @@ This is a Flutter app with a Spring Boot backend that serves as a classroom rese
 ### Professor Screens
 
 #### Login
-![Login](readme-screen/login.jpeg)
+<img src="readme-screen/login.jpeg" width="300">
 
 #### Loading Screen
-![Loading](readme-screen/loading.jpeg)
+<img src="readme-screen/loading.jpeg" width="300">
 
 #### Initial Screen
-![Initial Screen](readme-screen/initial_screen.jpeg)
+<img src="readme-screen/initial_screen.jpeg" width="300">
 
 #### Register a New Request
-![New Request 1](readme-screen/new_request.jpeg)
-![New Request 2](readme-screen/new_request2.jpeg)
+<img src="readme-screen/new_request.jpeg" width="300">
+<img src="readme-screen/new_request2.jpeg" width="300">
 
 #### Classroom Assignment
-![Successful Assignment](readme-screen/success.jpeg)
-![Failed Assignment](readme-screen/failure.jpeg)
+<img src="readme-screen/success.jpeg" width="300">
+<img src="readme-screen/failure.jpeg" width="300">
 
 #### Pending Requests
-![Pending Requests](readme-screen/request.jpeg)
+<img src="readme-screen/request.jpeg" width="300">
 
 #### Accepted Requests
-![Accepted Requests](readme-screen/accepted.jpeg)
-![Accepted Request Information](readme-screen/accepted_info.jpeg)
-![Share Reservation](readme-screen/share.jpeg)
+<img src="readme-screen/accepted.jpeg" width="300">
+<img src="readme-screen/accepted_info.jpeg" width="300">
+<img src="readme-screen/share.jpeg" width="300">
 
 #### Register Entrance
-![Register Entrance](readme-screen/qr_scan.jpeg)
+<img src="readme-screen/qr_scan.jpeg" width="300">
 
 #### Finished Reservations
-![Finished Reservations](readme-screen/finished.jpeg)
+<img src="readme-screen/finished.jpeg" width="300">
 
 #### Register Claim
-![Register Claim](readme-screen/res_claim.jpeg)
+<img src="readme-screen/res_claim.jpeg" width="300">
 
 #### Pending Claims
-![Pending Claims](readme-screen/pending_claims.jpeg)
+<img src="readme-screen/pending_claims.jpeg" width="300">
 
 #### Attended Claims Information
-This screenshot shows a response from the administrator of the University regarding a claim.
-![Attended Claims Information](readme-screen/attended_claim.jpeg)
+This screenshot shows a response from the administrator of the University.
+<img src="readme-screen/attended_claim.jpeg" width="300">
 
 ### Admin Screens
 
 #### Professor's Reservation Information
-![Professor's Reservation Information](readme-screen/admin/admin.jpeg)
+<img src="readme-screen/admin/admin.jpeg.jpeg" width="300">
 
 #### Pending Claims
-![Pending Claims](readme-screen/admin/admin_claim.jpeg)
+<img src="readme-screen/admin/admin_claim.jpeg" width="300">
 
 The admin can view the picture submitted by the professor for a claim.
-![Admin Viewing Claim Picture](readme-screen/admin/admin_see_claim.jpeg)
+<img src="readme-screen/admin/admin_see_claim.jpeg" width="300">
 
 Feel free to explore the repository for more information about the app's implementation and usage.
