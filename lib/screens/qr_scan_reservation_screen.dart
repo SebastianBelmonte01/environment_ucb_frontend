@@ -125,11 +125,12 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
                 BlocProvider.of<AprovedRequestCubit>(context)
                     .registerEntrance(result!.code as String, widget.idReservation);
                 Navigator.popUntil(context, (route) => route.isFirst);
-                Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const MyFinishedReservationScreen()));
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyFinishedReservationScreen()),
+                    (route) => false
+                );
 
                 //Navigator.pushNamed(context, '/finishedScreen');
               },
