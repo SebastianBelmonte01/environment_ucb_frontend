@@ -20,7 +20,9 @@ class myLoadingPage extends StatelessWidget {
       appBar: MyAppBar(
           fontSize: text == "Administración de reservas" ? 20 : 25,
           text: text,
-          textcolor: Colors.white),
+          textcolor: Colors.white,
+          isRegistrarion: false,
+      ),  
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) => Padding(

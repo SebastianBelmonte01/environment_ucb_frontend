@@ -27,6 +27,7 @@ class MyPendingRequestAdmin extends StatelessWidget {
         text: "Administración de reservas",
         fontSize: 20,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: BlocBuilder<PendingRequestCubit, PendingRequestState>(
           builder: (context, state) {
@@ -84,7 +85,7 @@ class MyPendingRequestAdminScreen extends StatelessWidget {
                     bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyPendingRequestAdmin()
-                    : MyError(error: "Error al cargar las Solicitudes"),
+                    : MyError(error: "Error al cargar las Solicitudes", isSecure: true),
           );
         });
   }

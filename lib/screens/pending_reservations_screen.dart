@@ -28,6 +28,7 @@ class MyPendingRequest extends StatelessWidget {
         text: "Mis Reservas",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: BlocBuilder<PendingRequestCubit, PendingRequestState>(
         builder: (context, state) {
@@ -88,7 +89,7 @@ class MyPendingRequestScreen extends StatelessWidget {
                     text: "Mis Reservas", index: 0, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyPendingRequest()
-                    : MyError(error: "Error al cargar las Solicitudes"),
+                    : MyError(error: "Error al cargar las Solicitudes", isSecure: true),
           );
         });
   }

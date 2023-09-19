@@ -9,9 +9,10 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? text;
   final double fontSize;
   final Color textcolor;
+  final bool isRegistrarion;
 
   const MyAppBar(
-      {Key? key, this.text, required this.fontSize, required this.textcolor})
+      {Key? key, this.text, required this.fontSize, required this.textcolor, required this.isRegistrarion})
       : super(key: key);
 
   @override
@@ -29,7 +30,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: textcolor,
               ),
             ),
-            IconButton(
+            isRegistrarion ? const Text("") :IconButton(
                 alignment: Alignment.centerRight,
                 onPressed: () {
                   var alert = AlertDialog(

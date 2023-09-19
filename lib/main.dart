@@ -4,6 +4,7 @@ import 'package:environment_ucb/cubit/environment_cubit/environment_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/pending_request_cubit/pending_request_cubit.dart';
 import 'package:environment_ucb/cubit/professor_cubit/professor_cubit.dart';
+import 'package:environment_ucb/cubit/registration_cubit/registration_cubit.dart';
 import 'package:environment_ucb/cubit/request_cubit/request_cubit.dart';
 import 'package:environment_ucb/screens/aproved_reservation_screen.dart';
 import 'package:environment_ucb/screens/information_finished_reservation_screen.dart';
@@ -17,6 +18,7 @@ import 'package:environment_ucb/screens/information_reservation_screen.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
+import 'package:environment_ucb/screens/registration_screen.dart';
 import 'package:environment_ucb/screens/rejected_reservation_screen.dart';
 import 'package:environment_ucb/screens/request_message.dart';
 import 'package:environment_ucb/screens/request_screen.dart';
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<LoginCubit>(
             create: (context) => LoginCubit(),
+          ),
+          BlocProvider<RegistrationCubit>(
+            create: (context) => RegistrationCubit(),
           ),
           BlocProvider<EnvironmentCubit>(
             create: (context) => EnvironmentCubit()..getEnvironments(),
@@ -75,6 +80,7 @@ class MyApp extends StatelessWidget {
               duration: 500,
               backgroundColor: Color.fromARGB(255, 255, 255, 255),
             ),
+            '/registration':(context) => MyRegistrationScreen(),
             '/requestScreen': (context) => MyRequestScreen(),
             '/requestMessageScreen': (context) => MyRequestMessageScreen(),
             '/rejectedScreen': (context) => MyRejectedRequestScreen(),
@@ -93,6 +99,7 @@ class MyApp extends StatelessWidget {
             '/claimedAdminScreen': (context) =>
                 MyClaimedAdminReservationScreen(),
             '/claimedScreen': (context) => MyClaimScreen(),
+
           },
         ));
   }

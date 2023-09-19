@@ -27,6 +27,7 @@ class MyInformationReservationScreen extends StatelessWidget {
         text: "Detalle Reserva",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(

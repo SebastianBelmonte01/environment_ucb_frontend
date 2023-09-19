@@ -35,6 +35,7 @@ class _MyInformationReservationAdminScreenState
         text: "Detalle Solicitud",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<RequestCubit, RequestState>(

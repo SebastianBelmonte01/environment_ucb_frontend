@@ -24,6 +24,7 @@ class MyInformationClaimScreen extends StatelessWidget {
           text: "Detalle Solicitud",
           fontSize: 25,
           textcolor: Colors.white,
+          isRegistrarion: false,
         ),
         body: SingleChildScrollView(
             child: Column(

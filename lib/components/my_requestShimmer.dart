@@ -11,6 +11,7 @@ class MyShimmerRequest extends StatelessWidget {
         text: "Solicitud de Reserva",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: SingleChildScrollView(
         child: Column(

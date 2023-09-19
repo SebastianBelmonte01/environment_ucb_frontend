@@ -40,6 +40,7 @@ class MyRequest extends StatelessWidget {
         text: "Solicitud de Reserva",
         fontSize: 20,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -266,7 +267,7 @@ class MyRequestScreen extends StatelessWidget {
             ? MyShimmerRequest()
             : state.status == PageStatus.success
                 ? MyRequest()
-                : MyError(error: "Error al cargar el formulario"),
+                : MyError(error: "Error al cargar el formulario", isSecure: true),
       );
     });
   }

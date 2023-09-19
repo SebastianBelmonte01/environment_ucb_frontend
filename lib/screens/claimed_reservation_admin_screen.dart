@@ -25,6 +25,7 @@ class MyClaimedAdminReservation extends StatelessWidget {
         text: "Reclamos",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: BlocBuilder<ClaimCubit, ClaimState>(builder: (context, state) {
         if (state.claimList.isEmpty) {
@@ -78,7 +79,7 @@ class MyClaimedAdminReservationScreen extends StatelessWidget {
                     text: "Reclamos", index: 1, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyClaimedAdminReservation()
-                    : MyError(error: "Error al cargar los reclamos"),
+                    : MyError(error: "Error al cargar los reclamos", isSecure: true,),
           );
         });
   }

@@ -38,6 +38,7 @@ class _MyClaimedReservationScreenState
         text: "Mis Reclamos",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: BlocBuilder<ClaimCubit, ClaimState>(builder: (context, state) {
         if (state.claimList.isEmpty) {
@@ -66,8 +67,6 @@ class _MyClaimedReservationScreenState
                       MaterialPageRoute(
                         builder: (context) =>
                             MyInformationClaimScreen(claim: claim),
-                        //INFORMATION FINSHED
-                        //
                       ),
                     );
                   } else {
@@ -125,7 +124,7 @@ class MyClaimScreen extends StatelessWidget {
                     text: "Mis Reclamos", index: 4, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? MyClaimedReservationScreen()
-                    : MyError(error: "Error al cargar los reclamos"),
+                    : MyError(error: "Error al cargar los reclamos", isSecure: true),
           );
         });
   }

@@ -19,6 +19,7 @@ class MyRequestMessageScreen extends StatelessWidget {
         text: "Solicitud de Reserva",
         fontSize: 20,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: BlocBuilder<RequestCubit, RequestState>(
         builder: (context, state) {

@@ -26,6 +26,7 @@ class MyInformationClaimAdminScreen extends StatelessWidget {
         text: "Detalle Reserva",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<ClaimCubit, ClaimState>(

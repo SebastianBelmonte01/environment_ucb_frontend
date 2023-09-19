@@ -25,6 +25,7 @@ class MyAprovedReservation extends StatelessWidget {
         text: "Mis Reservas",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
           buildWhen: (previous, current) => previous.status != current.status,
@@ -80,7 +81,7 @@ class MyAprovedReservationScreen extends StatelessWidget {
                     text: "Mis Reservas", index: 1, bottomNavItems: navItems)
                 : state.status == PageStatus.success
                     ? const MyAprovedReservation()
-                    : MyError(error: "Error al cargar las reservas"),
+                    : MyError(error: "Error al cargar las reservas", isSecure: true,),
           );
         });
   }

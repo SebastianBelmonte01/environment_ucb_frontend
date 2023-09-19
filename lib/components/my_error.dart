@@ -9,7 +9,8 @@ import '../components/my_button.dart';
 
 class MyError extends StatelessWidget {
   String error;
-  MyError({this.error = "", super.key});
+  bool isSecure;
+  MyError({this.error = "", required this.isSecure, super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +37,12 @@ class MyError extends StatelessWidget {
                 text: error == "" ? "Ha ocurrido un Error inesperado" : error,
                 fontSize: 20,
                 color: Colors.white,
-                bold: true),
+                bold: true
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
-            MyButton(
+            isSecure ? MyButton(
               fontSize: 15,
               width: 235,
               height: 50,
@@ -52,7 +54,7 @@ class MyError extends StatelessWidget {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => MyLoginScreen()));
               },
-            )
+            ) : Text(""),
           ],
         ),
       ),

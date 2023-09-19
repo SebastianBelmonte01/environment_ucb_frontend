@@ -23,7 +23,12 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
+  void incrementIncorrectAccess(){
+    emit(state.copyWith(errorCount: state.errorCount + 1));
+  }
+
   void reset() {
     emit(const LoginState());
   }
+
 }

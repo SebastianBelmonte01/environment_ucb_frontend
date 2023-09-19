@@ -33,6 +33,7 @@ class _MyImageClaimScreenState extends State<MyImageClaimScreen> {
         text: "Imagen Reclamo",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: Center(
         child: Padding(

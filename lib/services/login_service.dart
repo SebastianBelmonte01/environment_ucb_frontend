@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 class LoginService {
   static Future<ApiResponse> login(String username, String password) async {
     print('${Api.url}/auth/login');
-    print(username + password);
     try {
       final response = await http.post(
         Uri.parse('${Api.url}/auth/login'),
@@ -40,5 +39,32 @@ class LoginService {
         code: 'a',
         response: AuthResponse(authToken: 's', refreshToken: ''),
         errorMessage: 's');
+  }
+
+  static Future<void> createAccount(String email, String password) async {
+    print(email);
+    try{
+      final response = await http.post(
+        Uri.parse('${Api.url}/user'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode({
+          'email': email,
+          'password': password,
+        }),
+      );
+      if(response.statusCode == 200){
+        print("OK");
+      }
+      else{
+        print("Failed to create account");
+        throw Exception('Failed to create account');
+      }
+    }
+    catch(e){
+      print(e);
+    }
   }
 }

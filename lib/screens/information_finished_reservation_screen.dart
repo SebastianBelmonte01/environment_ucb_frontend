@@ -28,6 +28,7 @@ class _MyClaimReservationScreenState extends State<MyClaimReservationScreen> {
         text: "Detalle Reserva",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: BlocBuilder<AprovedRequestCubit, AprovedRequestState>(
         builder: (context, state) {

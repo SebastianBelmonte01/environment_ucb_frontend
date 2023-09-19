@@ -6,6 +6,7 @@ import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/data/Navbar/items.dart';
 import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
+import 'package:environment_ucb/screens/registration_screen.dart';
 import 'package:environment_ucb/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,6 +54,41 @@ class MyLogin extends StatelessWidget {
               keyboardType: TextInputType.text,
               isPassword: true,
             ),
+            GestureDetector(
+              child: const Text(
+              "Registrate Aqui",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyRegistrationScreen(),
+                  ),
+                );
+              },
+            ),
+            SizedBox(height: 10),
+            GestureDetector(
+              child: const Text(
+              "¿Olvidaste tu contraseña?",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+              ),
+              onTap: () {
+                print("olvidaste tu contraseña");
+              },
+            ),
+            SizedBox(height: 20),
+
+            
             MyButton(
               fontSize: 15,
               width: 235,
@@ -91,7 +127,7 @@ class MyLogin extends StatelessWidget {
                   );
                   return;
                 }
-
+                BlocProvider.of<LoginCubit>(context).incrementIncorrectAccess();
                 BlocProvider.of<LoginCubit>(context)
                     .login(email.text, secret.text);
               },
@@ -107,31 +143,50 @@ class MyLoginScreen extends StatelessWidget {
   const MyLoginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      builder: (context, state) {
-        return Container(
-          child: state.status == PageStatus.initial
-              ? MyLogin()
-              : state.status == PageStatus.loading
-                  ? state.isAdmin == true
-                      ? myLoadingPage(
-                          text: "Administración de reservas",
-                          bottomNavItems: NavItems().bottomNavItemsAdmin,
-                          index: 0,
-                        )
-                      : myLoadingPage(
-                          text: "Mis Reservas",
-                          bottomNavItems: NavItems().bottomNavItemsProfessor,
-                          index: 0,
-                        )
-                  : state.status == PageStatus.success
-                      ? state.isAdmin == true
-                          ? const MyPendingRequestAdminScreen()
-                          : const MyPendingRequestScreen()
-                      : MyError(error: "Usuario o contraseña incorrectos"),
-        );
-      },
-    );
-  }
+Widget build(BuildContext context) {
+
+  return BlocBuilder<LoginCubit, LoginState>(
+    builder: (context, state) {
+      Widget childWidget;
+
+      if (state.status == PageStatus.initial) {
+        childWidget = MyLogin();
+      } else if (state.status == PageStatus.loading) {
+        if (state.isAdmin == true) {
+          childWidget = myLoadingPage(
+            text: "Administración de reservas",
+            bottomNavItems: NavItems().bottomNavItemsAdmin,
+            index: 0,
+          );
+        } else {
+          childWidget = myLoadingPage(
+            text: "Mis Reservas",
+            bottomNavItems: NavItems().bottomNavItemsProfessor,
+            index: 0,
+          );
+        }
+      } else if (state.status == PageStatus.success) {
+        if (state.isAdmin == true) {
+          childWidget = const MyPendingRequestAdminScreen();
+        } else {
+          childWidget = const MyPendingRequestScreen();
+        }
+      } else {
+        print(state.errorCount);
+        if(state.errorCount == 3){
+          childWidget = MyError(error: 'Usted fue bloqueado \n\n' + 'usuario y/o contraseña incorrectos', isSecure: false);
+        }
+        else{
+          childWidget = MyLogin();
+        }
+        
+      }
+
+      return Container(
+        child: childWidget,
+      );
+    },
+  );
+}
+
 }

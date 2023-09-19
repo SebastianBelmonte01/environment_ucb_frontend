@@ -45,6 +45,7 @@ class _MyQrScanReservationScreenState extends State<MyQrScanReservationScreen> {
         text: "Escanear QR",
         fontSize: 25,
         textcolor: Colors.white,
+        isRegistrarion: false,
       ),
       body: Column(
         children: <Widget>[
