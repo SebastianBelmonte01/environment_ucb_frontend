@@ -117,13 +117,17 @@ class MyRegistrationScreen extends StatelessWidget {
                     ),
                   );
                 }
-
-                ScaffoldMessenger.of(context).showSnackBar(
+                if (auth.isPasswordSecure(secret.text) && auth.isUcbEmail(email.text) && secret.text == secretConfirmation.text) {
+                  ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       backgroundColor: AppTheme.primary,
                       content: Text("*Usuario registrado correctamente"),
                     ),
                   );
+
+                }
+
+                
                 BlocProvider.of<RegistrationCubit>(context).createAccount(email.text, secret.text);
                 Navigator.pop(context);
 

@@ -16,6 +16,7 @@ import 'package:environment_ucb/screens/information_claim_admin_screen.dart';
 import 'package:environment_ucb/screens/information_reservation_admin_screen%20.dart';
 import 'package:environment_ucb/screens/information_reservation_screen.dart';
 import 'package:environment_ucb/screens/login_screen.dart';
+import 'package:environment_ucb/screens/password_recovery.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
 import 'package:environment_ucb/screens/registration_screen.dart';
@@ -99,6 +100,7 @@ class MyApp extends StatelessWidget {
             '/claimedAdminScreen': (context) =>
                 MyClaimedAdminReservationScreen(),
             '/claimedScreen': (context) => MyClaimScreen(),
+            '/passwordScreen': (context) => MyPasswordRecovery(),
 
           },
         ));

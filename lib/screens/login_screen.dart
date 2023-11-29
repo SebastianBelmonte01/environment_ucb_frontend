@@ -4,6 +4,7 @@ import 'package:environment_ucb/cubit/login_cubit/login_cubit.dart';
 import 'package:environment_ucb/cubit/login_cubit/login_state.dart';
 import 'package:environment_ucb/cubit/page_status.dart';
 import 'package:environment_ucb/data/Navbar/items.dart';
+import 'package:environment_ucb/screens/password_recovery.dart';
 import 'package:environment_ucb/screens/pending_request_admin_screen.dart';
 import 'package:environment_ucb/screens/pending_reservations_screen.dart';
 import 'package:environment_ucb/screens/registration_screen.dart';
@@ -83,7 +84,12 @@ class MyLogin extends StatelessWidget {
               ),
               ),
               onTap: () {
-                print("olvidaste tu contraseña");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyPasswordRecovery(),
+                  ),
+                );
               },
             ),
             SizedBox(height: 20),
@@ -172,7 +178,6 @@ Widget build(BuildContext context) {
           childWidget = const MyPendingRequestScreen();
         }
       } else {
-        print(state.errorCount);
         if(state.errorCount == 3){
           childWidget = MyError(error: 'Usted fue bloqueado \n\n' + 'usuario y/o contraseña incorrectos', isSecure: false);
         }
