@@ -22,14 +22,14 @@ class MyTextField extends StatefulWidget {
       this.digitsOnly = false,
       this.positiveOnly = false,
       this.integersOnly = false,
-      });
+       });
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
 }
 
 class _MyTextFieldState extends State<MyTextField> {
-
+  
   List<TextInputFormatter> getInputFormatters() {
     List<TextInputFormatter> inputFormatters = [];
     if (widget.digitsOnly) {
@@ -43,7 +43,6 @@ class _MyTextFieldState extends State<MyTextField> {
     }
     return inputFormatters;
   }
-
   @override
   Widget build(BuildContext context) {
     return Container(
