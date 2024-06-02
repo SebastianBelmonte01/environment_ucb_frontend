@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyTextField extends StatefulWidget {
   TextEditingController myTextController;
@@ -7,6 +8,9 @@ class MyTextField extends StatefulWidget {
   double width;
   double height;
   String? hintText;
+  bool digitsOnly;
+  bool positiveOnly;
+  bool integersOnly;
   MyTextField(
       {super.key,
       required this.height,
@@ -14,13 +18,31 @@ class MyTextField extends StatefulWidget {
       required this.myTextController,
       required this.keyboardType,
       this.isPassword,
-      this.hintText});
+      this.hintText,
+      this.digitsOnly = false,
+      this.positiveOnly = false,
+      this.integersOnly = false,
+       });
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
 }
 
 class _MyTextFieldState extends State<MyTextField> {
+  
+  List<TextInputFormatter> getInputFormatters() {
+    List<TextInputFormatter> inputFormatters = [];
+    if (widget.digitsOnly) {
+      inputFormatters.add(FilteringTextInputFormatter.digitsOnly);
+    }
+    if (widget.positiveOnly) {
+      inputFormatters.add(FilteringTextInputFormatter.allow(RegExp(r'[0-9]')));
+    }
+    if (widget.integersOnly) {
+      inputFormatters.add(FilteringTextInputFormatter.allow(RegExp(r'^-?[0-9]*$')));
+    }
+    return inputFormatters;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,6 +53,7 @@ class _MyTextFieldState extends State<MyTextField> {
           keyboardType: widget.keyboardType,
           textAlign: TextAlign.center,
           obscureText: widget.isPassword ?? false,
+          inputFormatters:getInputFormatters(),
           decoration: InputDecoration(
             hintText: widget.hintText,
             filled: true,
@@ -57,3 +80,5 @@ class _MyTextFieldState extends State<MyTextField> {
         ));
   }
 }
+
+
