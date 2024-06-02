@@ -29,7 +29,7 @@ class MyClaimedAdminReservation extends StatelessWidget {
       ),
       body: BlocBuilder<ClaimCubit, ClaimState>(builder: (context, state) {
         if (state.claimList.isEmpty) {
-          return const Center(child: Text('No hay reclamos'));
+          return const Center(child: Text('No se tienen reclamos registrados'));
         } else {
           return ListView.builder(
             itemCount: state.claimList.length,
