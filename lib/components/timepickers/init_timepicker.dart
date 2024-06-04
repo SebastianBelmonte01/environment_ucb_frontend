@@ -43,7 +43,7 @@ class _MyInitTimePickerState extends State<MyInitTimePicker> {
           },
           style: ElevatedButton.styleFrom(
             minimumSize: Size(50, 30),
-            primary: Color(0xFF2C3E6C),
+            backgroundColor: Color(0xFF2C3E6C),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
