@@ -24,7 +24,7 @@ class MyIconButton extends StatelessWidget {
           label: Text(""),
           style: ElevatedButton.styleFrom(
             alignment: Alignment.centerRight,
-            primary: AppTheme.secondary,
+            backgroundColor: AppTheme.secondary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25),
             ),
