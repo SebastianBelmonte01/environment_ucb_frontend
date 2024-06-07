@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:environment_ucb/components/my_SCard.dart';
 import 'package:environment_ucb/components/my_icon_button.dart';

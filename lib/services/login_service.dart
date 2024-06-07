@@ -57,6 +57,12 @@ class LoginService {
       );
       if(response.statusCode == 200){
         print("OK");
+        if(response.body == null){
+          print("No body");
+        }
+        else{
+          print(response.body);
+        }
       }
       else{
         print("Failed to create account");

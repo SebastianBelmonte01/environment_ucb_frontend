@@ -105,7 +105,7 @@ class MyRegistrationScreen extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       backgroundColor: AppTheme.alert,
-                      content: Text("*La contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial"),
+                      content: Text("*El usuario ya existe o la contraseña debe tener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial"),
                     ),
                   );
                 }
