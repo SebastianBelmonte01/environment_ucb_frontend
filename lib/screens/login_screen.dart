@@ -41,6 +41,7 @@ class MyLogin extends StatelessWidget {
                 height: 200,
                 image: AssetImage("assets/UCB_logo2.png")),
             MyTextField(
+              key: const Key("email"),
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width * 0.7,
               myTextController: email,
@@ -48,6 +49,7 @@ class MyLogin extends StatelessWidget {
               keyboardType: TextInputType.text,
             ),
             MyTextField(
+              key: const Key("password"),
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width * 0.7,
               myTextController: secret,
@@ -96,6 +98,7 @@ class MyLogin extends StatelessWidget {
 
             
             MyButton(
+              key: const Key("login"),
               fontSize: 15,
               width: 235,
               height: 50,
